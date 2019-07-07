@@ -1,5 +1,6 @@
 # Table of contents
 
-* [Front-end Interview 算法](README.md)
+* [Readme](README.md)
 * [JS Concepts](js-concepts.md)
+* [Front-end Interview 算法](frontend-interview-suan-fa.md)
 
