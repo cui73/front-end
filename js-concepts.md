@@ -18,7 +18,3 @@ There's no simple explanation for `this`; it is one of the most confusing concep
 5. If multiple of the above rules apply, the rule that is higher wins and will set the `this` value.
 6. If the function is an ES2015 arrow function, it ignores all the rules above and receives the `this` value of its surrounding scope at the time it is created.
 
-#### 3.Explain how prototypal inheritance works
-
-This is an extremely common JavaScript interview question. All JavaScript objects have a `prototype` property, that is a reference to another object. When a property is accessed on an object and if the property is not found on that object, the JavaScript engine looks at the object's `prototype`, and the `prototype`'s `prototype` and so on, until it finds the property defined on one of the `prototype`s or until it reaches the end of the prototype chain. This behavior simulates classical inheritance, but it is really more of [delegation than inheritance](https://davidwalsh.name/javascript-objects).
-
