@@ -1,4 +1,4 @@
 # Readme
 
-Summary of JS related interview questions
+Learning Js 
 
