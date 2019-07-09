@@ -75,7 +75,17 @@ using promise to fix it : Flattened callbacks Return values from asynchronous fu
 
 Prototypes are the mechanism by which JavaScript objects inherit features from one another. JavaScript is often described as a prototype-based language — to provide inheritance, objects can have a prototype object, which acts as a template object that it inherits methods and properties from. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain, and explains why different objects have properties and methods defined on other objects available to them.
 
+**9. js data type**
 
+**10.how to store data in local storage**
+
+**11.new in es6**
+
+**12.Right click function**
+
+**13.the usage of Webpack**
+
+\*\*\*\*
 
 \*\*\*\*
 
