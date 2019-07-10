@@ -85,7 +85,151 @@ Prototypes are the mechanism by which JavaScript objects inherit features from o
 
 **13.the usage of Webpack**
 
-\*\*\*\*
+**14.The pros of React and difference with Angular**
 
-\*\*\*\*
+**15.What is the prototype?**
+
+**16.How do you implement object-oriented programming in js?**
+
+**17.How do you detect memory leak in js?**
+
+**18.How to do async calls in js?**
+
+**19.Call back hell 如何解决**  
+20.**how to get Asyn restult in Backend?**
+
+**21.array operation**
+
+**22.What is a Promise in JavaScript?**
+
+**23.When would you declare a variable with let as opposed to const?**
+
+**24.What are some advantages of JSON \(Over XML\)?**
+
+**25.What is JSON?**
+
+**26.Can you briefly describe a closure?**
+
+**27.What JavaScript libraries and frameworks have you worked with?**
+
+**28.What is a regular expression/RegExp?**
+
+**29.Which keyword allows you to remove a member from an object? delete**
+
+**30.怎么debug JavaScript code，用什么工具debug** 
+
+**我提到vscode有很多内置功能便于debug，对方不满意，最后他给我例子火狐浏览器怎么用break point 来debug**
+
+**31.闭包是什么，使用场景**
+
+**32.let / const / var 区别**
+
+**33.解决reserved name 的dubug工具 //这个是什么？use strict吗？//ESLint**
+
+**34.event-loop how it works**
+
+**35.how to use export and import**
+
+**36.tell me about two ways for  inheritance**
+
+**37. how to use fetch function?**
+
+**38.what is the null process? how many process in our javascripts\(not single thread question, he means process with js\)**
+
+**39.how to loop a object with multiple layer\(dfs,bfs\)different between dfs and bfs**  
+
+
+**40. this的用法**
+
+**41.写一个debounce方程**
+
+**42.手写map方法**
+
+**43.event loop**
+
+**44.how to do the error handling:**  
+
+
+45.**how to parse the json data type**
+
+**46.javascript validation**
+
+**47.cross browser compatibility issues**
+
+**48.how to judge input finished \(debounce\)**
+
+**49.call\(\), bind\(\), apply\(\)**
+
+**50. inherience**
+
+**51.typeof array**
+
+**52.javascript design pattern**
+
+**53.how to use Pure JavaScript to accomplish data binding method**
+
+**54.explain different HTTP request methods**
+
+**55.what is mixin**
+
+56.**pros and cons of using mixin**
+
+**57.explain how the mixin function like in your project**
+
+**58.how to use JavaScript to write a dropdown list**
+
+59.**setter and getter in javascript ?**
+
+**60.how to deep copy and shallow copy an object**
+
+**61. explain ES6 arrow function, why you prefer to use that**
+
+**62.how to create a Class in javascript**
+
+**63.how to make HTTP request security \(CDS, CORS\)**
+
+**64.search bar的细节，怎么取得data//服务器用regux expression，怎么返回结果**
+
+**65.怎么detele property（1.delete 2.prototype）**
+
+**66. input bar怎么做，onchange = {this.handleChange}**
+
+**67.**
+
+1. **What is the difference between get and post?**
+2. **what is the difference between post and put?**
+3. **Do you know any other method other than get, put, post, delete?**
+4. **How do you handle HTTP header?**
+
+**68.Do you know different types of internet session?**
+
+**69.http method why can’t use get function to create new one. GET vs POST**
+
+**70.what’s functional programming tell some detail?**
+
+**71.前端如何做security**
+
+72. **What happened when you type in an url in a browser. 主要回答DNS, IP.**
+
+**73.iife**
+
+**74.经典的for循环里面加setTimeout， 问输出结果， 如何修改结果**
+
+**75.Check if object is a array, use array.constructor === Array**
+
+**76.difference between == and ===**
+
+**77.difference between await and async**  
+
+
+**78.**explain authentication
+
+79.**什么是MVVM and 什么是MVC**
+
+**80.pass by value and pass by reference**
+
+**81.**
+
+  
+
 
