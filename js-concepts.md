@@ -93,15 +93,93 @@ Prototypes are the mechanism by which JavaScript objects inherit features from o
 
 ## **10.how to store data in local storage**
 
+```text
+// store data
+localStorage.setItem('username', 'Andrew')
+
+// get data
+const name = localStorage.get('username')
+console.log(name)
+
+localStorage.removeItem('username')
+localStorage.clear()
+```
+
 ## **11.new in es6**
 
+```text
+  Default Parameters in ES6
+      var link = function(height = 50, color = 'red', url = 'http://azat.co') {
+  ...
+}
 
+    Template Literals in ES6
+      var name = `Your name is ${first} ${last}.`
+      var url = `http://localhost:3000/api/messages/${id}`
+    
+    Multi-line Strings in ES6
+
+      var roadPoem = `Then took the other, as just as fair,
+    And having perhaps the better claim
+    Because it was grassy and wanted wear,
+    Though as for that the passing there
+    Had worn them really about the same,`
+
+     Destructuring Assignment in ES6
+
+     Enhanced Object Literals in ES6
+
+     Arrow Functions in ES6
+
+     Promises in ES6
+
+     Block-Scoped Constructs Let and Const
+
+     classes in ES6
+      
+     modules in es6 (export=, import)
+```
 
 ## **12.Right click function**
 
-**13.the usage of Webpack**
+```text
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id = "btn1">点击我右击</button>
+	<script type="text/javascript">
+		//这一步是为了阻止右击时系统默认的弹出框
+		document.getElementById("btn1").oncontextmenu = function(e){
+	        e.preventDefault();
+	    };
+	    //在这里你就可以自己定义事件的函数啦
+		document.getElementById("btn1").onmouseup=function(oEvent) {
+		    if (!oEvent) oEvent=window.event;
+		    if (oEvent.button==2) {
+		        console.log('鼠标右击了')
+		    }
+		}
+	</script>
+</body>
+</html>
+--------------------- 
+作者：三哥玩前端 
+来源：CSDN 
+原文：https://blog.csdn.net/zhaoxiang66/article/details/78063015 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+```
 
-**14.The pros of React and difference with Angular**
+## **13.the usage of Webpack**
+
+Webpack is a tool wherein you use a **configuration to explain** to the builder **how to load specific things**. You describe to Webpack how to load`*.js` files, or how it should look at `.scss` files, etc. Then, when you run it, it goes into your entry point and walks up and down your program and figures out **exactly** what it needs, in what order it needs it, and what each piece depends on. It will then create **bundles** — as few as possible, as optimized as possible, that you include as the scripts in your application.
+
+## **14.The pros of React and difference with Angular**
+
+pros of react:
 
 **15.What is the prototype?**
 
