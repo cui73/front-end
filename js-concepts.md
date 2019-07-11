@@ -1,13 +1,13 @@
 # JS Concepts
 
-1.**Explain event delegation**
+## 1.**Explain event delegation**
 
 Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
 
 * Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers on each descendant.
 * There is no need to unbind the handler from elements that are removed and to bind the event for new elements
 
-**2. Explain how `this` works in JavaScript**
+## **2. Explain how `this` works in JavaScript**
 
 There's no simple explanation for `this`; it is one of the most confusing concepts in JavaScript. A hand-wavey explanation is that the value of `this` depends on how the function is called. I have read many explanations on `this`online, and I found [Arnav Aggrawal](https://medium.com/@arnav_aggarwal)'s explanation to be the clearest. The following rules are applied:
 
