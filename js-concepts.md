@@ -228,7 +228,71 @@ Prototypes are the mechanism by which JavaScript objects inherit features from o
 
 **80.pass by value and pass by reference**
 
-**81.**
+**81. how do you import multiple functions from one module? give example \(让我白板上写几个case\) //用object**
+
+**82.what design principle do you use mostly?**
+
+**83.问我ES6的spread operator在ES5里面应该怎么写。**
+
+**84.说几个javascript的design pattern，知道observer嘛，知不知道redux是observer的一种实现。**
+
+**85.问SSR和CSR的区别，两个具问我HTML5 有些browser不支持，问我production的时候应该怎么做**
+
+**86. what is promise and promise all; write a promise all if we have p1, p2, p3 几种 promise 写法**
+
+**87.promise await**
+
+88.**oop vs functional programming**
+
+**89. js vs jquery**
+
+**90. js vs java**
+
+**91.strict mode**
+
+**92.arraylist vs linkedlist**
+
+**93.Where u put css file**
+
+**Where u put js file**  
+
+
+94.**One way data binding vs two way data binding**
+
+**95. hoisting?**
+
+96.**How to use bind call apply**
+
+**97.Rest operator,.spread operator**
+
+**98.difference between cookie, session storage, local storage**
+
+**99.what is OAuth, do you do authentication in your project**
+
+**100.Cross origin, cross domain**
+
+**101.what is OAuth, do you do authentication in your project**
+
+**102.Difference between null and undefined?  Which one is object**   
+
+
+103.     **How to use closure/setTimeout/promise/async await/call apply bind**
+
+**104.**
+
+* **Null == undefined -&gt; true**
+* **Null === undefined -&gt; false**
+
+  
+105.**Why we declare variable before function**
+
+**106.Function with 4 arguments, what append if you put 3 arguments, and what is the forth argument**
+
+**107.privileged method**
+
+**108JavaScript build tools**
+
+**109.What do you know about Next.js \(for server-side react application\)**
 
   
 

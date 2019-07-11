@@ -94,9 +94,67 @@
 
 **17.write a form, include input and a button when press the button, can submit the form.**
 
-**18.**
+**18.write a component and when click the button div change color from blue to red**
+
+**19.write a todolist**
+
+**20.**
+
+**round 3   system design 之后紧接着一轮大OOD，真的迷**
+
+**setTimeout output, write some code together to talk many concepts in event loop, nodejs event loop, closure, call by value, call by name…... How deep copy, 2 methods.**
+
+**react redux OOD:**
+
+**Design a bank system using redux, need to write schema, reducer and action.**
+
+**He gave me some requirements in the system, like bank in those function: create an account, show the balance, check withdraw, transfer money,  show history….**
+
+**What I do:** 
+
+**three schemas, 1. accountSchema   2. userSchema 3.historySchema, ref. You need to write reducer and action code. I just write some of the reducers and actions: create account, create a new account type, check balances, transfer money... and he said OK**  
+
+
+**21.&lt;div&gt;**
+
+ **&lt;img src=”1” /&gt;**
+
+ **&lt;img src=”2” /&gt;**
+
+ **&lt;img src=”3” /&gt;**
+
+   **&lt;/div&gt;**
+
+**Only show one image every 20 seconds and change to next one.**  
+
+
+22.
+
+ **open the yahoo news website, open inspect element ,make every heading with borders,**
+
+  **make a div under every border, add titile**
 
   
+23.**Coding: design page, search box, table column, search box, search box can select all the column match the key word in search box.**
+
+**24.一个checkbox， 一个textarea, click checkbox, 可以把textarea变成editable，再click可以不能edit， 用pure js，我强行用react写的**
+
+  
+
+
+25.**Design responsive tic tac layout, desktop screen 4X4 grid, mobile screen 3X3\(flex box, border\)**
+
+    **Put content in center\(text-align, line-height\)**  
+
+
+26.**Write HTML and css of search field with dropdown, including input field, submit button and dropdown**
+
+**27.API:** [**https://api.github.com/users/octocat**](https://api.github.com/users/octocat)
+
+**Give you this API, ask you to create github user profile page with jsfiddle.net within 30 mins. : \)**  
+
+
+28.**1. 需要会徒手写timer, counter, todolist, userlist 清晰记住所有的dependencies还有整个flow with/ without Redux**  
 
 
   

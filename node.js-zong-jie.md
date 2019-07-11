@@ -101,7 +101,36 @@
 
 **42. 问react的前端是如何与后端连接的, 我自己是在前端用http-proxy-middleware这个模块， 然后写setupProxy.js文件来修改前端发出请求的domain, 这样就能联系前后端，避免cors issue**
 
-**43.**  
+**43.mongoose是什么 为什么mongoose**
+
+**44.如何建立一个express js application**
+
+**45.如果express aplication 要增加route 怎么搞**
+
+**46.how to use router of backend and frontend**
+
+**47. use express to get id in a url**
+
+**48.what is RESTful api**
+
+49.**your project single thread or multi thread\(js is single thread\)**
+
+**50.**
+
+**node js 如何解决异步问题，假设我一定要等前一步的结果才能进行后一步怎么办，我说用await, for block sync**
+
+**51.ajax vs node js**
+
+**52. design database and frontend , how to access the database more quickly, how to improve performance if schema grows big, if u cache, what is the size of cache. …..\(This is the problem and challeng they are working on\)**
+
+**53.server side render,  client side render, embed render**
+
+**54.display none vs visibility hidden difference**  
+
+
+  
+  
+  
 
 
   

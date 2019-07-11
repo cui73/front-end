@@ -115,6 +115,403 @@
   
 
 
+14.
+
+**given an api,  show data \(solution by Ian\)** 
+
+  **class Homepage extends React.Component {**
+
+  **constructor\(props\){**
+
+  **super\(props\);**
+
+ **this.state = {**  
+
+   **user : {}**
+
+ **}**
+
+  **}**
+
+  **componentDidMount\(\) {**
+
+            **axios.get\("https://api.github.com/users/octocat"\)**
+
+  **.then\(res =&gt; {**
+
+            **this.setState\({**
+
+       **user : res.data**
+
+ **}\)**
+
+  **}**
+
+  **\)**
+
+            **}**
+
+            **render\(\) {**
+
+            **const user = this.state.user;**
+
+            **return &lt;div&gt;**
+
+ **&lt;UserInfo**
+
+       **login={user.login}**
+
+       **company={user.company}**
+
+        **location={user.location}**
+
+        **email={user.email}**
+
+        **blog={user.blog}**
+
+     **avatar\_url={user.avatar\_url}**
+
+ **/&gt;**
+
+ **&lt;NaviBar**
+
+       **repositories={user.public\_repos}**
+
+      **project={user.project}**
+
+      **follower={user.followers}**
+
+      **following={user.following}**
+
+ **/&gt;**
+
+ **&lt;/div&gt;**
+
+  **}**
+
+**}**
+
+**const NaviBar = props =&gt; {**
+
+                           **return &lt;div&gt;**
+
+            **&lt;ul&gt;**
+
+    **&lt;li&gt;overview&lt;/li&gt;**
+
+      **&lt;li&gt;repositories{props.repositories}&lt;/li&gt;**
+
+       **&lt;li&gt;project{props.project}&lt;/li&gt;**          
+
+      **&lt;li&gt;stars{props.stars}&lt;/li&gt;**
+
+       **&lt;li&gt;follower{props.follower}&lt;/li&gt;**
+
+        **&lt;li&gt;following{props.following}&lt;/li&gt;**
+
+ **&lt;/ul&gt;**
+
+  **&lt;/div&gt;**
+
+**}**
+
+**const UserInfo = props =&gt; {**
+
+            **return &lt;div className="container"&gt;**
+
+            **&lt;img src={props.avatar\_url}&gt;&lt;/img&gt;**
+
+            **&lt;ul&gt;**
+
+       **&lt;li&gt;{props.login}&lt;/li&gt;**  
+
+      **&lt;li&gt;{props.company}&lt;/li&gt;**
+
+       **&lt;li&gt;{props.email}&lt;/li&gt;**
+
+      **&lt;li&gt;{props.location}&lt;/li&gt;**
+
+ **&lt;/ul&gt;**
+
+  **&lt;/div&gt;**
+
+**}**  
+  
+
+
+**const root = document.querySelector\("\#root"\);**
+
+**ReactDOM.render\(&lt;Homepage /&gt;, root\);**
+
+**15.写一个react class component，实现click一个button之后显示一个popup的窗口。**
+
+**16.写一个react class component，实现点击最上面的CheckBox，下面的所有的都改成checked或者如果下面4个checkbox都是checked的状态就uncheck。然后当下面4个都checked时候，最上面的checkbox也变成checked。**
+
+**17.**
+
+```text
+互相介绍完就直接打开链接
+题目:console.log(getUsersFromTag("MongoDB"));
+output is [1,2]
+console.log(getUsersFromTag("MySQL"));
+output is [1]
+
+Data:
+const users = [
+ {
+   id: 1,
+   name: "A",
+   email: "A@gmail.com",
+   tags: ["MySQL", "MongoDB", "Java", "Python"]
+ },
+ {
+   id: 2,
+   name: "B",
+   email: "B@gmail.com",
+   tags: ["，，，", "MongoDB", "Java", "C++"]
+ }
+ // …. 1000 more use
+rs
+];
+
+console.log(getUsersFromTag("MongoDB"));
+
+
+const getUsersFromTag = tag => {
+ return users.reduce((acc, cur) => {
+   if (cur.tags.includes(tag)) {
+     acc.push(cur["id"]);
+   }
+   return acc;
+ }, []);
+};
+
+
+follow up 1 : 如果search好多次，怎么办
+用cache存起来，用一个map， key存tag, val 存数组
+一开始
+var map = new Map();
+ const getUsersFromTag = tag => {
+ if (map.has(tag)) {
+   return map.get(tag);
+ }
+ const res =  users.reduce((acc, cur) => {
+   if (cur.tags.includes(tag)) {
+     acc.push(cur["id"]);
+   }
+   return acc;
+ }, []);
+ return res;
+};
+后来他说还能优化么，就是一开始就loop，然后把每个tag存在map里面
+var map = new Map();
+const help = users => {
+ for (let i = 0; i < users.length; i++) {
+   for (let j = 0; j < users[i].length; j++) {
+     if (!map.has(users[i].tags[j])) {
+       map.set(users[i].tags[j], []);
+     }
+     map.get(users[i].tags[j]).push(users[i].id);
+   }
+ }
+};
+help();
+const getUsersFromTag = tag => {
+ return map.get(tag);
+};
+follow up 2:
+如果这样
+console.log(getUsersFromTag("MongoDB", “email”));
+console.log(getUsersFromTag("MySQL", “name”));
+代码：
+
+var map = new Map();
+const help = users => 
+ for (let i = 0; i < users.length; i++) {
+   for (let j = 0; j < users[i].length; j++) {
+     if (!map.has(users[i].tags[j])) {
+       map.set(users[i].tags[j], []);
+     }
+     map.get(users[i].tags[j]).push(users[i]);
+   }
+ }
+};
+help();
+const getUsersFromTag = (tag, property) => {
+ return map.get(tag).map(ele => ele[property]);
+};
+
+
+
+```
+
+  
+**18.**
+
+```text
+18. parent component and child component and show the child’s list in the parent component(use callback)
+https://stackoverflow.com/questions/35537229/how-to-update-parents-state-in-react
+
+
+	//ChildB component
+	class ChildB extends React.Component {
+
+		render() {
+			
+			var	handleToUpdate	=	this.props.handleToUpdate;
+			return (<div><button onClick={() => handleToUpdate('someVar')}>Push me</button></div>
+			)
+		}
+	}
+
+	//ParentA component
+	class ParentA extends React.Component {	
+	    constructor(props) {
+			super(props);
+		}
+
+		handleToUpdate = (someArg) => {
+				alert('We pass argument from Child to Parent: ' + someArg);
+		}
+
+		render() {
+			return (<div>
+				<ChildB handleToUpdate = {this.handleToUpdate} /></div>)
+		}
+	}
+
+	if(document.querySelector("#demo")){
+		ReactDOM.render(
+			<ParentA />,
+			document.querySelector("#demo")
+		);
+	}
+
+
+```
+
+19.
+
+```text
+what is this means 
+class User extends React.Component {
+static propTypes = {
+name: PropTypes.string.isRequired,
+age: PropTypes.number.isRequired
+}
+
+render() {
+return (
+<>
+<h1>{`Welcome, ${this.props.name}`}</h1>
+<h2>{`Age, ${this.props.age}`}</h2>
+</>
+)
+}
+}
+
+```
+
+20.**Given a react component which shows userlist, write a search bar**   
+
+
+21.**写一个component，完成点击button 然后div里面的内容消失\(javascript 和react render 两种方法document.getElementById\("demo"\).style.display = "none";\)**
+
+**22.write a todolist**
+
+**23.refactoring your code in the online assessment: menu  \(with redux\)**
+
+**24.**
+
+ **toggle design**
+
+**click on the button and change the color of button**
+
+**toggle design 2**
+
+**click on the button and the color of the label in another component changed**
+
+**25.**
+
+**第三轮 manager面：**
+
+**让写一个component各种table都能重复使用，每个table要显示的不一样**
+
+**比如第一个的table 是**
+
+**ID， Name\(firstName secondName\),  Email, Address**
+
+**第二个的table是**
+
+**Name,  ID, courses, num**
+
+**有好几种这样的table，如何实现，类似写一个接口的东西感觉**
+
+**我的想法是用把object作为props传入children componet里面。这个objext里面是个map，有key 和 value， key是table header的attribute， value是inital data里面的attribute，这样就可以找到了**
+
+**面试官给的解法key是table header的attribute， value是一个getvalue的fuction，然后每次调用就可以用相应的function，时间不是很多。。。**  
+
+
+**26.**
+
+**做一个购物卡片。**
+
+**第一栏图片，第二栏描述，第三栏价格，第四栏，加入购物车 button。**
+
+**用css调成需要的样子，需要自适应屏幕，还是用float left。**
+
+**再写一个购物车功能，点击对应button，就会把那个项目加入购物车。**
+
+**已经存在就 + 1.**  
+
+
+**给mock data，让你做map，很简单。**
+
+**购物车实现可以在state里面写个类，每次点了对应按钮就往对应的property里面塞。**
+
+**然后对类做mapping**
+
+**Object.keys\(this.state.myCart\).map\(\(a, index\) =&gt; {**
+
+ **&lt;xxx&gt;{this.state.myCart\[a\]}&lt;xxx&gt;**
+
+ **/\* do something with your key value pair \*/**
+
+**}\)**  
+
+
+**做完以后，面试官很纠结我的style，让我继续改css，把文字全部改成responsive对齐的。。**
+
+**说可以在网上查着写。**
+
+**最后没搞定。多练习css。**  
+
+
+**27.**
+
+**Coding: 3 data, customer\(firstname last name, ssn, balance \), loans\(ssn, balance\) , bank\(ssn, account\), design the action part and reducer part.**
+
+**28.Give you api and build a** [**website**](https://anatesan-stream.github.io/angularJS-restaurant-menu-app/module4_solution/#!/categories/items/SP)**. \(1 hr\) with react redux**  
+
+
+29.
+
+**然后对这个function 写各种test case**
+
+**给你一个用react写的网页， 如何测试这个网页的performance**  
+
+
+30.
+
+**backend api design with todolist**
+
+**让你写出API 的 get put post delete 怎么设计 post 的body 怎么写 JSON 怎么设计**
+
+**他在白板上写会不断添加细节。你根据细节写出API CALL**
+
+**工作流程 用什么 TOOL meeting 的内容 怎么知道产品的requirement 是和PM 交流的嘛**
+
+**application 代码怎么分工合作的 怎么测试 问的比较细节**  
   
 
 

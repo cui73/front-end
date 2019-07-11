@@ -235,6 +235,99 @@
 
 **81.**
 
+**how many ways to create a react component?**
+
+**follow up: what is the difference between functional component and class component.**
+
+**which one has better performance do you think?**
+
+**what is react hook? give an example （让我在白板上写react hook example代码, 因为上个问题回答答到了hook）**
+
+**82.**
+
+**写个React Component去request一个list, 按她想要的做个mapping，很基本的东西。**
+
+**state改变了，如何阻止render, shouldComponentUpdate\(\) { return false}**  
+
+
+**83.what is synthetic event?**
+
+**84.如何clean up event handler**
+
+**85.什么引起了react update?**
+
+**86.flux vs react**
+
+**87.if you cannot render correctly, what will you do?**
+
+**I talked about redux state check and the value of the states, Unit test ,and system test.**  
+
+
+88.**props  vs state can we directly change state**
+
+**89.why we use root in React**
+
+**90.do you know react fibre**
+
+91.**react fragment**
+
+**92.tree shaking of react**
+
+**93.do you know something new about react like react pwa?**
+
+**94. authorization besides JWT**
+
+**95.what is the difference between react and mvc**
+
+**96.how to prevent re-render**
+
+**97.react native vs react**
+
+**98. what is container layer  in the redux? Container layer?**
+
+**99. flux flow vs redux**
+
+**100.What is the purpose of render function?**
+
+101.**What method will trigger in re-render page**
+
+**Component should update**  
+
+
+102.**what is curry**
+
+**103.Event driven model**
+
+**104.Difference between reactjs and jquery**
+
+**105. Pure function,**   
+
+
+106.**how to persist your data\(大概意思是说如何不让信息暴露给所有人**
+
+**107.What will happen if you do this.setState in render function**
+
+**108.proptypes this is used validate the props that is fetched from the parent**
+
+          **proptypes is a package**
+
+  
+109.**React router**
+
+**110. arguments of createStore\(\) ? \(reducer, \[preloadedState\], \[enhancer\]\)**
+
+**111.同时有2个Async calls，你怎么handle？一个接一个，or同时？**
+
+**112.How a button works from user Click to updates rendering on the page?**
+
+**113.Write an easy helloWorld Component \(using codesandbox\)**
+
+  
+  
+
+
+\*\*\*\*
+
   
   
 

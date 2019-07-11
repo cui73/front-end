@@ -156,3 +156,45 @@ a::after {
 
 51. **how to center an element?**
 
+**52.**
+
+**are you familiar with css?** 
+
+**follow up: what is flexbox \(因为怕他问乱七八糟的css问题, 所以上一题自己主动提了我之前用flexbox最多\)**
+
+**what is the difference between flexbox and css grid?**
+
+**出了道题:**
+
+1. **给你三个框框, 比例是1:2:1 如何做?**
+
+|  |  |  |
+| :--- | :--- | :--- |
+
+
+**我就说了下我的答案, 他就问我这三个框框你是打算用div吗？ 还是别的什么？ 请把详细的所有步骤都说出来, 他要求的很细, 我干脆把代码给他写了**
+
+**第二题 让一个1400px的div水平垂直居中, 同Xiao Yang的面经:**
+
+\*\*\*\*
+
+**53.如何用CSS写click一个button之后让旁边的div背景颜色改变，用什么pseudo selector体如何实现。**
+
+**54.how to do validation with email in HTML**
+
+55. **display inline block flex**
+
+**56.position of css**
+
+**57. how do you move in css**
+
+**58.Have you use css animations?**
+
+**59. css 查找第二第三个元素**
+
+**60.Flexbox Flex wrap**
+
+**61.Css gradient**
+
+**62.**
+

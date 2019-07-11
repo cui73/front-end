@@ -700,3 +700,724 @@ const flattenObject = (input) => {
 
 34.
 
+**console.log\(100/”apple”\)**
+
+**console.log\(true === “appke”\)**
+
+**35.**
+
+ **alert prompt javascript**
+
+**Can you change the Alert? Answer is no, chrome default.**  
+
+
+![](https://lh5.googleusercontent.com/xFdOPJ5zSqlSDnYAFaPfzcbglblofubINPJsfZlCfvjom-O_h-_CkjUsqx_E8WF9pTnsBCBxWja7sLOesHC4JmBIbfxn4lAMBLlEyqt90mlWEXMDCrid8Dhdz4NYzXlr51nLjQFi)
+
+
+
+**36. store is not duplicate**
+
+ **output is one string:**
+
+![](https://lh3.googleusercontent.com/DwJZVDHc_IvE6hfCYWJQmX8YnGBpsBdR3vToYTFSEY6tp_Nq0G7AsTOdE0q9zvzD5FD31dh9_yVGpuYSJ4Ed8j2_D-Zmto-yQOHk9do0SLaDpW2i-tkWQ3wsJRwhGLgOrM2mJGWC)
+
+**37.**
+
+**常见的for loop问题**
+
+**for \(var i =  0; i &lt; 5; i++\) {**
+
+ **setTimeout\(........\)**
+
+**}**
+
+**问打印的i是啥，怎么拿closure改成0,1,2,3,4**  
+
+
+**console.log\(0.1 + 0.2\);**
+
+**console.log\(0.1 + 0.2 == 0.3\);**
+
+**console.log\(0.1 + 0.2 === 0.3\);**
+
+**打印结果是什么**  
+
+
+**38.**
+
+**写个function sum**
+
+**支持两种call**
+
+**sum\(2, 3\); //5**
+
+**sum\(2\)\(3\); //5**
+
+**用arguments不用arguments**  
+
+
+**let sum = \(a, b\) =&gt; {**
+
+ **if \(b === undefined\) {**
+
+ **return \(c\) =&gt; a + c;**
+
+**}**
+
+**return a + b;**
+
+**}**  
+
+
+**let sum = function\(\) {**
+
+**if \(arguments.length === 2\) {**
+
+**return arguments\[0\] + arguments\[1\];**
+
+   **}**
+
+**let cur = arguments\[0\];**
+
+**return function\(c\) {**
+
+   **return cur + c;**
+
+**}**
+
+**}**  
+
+
+**39.coding: find number of character in string. ex : input = ‘java’ -&gt; return j - 1, a-2, v-1;**
+
+**40.**
+
+```text
+(function(){
+  var a = b = 3;
+	
+})();
+
+console.log("a defined? " + (typeof a !== 'undefined'));
+console.log("b defined? " + (typeof b !== 'undefined'));
+
+```
+
+  
+**41.**
+
+```text
+19.
+var y = 1;
+  if (function f(){}) {
+    y += typeof f;
+  }
+  console.log(y);
+
+```
+
+**42.reverse “the sky is blue” to “blue is sky the”**
+
+**43.How to check an object is an array or not? Array.isArray\(\).**
+
+**44.write fnLimiter, to limit the callback numbers.**
+
+**write a function fnLimiter\(limit, callback\){**
+
+**}**
+
+**that call back can only run “limit” times. after this return false;**
+
+  
+
+
+
+
+![](https://lh6.googleusercontent.com/he5KspvDTXMdNkDyxHJUys7X0eF9sOtV_G-2c79iSw4d1wk3hFMF1sVs0Gg5RdPCly0hRCWMqiQEhF1Y-ISgIPgeesrGbAk4IoNKpfggWoc-nO9j3t1FbiJ1AP17YAtHlu-psbq6)
+
+
+
+![](https://lh3.googleusercontent.com/vGQPwDQwvAPySASRhei9YL2xwN5WGrMF4gqIk-Qc_VRtKGyHmNtiQR3mpw31dUg_mE2qkSC8Uc7fKOQ2v_zkFHsEbStPUUKhFNwzNG4U5mx1zqxC0qgy1-wQYu3nbroLQ9Zt9mGZ)
+
+**45.下面getData加括号getData\(\);**
+
+**interviewer给的答案：**
+
+**function getData\(\) {**
+
+        **return "Success";**
+
+**}**
+
+ **getData\(\).then\(\(res\) =&gt; {**
+
+        **document.querySelector\(".result"\).textContent = res;**
+
+ **}\);**  
+
+
+46.**4. fetch\(“url”\).then\(\(\)=&gt;{“success”}\).catch\(\(\)=&gt;{error}\)**
+
+**输出error** 
+
+**url和server都好 问为什么**
+
+**答 cors 问题**
+
+**如何解决**  
+
+
+47.
+
+**async function getData\(\) {**
+
+        **return "Success";**
+
+      **}**
+
+      **document.querySelector\(".result"\).textContent = getData;**  
+  
+
+
+**answer:**
+
+**function getData\(\) {**
+
+        **return "Success";**
+
+**}**
+
+ **getData\(\).then\(\(res\) =&gt; {**
+
+        **document.querySelector\(".result"\).textContent = res;**
+
+      **}\);**  
+
+
+48.
+
+**algo:** 
+
+**add\(1\)\(2\) = 3**
+
+**add\(1\)\(2\)\(3\) = 6**
+
+**我觉得这个题少了括号应该是**
+
+**add\(1\)\(2\)\(\) = 3**
+
+**但是如果后面要无限个括号参数并且没有这个空括号的话就完全不同**  
+
+
+49.
+
+**let a = { b: { c: 'd' } }**  
+
+
+**let interview = \(obj, path, defaultValue\) =&gt; {**
+
+    **let paths = path.split\("."\);**
+
+    **let currentResult = obj;**
+
+    **for \(name in paths\) {**
+
+      **currentResult = currentResult\[name\] ? currentResult\[name\] : defaultValue;** 
+
+    **}**
+
+    **return currentResult;**
+
+**}**  
+
+
+**//interview\(a, 'b.c', 'defaultValue'\)**
+
+**//interview\(a, 'c', 'defaultValue'\)**
+
+**//interview\(a, 'b', 'defaultValue'\)**
+
+**console.log\(interview\(a, 'b.c', 'defaultValue'\)\)**
+
+**console.log\(interview\(a, 'c', 'defaultValue'\)\)**
+
+**console.log\(interview\(a, 'b', 'defaultValue'\)\)**  
+
+
+50.
+
+**Stu1: \[48, 47, 46\]**
+
+**Stu2: \[44, 50, 49\]**
+
+**find topper student who have most higher scores**
+
+**\[5, 8, -3, 1, -7\]**
+
+**find all subsets who has the sum of 0**
+
+**51.**
+
+![](https://lh6.googleusercontent.com/VVkWI6ugqc-5S0AtFD4pesmDw3ZnkHQUjkAXKaVXWPUmbvRtk87TVN4kvxg9CPZJdKAsIsvHStUuVHdi98TjEKfQnYB4UyE3f1cm5yUlnq_UrLVYhq0g3WG__fqqKBkrT35eKll0)
+
+**52.return lowest positive two numbers sum in an array**
+
+**53.**
+
+```text
+flatten an array, two way 
+var arr1 = [[10,[18,45,79]],20,[30,33],40];
+[10,18,45,79,20,30,33,40]
+
+const flatten = arr => {
+  return arr.reduce((acc, cur) => {}
+    return !Array.isArray(cur) ? [...acc, cur] : [...acc, ...flatten(cur)];
+  }, []);
+
+
+
+use clouse to implement a limit time function
+function abc(name) {
+  console.log(name);
+}
+
+function fnLimiter(limit, callback) {
+  return function (arg){
+    if(limit > 0){
+      callback(arg);
+      limit--;
+    }
+  }
+}
+
+const fn = fnLimiter(3, abc);
+fn("1")    1
+fn("2")    2
+fn("3")    3
+fn(“4”)      return nothing
+
+different between these two functions
+function foo1()
+{
+  return {
+      bar: "hello"
+  };
+}
+
+function foo2()
+{
+  return
+  {
+      bar: "hello"
+  };
+}
+
+
+
+how to init a state in react
+constructor(props)[
+  super(props);
+  this.state = {};
+]
+
+let state = {};
+how to change state
+this.setState({
+  
+})
+differrent between null and undefined
+what is type of null and undefined
+what is pure component, where to update pure component
+explain about react lifecycle, talk about some example
+talk about redux, 
+
+```
+
+54.
+
+**Return keys of the object**
+
+**Use reduce to merge 3 objects：use spread&rest**
+
+**Write a class es5/es6 : use \`${ }\` for output**
+
+**How to add ele in the end of arr**
+
+**How to delete the first ele in an arr**
+
+**55.for \(var i = 0; i &lt; 10; i++\) {**
+
+ **setTimeout\(\(\) =&gt; arr\[i\] = i, 0\);**
+
+**}**
+
+**就这种之类的，问你arr\[6\]是多少。**
+
+**怎么改成arr\[6\] = 6;**
+
+**用let或者closure。**  
+
+
+56.
+
+**基本二分查找。**
+
+**给一个string array，长度不一。**
+
+**\[aaa, vvv, ccc, 4dsvv, dvsdv, sk3, 32fv\]**
+
+**返回所有最长string。**  
+  
+**57.Coding: write custom reduce function that have same functionality as system defined reduce function**
+
+**58..Given an array of string and a checking string, return an array which element contains checking string.**
+
+ **Ex \[‘abc’, ‘Abd’, ‘bc’, ‘jabdf’\], ‘ab’ =&gt; \[‘abc’, ‘Abd’, ‘jabdf’\]**  
+
+
+59.**.\[{name: “a”,**
+
+     **editable: true**
+
+    **},**
+
+    **{name: “b”,**
+
+     **editable: true**
+
+    **},**
+
+    **{name: “c”,**
+
+     **editable: false**
+
+    **}**
+
+   **\]**
+
+   **Return an array of object that editable is true.**  
+
+
+60.
+
+**function a\(\){**
+
+    **console.log\(a\);**
+
+    **console.log\(test\(\)\);**  
+
+
+    **var a = 1;**
+
+    **function test\(\){**
+
+        **return 2;**
+
+    **}**
+
+**}**  
+
+
+**var car = "Honda";**  
+
+
+**var garage = {**
+
+    **car: "BMW",**
+
+    **getCar : function\(\) {**
+
+        **return this.car;**
+
+    **}**
+
+**}**
+
+**// var myCar = garage.getCar.bind\(garage\);**
+
+**var myCar = garage.getCar;**  
+
+
+**console.log\(myCar\(\)\); // undefind**
+
+**// =&gt; correct:  var myCar = garage.getCar.bind\(garage\);**
+
+**console.log\(myCar\); // print function \(\) {...}**  
+
+
+**3. Flatten array**
+
+**4. log\(‘test’, ‘is’, ‘happy’\) =&gt; “test is happy”**  
+
+
+61.
+
+ **find largest number in array**
+
+**Var arr = \[10, 1, 17, 5, 7, 6, 12, 3, 11\]**
+
+ **Var arr = \[10, 1, 17, 5, 7, 6, 12, 3, 11\]**
+
+**Filter element bigger than 10**
+
+**62.Give a string and a integer k. Find the minimal substring that need to remove, so that the remain string has exactly k uniquick char.**
+
+**Example:** 
+
+**S=”abaacbca”, k=2, then return 3.  Reason: remove “cbc”, string will only contain “a” and “b”.**
+
+**S=”aabcabc”, k=1, then return 5. Reson: remove “bcabc”, string will only contain “a”.**  
+
+
+63.
+
+```text
+How to implement getElementByClassName?
+Write the function.
+ex,
+<html>
+<div  ref = ‘root’>
+	<span></span>
+</div>
+<ol>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ol>
+</html>
+How to get all elements? Write the function.
+( You don’t have any API, only have getChildren(), getNextSibling(), getParent() )
+
+  function walkDOM(main) {
+ var arr = []; 
+ var loop = function(main) { 
+   do { arr.push(main);
+     if(main.hasChildNodes()) 
+        loop(main.firstChild); } 
+   while (main = main.nextSibling); 
+} 
+loop(main); 
+return arr; } 
+walkDOM(document.body);
+
+const walkDOM= function(main) {              // 不一定对
+
+   let arr = [];
+   if (!main) {
+       return arr;
+   }
+   const dfs = function(main) {
+     arr.push(main);
+     if (main.hasChildNodes()){
+       let childrens=main.getChildren();  
+       for (let i = 0; i < childrens.size(); i++) {
+         let n=childrens[i];
+         if(n!=null){
+           dfs(n);
+         }
+       }
+     }
+   }
+   dfs(main);
+   return arr;
+}
+walkDOM(document.body);
+```
+
+64.**Given an array and chunk size, divide the array into many subarrays where each subarray is of length size**
+
+**// --- Examples**
+
+**// chunk\(\[1, 2, 3, 4\], 2\) --&gt; \[\[ 1, 2\], \[3, 4\]\]**
+
+**// chunk\(\[1, 2, 3, 4, 5\], 2\) --&gt; \[\[ 1, 2\], \[3, 4\], \[5\]\]  用array.slice做的**  
+
+
+65.
+
+```text
+   var obj = {
+       name: "Tom",
+       age: 20
+        }
+
+       var dup = obj;
+       obj.age = 45;
+
+       console.log(dup.age);
+       console.log(obj.age);
+	各种记不清楚的改来改去问print的结果是什么
+（2）
+test();
+var n = 9;;
+
+function test(){
+ console.log(n);
+}
+console.log(n);
+问result
+
+
+6.
+// A AND (B OR C)
+
+var root = {
+  type: 'operator',
+  value: 'AND',
+  children: [{
+    type: 'operand',
+    value: 'A'
+  }, {
+    type: 'operator',
+    value: 'OR',
+    children: [{
+      type: 'operand',
+      value: 'B'
+    }, {
+      type: 'operand',
+      value: 'C'
+    }]
+  }]
+};
+
+描述一下有什么方法可以把这个json object变成 A AND (B OR C);(DFS)
+
+```
+
+  
+66.  
+
+
+```text
+Given a 7*3 grid of characters output a decoded message. The  message for the following would be IROCKED.
+            var message = [
+       ['I', 'B', 'C', 'A', 'K', 'E', 'A'],
+       ['D', 'R', 'F', 'C', 'A', 'E', 'A'],
+        ['G', 'H', 'O', 'E', 'L', 'A', 'D']];
+var decode = function(messages) {
+let m = messages.length;
+let n = messages[0].length;
+
+let down = -1;
+let j = 0;
+let res = [];
+for (let i = 0; i < n; i++) {
+  
+   res.push(messages[j][i]);
+   if (j === 0 || j === m-1) {
+       down = -down;
+   }
+   j+= down;
+  
+}
+return res;
+}            // Emily提供
+```
+
+67.
+
+```text
+// give you data, aske you to return array of salary inorder
+const data = [
+[1, "FTE", 75000],
+[2, "FTE", 100000],
+[3, "Manager", "4,5"],
+[4, "Manager", "1,2"],
+[5, "FTE", 80000]
+];
+
+```
+
+68.
+
+1. **Given an array of numbers with no duplicates, find all pairs of the sum equal to the target**
+
+**follow up: Given an array with duplicates**
+
+      **3.  Replace a string with substring ‘abc’ with ‘xxx’.**
+
+**eg. input “cdabcdefabcd” =&gt; output: “cdxxxdefxxxd”**  
+
+
+69.
+
+1. **Given a array of 0 and 1, move all 0s at the front and 1s at the end**
+
+**follow up: do it with only one loop**  
+
+
+70.
+
+```text
+ Given a 2d array like this, which is the start and the destination, find the longest path
+[[“SFO”, “LA”],
+[“Beijing”, “SFO”],
+[“LA”, “Beijing”],
+[“NY”, “LA”],
+[“STL”, “SFO”]
+]
+
+The longest path is [“NY”, “LA”, “Beijing”, “SFO”]
+
+Hint: using 2 maps: 
+convert 2d array to map
+all destinations in a map, this case:
+{LA: true, SFO: true, Beijing: true, SFO: true}
+start point is the starting point without destination
+
+```
+
+71.**输入: an  array of strings and a word, 从每个string里取一个字母，最后拼出这个单词find all combinations** 
+
+**72.字符转换**
+
+**ab-cd-ef 变成 abCdEf**
+
+```text
+let str1 = "ab-cd-ef";
+let str2 = "abCdEf";
+ 
+let res = "";
+let arr = str1.split("-");
+res = arr[0];
+for(let i = 1; i< arr.length; i++){
+   let s = arr[i];
+   s = s[0].toUpperCase() + s.substr(1);
+   res += s;
+}
+ 
+console.log(res);
+```
+
+**Subsets**  
+
+
+```text
+nums = [1,2,3];
+function subsets(nums){
+   var res = [];
+   for(let i = 0; i< nums.length; i++){
+       var num = nums[i];
+       var max = res.slice().length;
+       res.push([num]);
+       for(let j = 0 ; j < max; j++){
+           var list = res[j].slice();
+           list.push(num);
+           res.push(list);
+       }
+ 
+   }
+   res.push([]);
+ 
+   return res;
+}
+var test = subsets(nums);
+for(let i = 0; i< test.length; i++){
+   console.log(test[i]);
+}
+
+```
+
+
+

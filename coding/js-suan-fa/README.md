@@ -152,9 +152,204 @@
 
 **coding: best time to buy and sell stock**
 
+**Leetcode 20 valid parentheses**
+
+**Leetcode 32 longest valid parentheses** 
+
+**java算法 用O\(n\) time， O\(1\) space 去输出所有的重复元素的index: 在未排序，有正有负，且有多个重复元素的情况下譬如 \[2,1,1,2,3,-3,5,7\]**
+
+**我觉得条件太苛刻了 我能写出四种方法：set，sort, 双指针追逐，数组记录下标，但是做不到这么时间空间的严格。。。**  
+
+
+**写一段代码打印斐波那契数列 0 到 13。**
+
+**leetcode 560**  
+**palindrome check**
+
 \*\*\*\*
 
+**一个无序的array， 找到其中最大的subarray和**
+
+**1，2，-4，2，5，-1，3**
+
+**最大和是9**
+
+
+
+**无序两数组取出重复数字**
+
+\*\*\*\*
+
+**做题， flight ticket 简单版，直接在他电脑上做题，做完啥都没说直接走人，我也不知道我做的对不对**
+
+**const ticket = {**
+
+ **{start: SJC, end: LAX},**
+
+ **{start: LAX, end: SEA},**
+
+ **{start: SEA, end: JFK}**
+
+**}**
+
+**要求return a valid order of city names, time complexity in O\(1\)**
+
+**思路： save all cities in a map to count the appearence, and start city in startSet, end city in endSet, also save a map to keep a map relationship by the key in terms of start city and the value of end city.**  
+
+
+**leetcode数独那道题**
+
+\*\*\*\*
+
+ **给一个string\[\] list, 和一个string,根据string的每一个char去排序这个list**
+
+**example：**
+
+**input :String s = “word”**
+
+**String \[\] list = \[“wait”, “rain”, “dead”. “oh” \]** 
+
+**output: list = \[“wait”, “oh”, “rain”, “dead”\];**  
+
+
+**复杂的case有：1.给的string 里面有重复的char 2. string list 里面的string 可能有多个char 符合string s, 要根据哪个定位？**
+
+```text
+
+Solution by Ian:
+const alienSort = (str, arr) => {
+ const map = {};
+ for(let i = 0; i < str.length; i++) {
+   //corner case 1: if duplicate, skip it (or throw error)
+   if(map[str[i]) continue;
+   map[str[i]] = i;
+ }
+ arr.sort((a,b) => {
+   const min = a.length < b.length ? a.length : b.length;
+   for(let i = 0; i < min; i++){
+     if(a[i] !== b[i]) return map[a[i]] - map[b[i]];
+     else continue;
+   }
+   return 0;
+ })
+ return arr;
+}
+
+```
+
   
+
+
+
+
+![](https://lh4.googleusercontent.com/bz2HxBcWqVosYAZMBCWkWXWjbP-7Yy9_TpNNUQglINy4D-SUdpuZbu7sKP271IbT0N64BSN4ek9wryKudQU5kU0qYkkyjrQ4PjyNbEmm25-4piFHn02yQxNndqFUpuWUNIRr0VZO)
+
+  
+  
+**leetcode 654**
+
+**simple concept question,**[**Tribonacci Numbers - GeeksforGeeks**](https://www.geeksforgeeks.org/tribonacci-numbers/) **, do it in O\(1 space\), O\(n\).**  
+
+
+**System design 惊呆看到system design**
+
+**We have a tinyURL, like in twitter, design a server to handle user use this url.**
+
+**Like twitter, we have** [**https://t.co/**](https://t.co/) **, can redirect to real url.**
+
+**We only have function encode\(\), no decode\(\), design from server, database, what’s the data flow.** 
+
+**co**
+
+**She wants to use database to do this.**  
+**Can not use decode function. only has encode function. design by detail.**
+
+**I think need a unique domine.**
+
+**Check** [**https://help.twitter.com/en/using-twitter/how-to-tweet-a-link**](https://help.twitter.com/en/using-twitter/how-to-tweet-a-link)**.Answer:** [**https://www.youtube.com/watch?v=JQDHz72OA3c**](https://www.youtube.com/watch?v=JQDHz72OA3c)
+
+
+
+**leetcode 1094**
+
+**算法，输出出现次数是基数的数，一个arr = \[9,2,3,9,8,8,8,6,5\]，return\[2,3,8,6,5\], 要求一个loop不能用map**
+
+**当时我用的mark取负数的方法，但是没法handle出现3次，4次，比较僵硬，感觉位运算，用^好像也不行 ,不是很确定**  
+
+
+ **java coding: aaabbbccccaa= &gt; a3b3c4a2**
+
+\*\*\*\*
+
+ **java coding: reverse string .  ‘ I love apple’ = &gt; ‘apple love I ’**
+
+**coding: str =  ‘11122333444’ , each number appear 3 times , only one appear twice , find that number,  improve performance ,\(hashmap, one for loop, binary search\)**
+
+\*\*\*\*
+
+**give an input =  3\[b2\[ca\]\], should return output = bcacabcacabcaca**
+
+**test , explain code, time complexity.**  
+
+
+**1 find common element in two sorted array,** 
+
+**Follow up :** 
+
+**1.  o\(n\) time complexity, O\(1\) space ,no hashmap**
+
+**2. If num1 is too small , is there any optimization or other method**  
+
+
+**2.min stack O\(1\) time complexity**  
+
+
+
+
+
+
+1. **given array \[4, 5, 5, 2, 6\] indicate a piece of chocolate, each element represent the sweetness\(1 - 10\) of chocolate, you want to share the chocolate with two other friends\(divide array into three subarrays\), you want to make sure that your two friends get sweetest\(你得到的是这三个subarray中sum最小的\), how to divide the array so that you can get sweetest among all those division ways\(在所有的solution中你又拿到最大的\)**
+
+**4 \| 5 \| 5  2 6 -&gt; 4**
+
+**4 \| 5  5 \| 2 6   -&gt; 4**
+
+**4 \| 5  5 2 \| 6   -&gt; 4**
+
+**4  5 \| 5 \| 2  6 -&gt; 5**
+
+**4  5 \| 5  2 \| 6 -&gt;  6**
+
+**4  5 5 \| 2 \| 6   -&gt; 2 answer: 6**
+
+**有点懵，刚开始我说用brute force找所有permutations然后遍历更新global，小哥说能不能优化，我表示想不出来，他就又给我了一个function，function isSweetest\(array, n\)返回boolean是否n &gt;= resulting sweet\(好像是这样脑子转不动了\)，说可以调用这个，我说可以for loop从10到1遍历更新global，又问我时间复杂度，O\(n\)\(sweet level 1- n\), 能不能优化到O\(lgn\)，我说用二分，然后写了一下二分😮，感觉完全跑偏。。最后他说其实就看一下遇到题目解决问题的能力，不要求你做出来。总之还是挺轻松的，小哥一直也在帮着做，除了介绍project全程米有问和前端相关的**
+
+
+
+**Find minimum depth of a binary tree, time complexity**  
+
+
+[**https://www.geeksforgeeks.org/split-array-two-equal-sum-subarrays/**](https://www.geeksforgeeks.org/split-array-two-equal-sum-subarrays/)  
+
+
+1. **Split array into 2 equal sub array Time: O\(n \* n\)**
+2. **再用O\(n\)的方法**
+
+\*\*\*\*
+
+**Find the longest contiguous ascending subarray.**
+
+**Ex: \[2,4,1,3,6,7,8,5,9\] -&gt; \[1,3,6,7,8\]**
+
+
+
+**在一个二维数组里， 输入一个坐标，从这个坐标开始，从外向内进行螺旋线打印，横坐标优先，长度每次减一，直到你不能再继续**
+
+**leetcode139**
+
+**leetcode 647. Palindromic Substrings**  
+
+
   
 
 
