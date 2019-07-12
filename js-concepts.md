@@ -628,7 +628,7 @@ The event loop is a single-threaded loop that monitors the call stack and checks
 
 \*\*\*\*
 
-### [Export before declarations](https://javascript.info/import-export#export-before-declarations)
+[Export before declarations](https://javascript.info/import-export#export-before-declarations)
 
 We can label any declaration as exported by placing `export` before it, be it a variable, function or a class.
 
@@ -651,7 +651,7 @@ export class User {
 
 
 
-### [port apart from declarations](https://javascript.info/import-export#export-apart-from-declarations)
+[port apart from declarations](https://javascript.info/import-export#export-apart-from-declarations)
 
 Also, we can put `export` separately.
 
@@ -673,7 +673,7 @@ export {sayHi, sayBye}; // a list of exported variables
 
 
 
-### [Import \*](https://javascript.info/import-export#import)
+[Import \*](https://javascript.info/import-export#import)
 
 Usually, we put a list of what to import into `import {...}`, like this:
 
@@ -701,7 +701,7 @@ say.sayBye('John');
 
 
 
-### [Import “as”](https://javascript.info/import-export#import-as)
+[Import “as”](https://javascript.info/import-export#import-as)
 
 We can also use `as` to import under different names.
 
@@ -717,7 +717,7 @@ hi('John'); // Hello, John!
 bye('John'); // Bye, John!
 ```
 
-### [Export “as”](https://javascript.info/import-export#export-as)
+[Export “as”](https://javascript.info/import-export#export-as)
 
 The similar syntax exists for `export`.
 
@@ -739,7 +739,7 @@ say.hi('John'); // Hello, John!
 say.bye('John'); // Bye, John!
 ```
 
-### [export default](https://javascript.info/import-export#export-default)
+[export default](https://javascript.info/import-export#export-default)
 
 So far, we’ve seen how to import/export multiple things, optionally “as” other names.
 
