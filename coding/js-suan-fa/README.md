@@ -345,6 +345,41 @@ const alienSort = (str, arr) => {
 
 **在一个二维数组里， 输入一个坐标，从这个坐标开始，从外向内进行螺旋线打印，横坐标优先，长度每次减一，直到你不能再继续**
 
+```text
+const sp = (matrix, x, y) => {
+ let res = [];
+ if (x > matrix[0].length || x < 0 || y > matrix.length || y < 0) return res;
+ let cur = x;
+ while (cur < matrix[0].length) {
+   res.push(matrix[y][cur++]);
+ }
+ let startcol = 0;
+ let endcol = matrix[0].length - 1;
+ let startrow = y + 1;
+ let endrow = matrix.length - 1;
+ while (startcol <= endcol && startrow <= endrow) {
+   for (let i = startrow; i <= endrow; i++) {
+     res.push(matrix[i][endcol]);
+   }
+   endcol--;
+   for (let i = endcol; i >= startcol; i--) {
+     res.push(matrix[endrow][i]);
+   }
+   endrow--;
+   for (let i = endrow; i >= startrow; i--) {
+     res.push(matrix[i][startcol]);
+   }
+   startcol++;
+   for (let i = startcol; i <= endcol; i++) {
+     res.push(matrix[startrow][i]);
+   }
+   startrow++;
+ }
+ return res;
+};
+
+```
+
 **leetcode139**
 
 **leetcode 647. Palindromic Substrings**  
