@@ -179,20 +179,99 @@ Webpack is a tool wherein you use a **configuration to explain** to the builder 
 
 ## **14.The pros of React and difference with Angular**
 
-pros of react:
+the pros of React: 
 
-**15.What is the prototype?**
+**reusability**: component can be repeated across several web pages
 
-**16.How do you implement object-oriented programming in js?**
+**virtual dom**: Through React’s memory reconciliation algorithm, the library constructs a representation of the page in a virtual memory, where it performs the necessary updates before rendering the final web-page into the browser. 
 
-**17.How do you detect memory leak in js?**
+**One-direction**: data flow in ReactJS provides a stable code
+
+**An open-source Facebook library**: constantly developing and open to the community
+
+Wide **React and Redux toolset**
+
+**------------------------------------------------------------------------------------------------------**
+
+The differences with Angular:
+
+#### **Data Binding:**
+
+Angular allows two-way data binding while React allows one-way data binding.
+
+Two-way data binding means that any changes you make to the model affect the view, and vice versa.
+
+One-way data binding means any changes you make to the model affect the view, but not the other way around. This way, the data only flows in one direction.
+
+#### **DOM Usage:**
+
+Angular uses the browser's DOM, while React uses a virtual DOM.
+
+A virtual DOM is a simplified version of the DOM. By using a virtual DOM, you can change any element very quickly and without needing to render the whole DOM. It drastically changes the performance from good to excellent.Using the virtual DOM is quite the buzz nowadays because it is faster, and speed is key!
+
+#### **Language:**
+
+Angularis a JS framework by nature, but is built to use TypeScript. React, on the other hand, is a JavaScript library as well, but recommends using JSX.
+
+#### **Learning Curve:**
+
+On average, TypeScript is considered harder to learn than JSX, in turn increasing the learning curve with Angular as compared to React.
+
+#### **App Structure:**
+
+Angular is a fully-featured MVC framework. React is just more of a 'V' in the MVC.
+
+## **15.What is the prototype?**
+
+Prototypes are the mechanism by which JavaScript objects inherit features from one another. JavaScript is often described as a prototype-based language — to provide inheritance, objects can have a prototype object, which acts as a template object that it inherits methods and properties from. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain, and explains why different objects have properties and methods defined on other objects available to them.
+
+## **16.How do you implement object-oriented programming in js?**
+
+\*\*\*\*
+
+## **17.How do you detect memory leak in js?**
+
+```text
+https://stackoverflow.com/questions/15970525/how-to-find-js-memory-leaks
+```
 
 **18.How to do async calls in js?**
 
-**19.Call back hell 如何解决**  
-20.**how to get Asyn restult in Backend?**
+a.XHR object method
 
-**21.array operation**
+b.callback function
+
+c.es6 promise
+
+d.es7 Async/await
+
+\*\*\*\*
+
+## **19.Call back hell 如何解决**
+
+**Callback hell** is a phenomenon that afflicts a JavaScript developer when he tries to execute multiple asynchronous operations one after the other.
+
+we can use Promises to solve this issue by :
+
+**Flattened callbacks** 
+
+**Return values from asynchronous function** 
+
+**Throw and Catch exceptions**
+
+
+
+##  20.**how to get Asyn restult in Backend?**
+
+
+
+\*\*\*\*
+
+## **21.array operation**
+
+\*\*\*\*
+
+\*\*\*\*
 
 **22.What is a Promise in JavaScript?**
 
