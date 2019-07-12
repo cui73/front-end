@@ -157,6 +157,8 @@
 28.**1. 需要会徒手写timer, counter, todolist, userlist 清晰记住所有的dependencies还有整个flow with/ without Redux**  
 
 
+29. **input bar怎么做，onchange = {this.handleChange}**
+
   
 
 

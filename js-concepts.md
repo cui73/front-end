@@ -887,99 +887,635 @@ z 2 [ ‘x’, ‘y’, ‘z’ ]
 
 ## **44.how to do the error handling:** 
 
+try..catch...finally
+
+```text
+const a = 5
+
+try {
+    console.log(b) // b is not defined, so throws an error
+} catch (err) {
+    console.error(err) // will log the error with the error stack
+} finally {
+    console.log(a) // will always get executed
+}
+```
+
+Callbacks
+
+```text
+myAsyncFunc(someInput, (err, result) => {
+    if(err) return console.error(err) // we will see later what to do with the error object.
+    console.log(result)
+})
+```
+
+Promises
+
+```text
+Promise.resolve(1)
+    .then(res => {
+        console.log(res) // 1
+
+        throw new Error('something went wrong')
+
+        return Promise.resolve(2)
+    })
+    .then(res => {
+        console.log(res) // will not get executed
+    })
+    .catch(err => {
+        console.error(err) // we will see what to do with it later
+        return Promise.resolve(3)
+    })
+    .then(res => {
+        console.log(res) // 3
+    })
+    .catch(err => {
+        // in case in the previous block occurs another error
+        console.error(err)
+    })
+```
+
+async / await and try catch
+
+```text
+;(async function() {
+    try {
+        await someFuncThatThrowsAnError()
+    } catch (err) {
+        console.error(err) // we will make sense of that later
+    }
+
+    console.log('Easy!') // will get executed
+})()
+```
+
 ## 45.**how to parse the json data type**
 
+JSON.parse\(\)
+
+\*\*\*\*
+
 ## **46.javascript validation**
+
+\*\*\*\*
 
 ## **47.cross browser compatibility issues**
 
 ## **48.how to judge input finished \(debounce\)**
 
+ a _debounced function_ will ignore all calls to it until the calls have stopped for a specified time period
+
 ## **49.call\(\), bind\(\), apply\(\)**
+
+The call\(\) allows for a function/method belonging to one object to be assigned and called for a different object. call\(\) provides a new value of this to the function/method. With call, you can write a method once and then inherit it in another object, without having to rewrite the method for the new object.
+
+function.call\(thisArg, arg1, arg2, ...\)
+
+```text
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+
+console.log(new Food('cheese', 5).name);
+// expected output: "cheese"
+```
+
+You can assign a different this object when calling an existing function. this refers to the current object, the calling object. With apply, you can write a method once and then inherit it in another object, without having to rewrite the method for the new object. the fundamental difference is that call\(\) accepts an argument list, while apply\(\) accepts a single array of arguments. function.apply\(thisArg, \[argsArray\]\)
+
+The bind\(\) method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
+MDN的解释是：bind\(\)方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind\(\)方法的第一个参数作为 this，传入 bind\(\) 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。
+
+bind\(\) 是用来控制调用函数的范围（全局、某个类等等） 定义this是指的哪个
 
 ## **50. inheritance**
 
-**51.typeof array**
+\*\*\*\*
 
-**52.javascript design pattern**
+\*\*\*\*
 
-**53.how to use Pure JavaScript to accomplish data binding method**
+## **51.typeof array**
 
-**54.explain different HTTP request methods**
+object
 
-**55.what is mixin**
+\*\*\*\*
 
-56.**pros and cons of using mixin**
+## **52.javascript design pattern**
 
-**57.explain how the mixin function like in your project**
+Prototype Design Pattern**:**
 
-**58.how to use JavaScript to write a dropdown list**
+```text
+var TeslaModelS = function() {
+  this.numWheels    = 4;
+  this.manufacturer = 'Tesla';
+  this.make         = 'Model S';
+}
 
-59.**setter and getter in javascript ?**
+TeslaModelS.prototype.go = function() {
+  // Rotate wheels
+}
 
-**60.how to deep copy and shallow copy an object**
-
-**61. explain ES6 arrow function, why you prefer to use that**
-
-**62.how to create a Class in javascript**
-
-**63.how to make HTTP request security \(CDS, CORS\)**
-
-**64.search bar的细节，怎么取得data//服务器用regux expression，怎么返回结果**
-
-**65.怎么detele property（1.delete 2.prototype）**
-
-**66. input bar怎么做，onchange = {this.handleChange}**
-
-**67.**
-
-1. **What is the difference between get and post?**
-2. **what is the difference between post and put?**
-3. **Do you know any other method other than get, put, post, delete?**
-4. **How do you handle HTTP header?**
-
-**68.Do you know different types of internet session?**
-
-**69.http method why can’t use get function to create new one. GET vs POST**
-
-**70.what’s functional programming tell some detail?**
-
-**71.前端如何做security**
-
-72. **What happened when you type in an url in a browser. 主要回答DNS, IP.**
-
-**73.iife**
-
-**74.经典的for循环里面加setTimeout， 问输出结果， 如何修改结果**
-
-**75.Check if object is a array, use array.constructor === Array**
-
-**76.difference between == and ===**
-
-**77.difference between await and async**  
+TeslaModelS.prototype.stop = function() {
+  // Apply brake pads
+}
+```
 
 
-**78.**explain authentication
 
-79.**什么是MVVM and 什么是MVC**
+## **53.how to use Pure JavaScript to accomplish data binding method**
 
-**80.pass by value and pass by reference**
+reference:[https://www.wintellect.com/data-binding-pure-javascript/](https://www.wintellect.com/data-binding-pure-javascript/)
 
-**81. how do you import multiple functions from one module? give example \(让我白板上写几个case\) //用object**
+One-Way Data Binding:
 
-**82.what design principle do you use mostly?**
+```text
+function Binding(b) {
+    _this = this
+    this.element = b.element    
+    this.value = b.object[b.property]
+    this.attribute = b.attribute
+    this.valueGetter = function(){
+        return _this.value;
+    }
+    this.valueSetter = function(val){
+        _this.value = val
+        _this.element[_this.attribute] = val
+    }
 
-**83.问我ES6的spread operator在ES5里面应该怎么写。**
+    Object.defineProperty(b.object, b.property, {
+        get: this.valueGetter,
+        set: this.valueSetter
+    }); 
+    b.object[b.property] = this.value;
 
-**84.说几个javascript的design pattern，知道observer嘛，知不知道redux是observer的一种实现。**
+    this.element[this.attribute] = this.value
 
-**85.问SSR和CSR的区别，两个具问我HTML5 有些browser不支持，问我production的时候应该怎么做**
+}
+```
 
-**86. what is promise and promise all; write a promise all if we have p1, p2, p3 几种 promise 写法**
+Better Two-Way Data Binding:
 
-**87.promise await**
+```text
+function Binding(b) {
+    _this = this
+    this.elementBindings = []
+    this.value = b.object[b.property]
+    this.valueGetter = function(){
+        return _this.value;
+    }
+    this.valueSetter = function(val){
+        _this.value = val
+        for (var i = 0; i < _this.elementBindings.length; i++) {
+            var binding=_this.elementBindings[i]
+            binding.element[binding.attribute] = val
+        }
+    }
+    this.addBinding = function(element, attribute, event){
+        var binding = {
+            element: element,
+            attribute: attribute
+        }
+        if (event){
+            element.addEventListener(event, function(event){
+                _this.valueSetter(element[attribute]);
+            })
+            binding.event = event
+        }       
+        this.elementBindings.push(binding)
+        element[attribute] = _this.value
+        return _this
+    }
 
-88.**oop vs functional programming**
+    Object.defineProperty(b.object, b.property, {
+        get: this.valueGetter,
+        set: this.valueSetter
+    }); 
+
+    b.object[b.property] = this.value;
+}
+```
+
+## **54.explain different HTTP request methods**
+
+GET The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+
+ HEAD The HEAD method asks for a response identical to that of a GET request, but without the response body.
+
+ POST The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server. 
+
+PUT The PUT method replaces all current representations of the target resource with the request payload.
+
+DELETE The DELETE method deletes the specified resource
+
+. CONNECT The CONNECT method establishes a tunnel to the server identified by the target resource.
+
+OPTIONS The OPTIONS method is used to describe the communication options for the target resource. 
+
+TRACE The TRACE method performs a message loop-back test along the path to the target resource.
+
+PATCH The PATCH method is used to apply partial modifications to a resource.
+
+\*\*\*\*
+
+## **55.what is mixin**
+
+a mixin is a class that contains methods for use by other classes without having to be the parent class of those other classes.
+
+```text
+// mixin
+let sayHiMixin = {
+  sayHi() {
+    alert(`Hello ${this.name}`);
+  },
+  sayBye() {
+    alert(`Bye ${this.name}`);
+  }
+};
+
+// usage:
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
+
+// now User can say hi
+new User("Dude").sayHi(); // Hello Dude!
+```
+
+Mixins can make use of inheritance inside themselves.
+
+For instance, here `sayHiMixin` inherits from `sayMixin`:
+
+```text
+let sayMixin = {
+  say(phrase) {
+    alert(phrase);
+  }
+};
+
+let sayHiMixin = {
+  __proto__: sayMixin, // (or we could use Object.create to set the prototype here)
+
+  sayHi() {
+    // call parent method
+    super.say(`Hello ${this.name}`);
+  },
+  sayBye() {
+    super.say(`Bye ${this.name}`);
+  }
+};
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
+
+// now User can say hi
+new User("Dude").sayHi(); // Hello Dude!
+```
+
+JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
+
+reference:[https://javascript.info/mixins](https://javascript.info/mixins)
+
+
+
+## 56.**pros and cons of using mixin**
+
+**pro:**
+
+It provides a mechanism for multiple inheritance by allowing multiple classes to use the common functionality, but without the complex semantics of multiple inheritance.
+
+Code reusability: Mixins are useful when a programmer wants to share functionality between different classes. Instead of repeating the same code over and over again, the common functionality can simply be grouped into a mixin and then included into each class that requires it.
+
+ Mixins allow inheritance and use of only the desired features from the parent class, not necessarily all of the features from the parent class.
+
+**cons**:
+
+Mixins may become a point of conflict if they occasionally overwrite existing class methods.
+
+
+
+
+
+\*\*\*\*
+
+## **57.explain how the mixin function like in your project**
+
+## **58.how to use JavaScript to write a dropdown list**
+
+reference**:**[**https://codepen.io/GCrispino/pen/EEXmYd**](https://codepen.io/GCrispino/pen/EEXmYd)\*\*\*\*
+
+## 59.**setter and getter in javascript ?**
+
+```text
+let user = {
+  name: "John",
+  surname: "Smith",
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  },
+
+  set fullName(value) {
+    [this.name, this.surname] = value.split(" ");
+  }
+};
+
+// set fullName is executed with the given value.
+user.fullName = "Alice Cooper";
+
+alert(user.name); // Alice
+alert(user.surname); // Cooper
+```
+
+The **`get`** syntax binds an object property to a function that will be called when that property is looked up.
+
+The **`set`** syntax binds an object property to a function to be called when there is an attempt to set that property.  
+  
+
+
+## **60.how to deep copy and shallow copy an object**
+
+A deep copy means that all of the values of the new variable are copied and **disconnected from the original** variable. A shallow copy means that certain \(sub-\)values are **still connected** to the original variable.
+
+Fast cloning with data loss - JSON.parse/stringify If you do not use Dates, functions, undefined, Infinity, RegExps, Maps, Sets, Blobs, FileLists, ImageDatas, sparse Arrays, Typed Arrays or other complex types within your object, a very simple one liner to deep clone an object is:
+
+JSON.parse\(JSON.stringify\(object\)\)
+
+```text
+const a = {
+  string: 'string',
+  number: 123,
+  bool: false,
+  nul: null,
+  date: new Date(),  // stringified
+  undef: undefined,  // lost
+  inf: Infinity,  // forced to 'null'
+  re: /.*/,  // lost
+}
+console.log(a);
+console.log(typeof a.date);  // Date object
+const clone = JSON.parse(JSON.stringify(a));
+console.log(clone);
+console.log(typeof clone.date);  // result of .toISOString()
+```
+
+Reliable cloning using a library:
+
+Since cloning objects is not trivial \(complex types, circular references, function etc.\), most major libraries provide function to clone objects. **Don't reinvent the wheel** - if you're already using a library, check if it has an object cloning function. For example,
+
+* lodash - [`cloneDeep`](https://lodash.com/docs#cloneDeep); can be imported separately via the [lodash.clonedeep](https://www.npmjs.com/package/lodash.clonedeep) module and is probably your best choice if you're not already using a library that provides a deep cloning function
+* AngularJS - [`angular.copy`](https://docs.angularjs.org/api/ng/function/angular.copy)
+* jQuery - [`jQuery.extend(true, { }, oldObject)`](https://api.jquery.com/jquery.extend/#jQuery-extend-deep-target-object1-objectN); `.clone()` only clones DOM elements
+
+ES6:
+
+The **`Object.assign()`** method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.
+
+```text
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+```
+
+Spread syntax
+
+```text
+var arr = [1,2,3];
+var arr2 = [...arr];
+```
+
+## **61. explain ES6 arrow function, why you prefer to use that**
+
+\*\*\*\*
+
+## **62.how to create a Class in javascript**
+
+```text
+class User {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    alert(this.name);
+  }
+
+}
+
+// Usage:
+let user = new User("John");
+user.sayHi();
+```
+
+## **63.how to make HTTP request security \(CDS, CORS\)**
+
+\*\*\*\*
+
+## **65.怎么delete property**
+
+**delete  + prototype**
+
+## **68.Do you know different types of internet session?**
+
+a session is a temporary and interactive information interchange between two or more communicating devices, or between a computer and user \(see login session\). A session is established at a certain point in time, and then ‘torn down’ - brought to an end - at some later point.
+
+Server-side web sessions**:**
+
+Server-side sessions are handy and efficient, but can become difficult to handle in conjunction with load-balancing/high-availability systems and are not usable at all in some embedded systems with no storage. The load-balancing problem can be solved by using shared storage or by applying forced peering between each client and a single server in the cluster, although this can compromise system efficiency and load distribution.
+
+Client-side web sessions**:**
+
+Client-side sessions use cookies and cryptographic techniques to maintain state without storing as much data on the server. When presenting a dynamic web page, the server sends the current state data to the client \(web browser\) in the form of a cookie. The client saves the cookie in memory or on disk. With each successive request, the client sends the cookie back to the server, and the server uses the data to "remember" the state of the application for that specific client and generate an appropriate response.
+
+\*\*\*\*
+
+## **69.http method why can’t use get function to create new one. GET vs POST**
+
+## **70.what’s functional programming tell some detail?**
+
+**Functional programming** \(often abbreviated FP\) is the process of building software by composing **pure functions**, avoiding **shared state,** **mutable data,** and **side-effects**. Functional programming is **declarative** rather than **imperative**, and application state flows through pure functions. Contrast with object oriented programming, where application state is usually shared and colocated with methods in objects.  
+**reference:**[**https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0)\*\*\*\*
+
+## **71.前端如何做security**
+
+**reference:**[**https://zoumiaojiang.com/article/common-web-security/**](https://zoumiaojiang.com/article/common-web-security/)\*\*\*\*
+
+\*\*\*\*
+
+## 72. **What happened when you type in an url in a browser. 主要回答DNS, IP.**
+
+You enter a URL into a web browser The browser looks up the IP address for the domain name via DNS 
+
+The browser sends a HTTP request to the server The server sends back a HTTP response 
+
+The browser begins rendering the HTML
+
+ The browser sends requests for additional objects embedded in HTML \(images, css, JavaScript\) and repeats steps 3-5. Once the page is loaded,
+
+ the browser sends further async requests as needed.
+
+## **73.iife**
+
+**Immediately Invoked Function Expression**
+
+```text
+var result = (function () {
+    var name = "Barry"; 
+    return name; 
+})(); 
+// Immediately creates the output: 
+result; // "Barry"
+```
+
+## **75.Check if object is a array**
+
+use array.constructor === Array
+
+
+
+## **76.difference between == and ===**
+
+`==` is the abstract equality operator while `===` is the strict equality operator. The `==` operator will compare for equality after doing any necessary type conversions. The `===` operator will not do type conversion, so if two values are not the same type `===` will simply return `false`. When using `==`, funky things can happen, such as:
+
+```text
+1 == '1'; // true
+1 == [1]; // true
+1 == true; // true
+0 == ''; // true
+0 == '0'; // true
+0 == false; // true
+```
+
+My advice is never to use the `==` operator, except for convenience when comparing against `null` or `undefined`, where `a == null` will return `true` if `a` is `null` or `undefined`.
+
+```text
+var a = null;
+console.log(a == null); // true
+console.log(a == undefined); // true
+```
+
+## **77.difference between await and async**
+
+The async function declaration defines an asynchronous function, which returns an AsyncFunction object.
+
+The await operator is used to wait for a Promise. It can only be used inside an async function.
+
+## **78.**explain authentication
+
+Authentication is the first step in the two-step process of granting a user access. Website authentication simply verifies that the user is who they claim to be. Websites can authenticate users with tools like Swoop, social sign-in, or traditional passwords. Once this is established, authorization occurs, granting the user custom permissions.
+
+
+
+## 79.**什么是MVVM and 什么是MVC**
+
+**reference:**[**https://medium.com/mobidroid/difference-between-mvc-and-mvvm-456ec67181f6**](https://medium.com/mobidroid/difference-between-mvc-and-mvvm-456ec67181f6)\*\*\*\*
+
+## **80.pass by value and pass by reference**
+
+**passing by reference**
+
+```text
+
+let a = {language: "Javascript"}
+let b = a
+
+console.log(a) // => {language: "Javascript"}
+console.log(b) => {language: "Javascript"}
+
+a.language = "Ruby"
+
+console.log(a) // => {language: "Ruby"}
+console.log(b) // => {language: "Ruby"}
+```
+
+```text
+let a = 5 
+let b = a
+
+console.log(a) // => 5
+console.log(b) // => 5
+
+a = 1
+
+console.log(a) // => 1
+console.log(b) // => 5
+```
+
+## **82.what design principle do you use mostly?**
+
+**reference:**[**https://thefullstack.xyz/solid-javascript**](https://thefullstack.xyz/solid-javascript)\*\*\*\*
+
+## **83.问我ES6的spread operator在ES5里面应该怎么写.**
+
+```text
+function spreadify (fn, fnThis) {
+    return function (/* accepts unlimited arguments */) {
+        // Holds the processed arguments for use by `fn`
+        var spreadArgs = [ ];
+
+        // Caching length
+        var length = arguments.length;
+
+        var currentArg;
+
+        for (var i = 0; i < length; i++) {
+            currentArg = arguments[i];
+
+            if (Array.isArray(currentArg)) {
+                spreadArgs = spreadArgs.concat(currentArg);
+            } else {
+                spreadArgs.push(currentArg);
+            }
+        }
+
+        fn.apply(fnThis, spreadArgs);
+    };
+}
+
+var someArgs = ["a", "b", "c"];
+var moreArgs = [1, 2, 3];
+
+// Outputs: ["a", "b", "c"] [1, 2, 3]
+console.log(someArgs, moreArgs);
+
+// Outputs: a b c 1 2 3
+spreadify(console.log, console)(someArgs, moreArgs);
+```
+
+## **84.说几个javascript的design pattern，知道observer嘛，知不知道redux是observer的一种实现。**
+
+## **85.问SSR和CSR的区别，两个具问我HTML5 有些browser不支持，问我production的时候应该怎么做**
+
+\*\*\*\*
+
+## 88. **oop vs functional programming**
 
 **89. js vs jquery**
 
@@ -1030,6 +1566,8 @@ z 2 [ ‘x’, ‘y’, ‘z’ ]
 **108JavaScript build tools**
 
 **109.What do you know about Next.js \(for server-side react application\)**
+
+**110. throttle vs debounce**
 
   
 
