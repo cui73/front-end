@@ -1559,15 +1559,47 @@ spreadify(console.log, console)(someArgs, moreArgs);
   
 105.**Why we declare variable before function**
 
-**106.Function with 4 arguments, what append if you put 3 arguments, and what is the forth argument**
+\*\*\*\*
 
-**107.privileged method**
+## **106.Function with 4 arguments, what append if you put 3 arguments, and what is the forth argument**
 
-**108JavaScript build tools**
+**the last argument becomes undefined.**
 
-**109.What do you know about Next.js \(for server-side react application\)**
+## **107.privileged method**
 
-**110. throttle vs debounce**
+The privileged method can see variables, defined inside the function \(An important note here - in JavaScript, the only scope is function scope. There's no block scope\) so they are "privileged". Yes, they can be called from an object instance, but the important thing here is, that they see all the stuff, declared with var \(the real private stuff\)
+
+```text
+var C = function(){
+  var private;
+  this.privilegedMethod = function(){
+       /* blah blah */
+  };
+}
+var cObj = new C();
+```
+
+**Difference with public method.**
+
+"Public" methods are the ones that are added to the object outside of the object itself, through prototype.
+
+```text
+var C = function(){
+   /* blah blah */
+}
+C.prototype.publicMethod = function(){
+    /* blah blah */
+};
+var cObj = new C();
+```
+
+## **108JavaScript build tools**
+
+Webpack Grunt Gulp Browserify Brunch Yeoman
+
+## **109. throttle vs debounce**
+
+Throttling will delay executing a function. It will reduce the notifications of an event that fires multiple times. Debouncing will bunch a series of sequential calls to a function into a single call to that function. It ensures that one notification is made for an event that fires multiple times.
 
   
 
