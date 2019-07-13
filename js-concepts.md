@@ -1517,53 +1517,214 @@ spreadify(console.log, console)(someArgs, moreArgs);
 
 ## 88. **oop vs functional programming**
 
-**89. js vs jquery**
+## **89. js vs jquery**
 
-**90. js vs java**
+type: Js: it’s a programming language Jquery: it is an API
 
-**91.strict mode**
+Javascript: Js: it is written in C Jquery: users resources given by javaScript to make things easier
 
-**92.arraylist vs linkedlist**
+Verbosity/Simplicity: Js: one needs to write their own scripting which is time-consuming jQuery: one need not write much as scripting already exists
 
-**93.Where u put css file**
+Compatibility: Js: With javascript, one needs to handle multiple-browser compatibilities by writing their own code 
 
-**Where u put js file**  
+Jquery: it is a multi-browser library
+
+Syntax: js: no special symbol like Jquery Jquery: $\(selector\).action\(\)
+
+## **90. js vs java**
+
+1.OOPS
+
+java: is an object-oriented programming language which uses objects to perform any actions based on relations between objects.
+
+javascript: javascript is an object-oriented scripting language which uses objects similar to java
+
+2.Runningb Platform
+
+java: applications and programs run in jvm\(java virtual machine\) which required installing JDK and JRE on a system
+
+javaScript: applications run on web browser and no need of any initial setup
+
+3.Compilation
+
+java: programs are compiled and interpreted as it is a programming language
+
+JS: it is interpreted as it’s scripting language which is plain text code
+
+## **91.strict mode**
+
+\*\*\*\*
+
+The statement `"use strict";` instructs the browser to use the Strict mode, which is a reduced and safer feature set of JavaScript.
+
+### List of features \(non-exhaustive\)
+
+1. Disallows global variables. \(Catches missing `var` declarations and typos in variable names\)
+2. Silent failing assignments will throw error in strict mode \(assigning `NaN = 5;`\)
+3. Attempts to delete undeletable properties will throw \(`delete Object.prototype`\)
+4. Requires all property names in an object literal to be unique \(`var x = {x1: "1", x1: "2"}`\)
+5. Function parameter names must be unique \(`function sum (x, x) {...}`\)
+6. Forbids octal syntax \(`var x = 023;` some devs assume wrongly that a preceding zero does nothing to change the number.\)
+7. Forbids the `with` keyword
+8. `eval` in strict mode does not introduce new variables
+9. Forbids deleting plain names \(`delete x;`\)
+10. Forbids binding or assignment of the names `eval` and `arguments` in any form
+11. Strict mode does not alias properties of the `arguments` object with the formal parameters. \(i.e. in `function sum (a,b) { return arguments[0] + b;}` This works because `arguments[0]` is bound to `a` and so on. \)
+12. `arguments.callee` is not supported
+
+## **92.arraylist vs linkedlist**
+
+\*\*\*\*
+
+| ArrayList | LinkedList |
+| :--- | :--- |
+| 1\) ArrayList internally uses a **dynamic array** to store the elements. | LinkedList internally uses a **doubly linked list** to store the elements. |
+| 2\) Manipulation with ArrayList is **slow** because it internally uses an array. If any element is removed from the array, all the bits are shifted in memory. | Manipulation with LinkedList is **faster** than ArrayList because it uses a doubly linked list, so no bit shifting is required in memory. |
+| 3\) An ArrayList class can **act as a list** only because it implements List only. | LinkedList class can **act as a list and queue** both because it implements List and Deque interfaces. |
+| 4\) ArrayList is **better for storing and accessing** data. | LinkedList is **better for manipulating** data. |
+
+## **93.Where u put css file ? Where u put js file?** 73
+
+In my opinion the best practice is to place the CSS file in the header
+
+```text
+<head>
+  <link rel="stylesheet" href="css/layout.css" type="text/css">
+</head>
+```
+
+and the Javascript file before the closing `</body>` tag
+
+```text
+  <script type="text/javascript" src="script.js"></script>
+</body>
+```
+
+Also if you have, like you said two CSS files. The browser would use both. If there were any selectors, ie. `.content {}` that were the same in both CSS files the browser would overwrite the similar properties of the first one with the second one's properties. If that makes sense.
+
+## 94.**One way data binding vs two way data binding**
+
+Two way data binding means that UI fields are bound to model data dynamically such that when a UI field changes, the model data changes with it and vice-versa.
+
+One way data flow means that the model is the single source of truth.  
+Changes in the UI trigger messages that signal user intent to the model \(or “store” in React\). Only the model has the access to change the app’s state.
+
+The effect is that data always flows in a single direction, which makes it easier to understand.
+
+One way data flows are deterministic, whereas two-way binding can cause side-effects which are harder to follow and understand.
+
+Good to hear:
+
+* React is the new canonical example of one-way data flow, so mentions of React are a good signal. Cycle.js is another popular implementation of uni-directional data flow.
+
+Angular is a popular framework which uses two-way binding.
+
+## **95. hoisting?**
+
+Hoisting is JavaScript's default behavior of moving declarations to the top.
+
+## 96.**How to use bind call apply**
+
+## **97.Rest operator,.spread operator**
+
+The **rest parameter** syntax allows us to represent an indefinite number of arguments as an array.  
 
 
-94.**One way data binding vs two way data binding**
+```text
+function sum(...theArgs) {
+  return theArgs.reduce((previous, current) => {
+    return previous + current;
+  });
+}
 
-**95. hoisting?**
+console.log(sum(1, 2, 3));
+// expected output: 6
 
-96.**How to use bind call apply**
+console.log(sum(1, 2, 3, 4));
+// expected output: 10
 
-**97.Rest operator,.spread operator**
+```
 
-**98.difference between cookie, session storage, local storage**
-
-**99.what is OAuth, do you do authentication in your project**
-
-**100.Cross origin, cross domain**
-
-**101.what is OAuth, do you do authentication in your project**
-
-**102.Difference between null and undefined?  Which one is object**   
+**Spread syntax** allows an iterable such as an array expression or string to be expanded in places where zero or more arguments \(for function calls\) or elements \(for array literals\) are expected, or an object expression to be expanded in places where zero or more key-value pairs \(for object literals\) are expected.  
 
 
-103.     **How to use closure/setTimeout/promise/async await/call apply bind**
+```text
+function sum(x, y, z) {
+  return x + y + z;
+}
 
-**104.**
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+// expected output: 6
+
+console.log(sum.apply(null, numbers));
+// expected output: 6
+
+```
+
+## **98.difference between cookie, session storage, local storage**
+
+\*\*\*\*
+
+LocalStorage
+
+* Stores data with no expiration date, and gets cleared only through JavaScript, or clearing the Browser cache / Locally Stored Data
+* Storage limit is the maximum amongst the three
+
+SessionStorage
+
+* The sessionStorage object stores data only for a session, meaning that the data is stored until the browser \(or tab\) is closed.
+* Data is never transferred to the server.
+* Storage limit is larger than a cookie \(at least 5MB\).
+
+Cookie
+
+* Stores data that has to be sent back to the server with subsequent requests. Its expiration varies based on the type and the expiration duration can be set from either server-side or client-side \(normally from server-side\).
+* Cookies are primarily for server-side reading \(can also be read on client-side\), localStorage and sessionStorage can only be read on client-side.
+* Size must be less than 4KB.
+* Cookies can be made secure by setting the httpOnly flag as true for that cookie. This prevents client-side access to that cookie
+
+## **99.what is OAuth, do you do authentication in your project**
+
+## **100.Cross origin, cross domain**
+
+Cross-Origin Resource Sharing \([CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS)\) is a mechanism that uses additional [HTTP](https://developer.mozilla.org/en-US/docs/Glossary/HTTP) headers to tell a browser to let a web application running at one origin \(domain\) have permission to access selected resources from a server at a different origin. A web application executes a **cross-origin HTTP request** when it requests a resource that has a different origin \(domain, protocol, and port\) than its own origin.
+
+  
+A **cross-domain solution** \(**CDS**\) is a means of [information assurance](https://en.wikipedia.org/wiki/Information_assurance) that provides the ability to manually or automatically access or transfer information between two or more differing security domains.[\[1\]](https://en.wikipedia.org/wiki/Cross-domain_solution#cite_note-1) They are integrated systems of hardware and software that enable transfer of information among incompatible security domains or levels of classification.[\[2\]](https://en.wikipedia.org/wiki/Cross-domain_solution#cite_note-2) Modern military, intelligence, and law enforcement operations critically depend on timely sharing of information.[\[](https://en.wikipedia.org/wiki/Cross-domain_solution#cite_note-3)
+
+## **102.Difference between null and undefined?  Which one is object**  
+
+### What is null?
+
+There are two features of `null` you should understand:
+
+* `null` is an empty or non-existent value.
+* `null` must be assigned.
+
+### What is undefined?
+
+Undefined most typically means a variable has been declared, but not defined.
+
+
+
+## 103.     **How to use closure/setTimeout/promise/async await/call apply bind**
+
+## **104.** 
 
 * **Null == undefined -&gt; true**
 * **Null === undefined -&gt; false**
 
-  
-105.**Why we declare variable before function**
+##  105.**Why we declare variable before function**
+
+it must be declared before it is used, meaning before the function is called.
 
 \*\*\*\*
 
 ## **106.Function with 4 arguments, what append if you put 3 arguments, and what is the forth argument**
 
-**the last argument becomes undefined.**
+the last argument becomes undefined.
 
 ## **107.privileged method**
 
