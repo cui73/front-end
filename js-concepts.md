@@ -564,6 +564,13 @@ JSON is "self-describing" and easy to understand
 
 A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer \(enclosing\) function's variables—scope chain even after the outer function has returned.
 
+
+
+**Why would you use one?**
+
+* Data privacy / emulating private methods with closures. Commonly used in the [module pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript).
+* [Partial applications or currying](https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8#.l4b6l1i3x).
+
 ## **27.What JavaScript libraries and frameworks have you worked with?**
 
 \*\*\*\*
@@ -1765,6 +1772,306 @@ Throttling will delay executing a function. It will reduce the notifications of 
 If you have a function that gets called a lot - for example when a resize or mouse move event occurs, it can be called a lot of times. If you don't want this behaviour, you can **Throttle** it so that the function is called at regular intervals. **Debouncing** will mean it is called at the end \(or start\) of a bunch of events.  
 
 
-  
+## 110.Can you describe the main difference between a `.forEach` loop and a `.map()` loop and why you would pick one versus the other?
 
+To understand the differences between the two, let's look at what each function does.
+
+**`forEach`**
+
+* Iterates through the elements in an array.
+* Executes a callback for each element.
+* Does not return a value.
+
+```text
+const a = [1, 2, 3];
+const doubled = a.forEach((num, index) => {
+  // Do something with num and/or index.
+});
+
+// doubled = undefined
+```
+
+**`map`**
+
+* Iterates through the elements in an array.
+* "Maps" each element to a new element by calling the function on each element, creating a new array as a result.
+
+```text
+const a = [1, 2, 3];
+const doubled = a.map(num => {
+  return num * 2;
+});
+
+// doubled = [2, 4, 6]
+```
+
+The main difference between `.forEach` and `.map()` is that `.map()` returns a new array. If you need the result, but do not wish to mutate the original array, `.map()` is the clear choice. If you simply need to iterate over an array, `forEach` is a fine choice.
+
+## 111.What's a typical use case for anonymous functions?
+
+
+
+They can be used in IIFEs to encapsulate some code within a local scope so that variables declared in it do not leak to the global scope.
+
+```text
+(function() {
+  // Some code here.
+})();
+```
+
+As a callback that is used once and does not need to be used anywhere else. The code will seem more self-contained and readable when handlers are defined right inside the code calling them, rather than having to search elsewhere to find the function body.
+
+```text
+setTimeout(function() {
+  console.log('Hello world!');
+}, 1000);
+```
+
+Arguments to functional programming constructs or Lodash \(similar to callbacks\).
+
+```text
+const arr = [1, 2, 3];
+const double = arr.map(function(el) {
+  return el * 2;
+});
+console.log(double); // [2, 4, 6]
+```
+
+## 112.How do you organize your code? \(module pattern, classical inheritance?\)
+
+In the past, I've used Backbone for my models which encourages a more OOP approach, creating Backbone models and attaching methods to them.
+
+The module pattern is still great, but these days, I use React/Redux which utilize a single-directional data flow based on Flux architecture. I would represent my app's models using plain objects and write utility pure functions to manipulate these objects. State is manipulated using actions and reducers like in any other Redux application.
+
+I avoid using classical inheritance where possible. When and if I do, I stick to [these rules](https://medium.com/@dan_abramov/how-to-use-classes-and-sleep-at-night-9af8de78ccb4).
+
+## 113.What's the difference between host objects and native objects?
+
+Native objects are objects that are part of the JavaScript language defined by the ECMAScript specification, such as `String`, `Math`, `RegExp`, `Object`, `Function`, etc.
+
+Host objects are provided by the runtime environment \(browser or Node\), such as `window`, `XMLHTTPRequest`, etc.
+
+## 114.Difference between: function Person\(\){}, var person = Person\(\), and var person = new Person\(\)?
+
+
+
+This question is pretty vague. My best guess at its intention is that it is asking about constructors in JavaScript. Technically speaking, `function Person(){}` is just a normal function declaration. The convention is to use PascalCase for functions that are intended to be used as constructors.
+
+`var person = Person()` invokes the `Person` as a function, and not as a constructor. Invoking as such is a common mistake if the function is intended to be used as a constructor. Typically, the constructor does not return anything, hence invoking the constructor like a normal function will return `undefined` and that gets assigned to the variable intended as the instance.
+
+`var person = new Person()` creates an instance of the `Person` object using the `new` operator, which inherits from `Person.prototype`. An alternative would be to use `Object.create`, such as: `Object.create(Person.prototype)`.
+
+```text
+function Person(name) {
+  this.name = name;
+}
+
+var person = Person('John');
+console.log(person); // undefined
+console.log(person.name); // Uncaught TypeError: Cannot read property 'name' of undefined
+
+var person = new Person('John');
+console.log(person); // Person { name: "John" }
+console.log(person.name); // "john"
+```
+
+## 115.When would you use document.write\(\)?
+
+`document.write()` writes a string of text to a document stream opened by `document.open()`. When `document.write()` is executed after the page has loaded, it will call `document.open` which clears the whole document \(`<head>` and `<body>` removed!\) and replaces the contents with the given parameter value. Hence it is usually considered dangerous and prone to misuse.
+
+There are some answers online that explain `document.write()` is being used in analytics code or [when you want to include styles that should only work if JavaScript is enabled](https://www.quirksmode.org/blog/archives/2005/06/three_javascrip_1.html). It is even being used in HTML5 boilerplate to [load scripts in parallel and preserve execution order](https://github.com/paulirish/html5-boilerplate/wiki/Script-Loading-Techniques#documentwrite-script-tag)! However, I suspect those reasons might be outdated and in the modern day, they can be achieved without using `document.write()`. Please do correct me if I'm wrong about this.
+
+## 116.What's the difference between feature detection, feature inference, and using the UA string?
+
+**Feature Detection**
+
+Feature detection involves working out whether a browser supports a certain block of code, and running different code depending on whether it does \(or doesn't\), so that the browser can always provide a working experience rather crashing/erroring in some browsers. For example:
+
+```text
+if ('geolocation' in navigator) {
+  // Can use navigator.geolocation
+} else {
+  // Handle lack of feature
+}
+```
+
+[Modernizr](https://modernizr.com/) is a great library to handle feature detection.
+
+**Feature Inference**
+
+Feature inference checks for a feature just like feature detection, but uses another function because it assumes it will also exist, e.g.:
+
+```text
+if (document.getElementsByTagName) {
+  element = document.getElementById(id);
+}
+```
+
+This is not really recommended. Feature detection is more foolproof.
+
+**UA String**
+
+This is a browser-reported string that allows the network protocol peers to identify the application type, operating system, software vendor or software version of the requesting software user agent. It can be accessed via `navigator.userAgent`. However, the string is tricky to parse and can be spoofed. For example, Chrome reports both as Chrome and Safari. So to detect Safari you have to check for the Safari string and the absence of the Chrome string. Avoid this method.
+
+## 117.Explain Ajax in as much detail as possible.
+
+Ajax \(asynchronous JavaScript and XML\) is a set of web development techniques using many web technologies on the client side to create asynchronous web applications. With Ajax, web applications can send data to and retrieve from a server asynchronously \(in the background\) without interfering with the display and behavior of the existing page. By decoupling the data interchange layer from the presentation layer, Ajax allows for web pages, and by extension web applications, to change content dynamically without the need to reload the entire page. In practice, modern implementations commonly substitute use JSON instead of XML, due to the advantages of JSON being native to JavaScript.
+
+The `XMLHttpRequest` API is frequently used for the asynchronous communication or these days, the `fetch` API.
+
+## 118.What are the advantages and disadvantages of using Ajax?
+
+
+
+**Advantages**
+
+* Better interactivity. New content from the server can be changed dynamically without the need to reload the entire page.
+* Reduce connections to the server since scripts and stylesheets only have to be requested once.
+* State can be maintained on a page. JavaScript variables and DOM state will persist because the main container page was not reloaded.
+* Basically most of the advantages of an SPA.
+
+**Disadvantages**
+
+* Dynamic webpages are harder to bookmark.
+* Does not work if JavaScript has been disabled in the browser.
+* Some webcrawlers do not execute JavaScript and would not see content that has been loaded by JavaScript.
+* Basically most of the disadvantages of an SPA.
+
+## 119.Explain how JSONP works \(and how it's not really Ajax\).
+
+JSONP \(JSON with Padding\) is a method commonly used to bypass the cross-domain policies in web browsers because Ajax requests from the current page to a cross-origin domain is not allowed.
+
+JSONP works by making a request to a cross-origin domain via a `<script>` tag and usually with a `callback` query parameter, for example: `https://example.com?callback=printData`. The server will then wrap the data within a function called `printData` and return it to the client.
+
+```text
+<!-- https://mydomain.com -->
+<script>
+function printData(data) {
+  console.log(`My name is ${data.name}!`);
+}
+</script>
+
+<script src="https://example.com?callback=printData"></script>
+```
+
+```text
+// File loaded from https://example.com?callback=printData
+printData({ name: 'Yang Shun' });
+```
+
+The client has to have the `printData` function in its global scope and the function will be executed by the client when the response from the cross-origin domain is received.
+
+JSONP can be unsafe and has some security implications. As JSONP is really JavaScript, it can do everything else JavaScript can do, so you need to trust the provider of the JSONP data.
+
+These days, [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) is the recommended approach and JSONP is seen as a hack.
+
+## 120.Have you ever used JavaScript templating? If so, what libraries have you used?
+
+Yes. Handlebars, Underscore, Lodash, AngularJS, and JSX. I disliked templating in AngularJS because it made heavy use of strings in the directives and typos would go uncaught. JSX is my new favorite as it is closer to JavaScript and there is barely any syntax to learn. Nowadays, you can even use ES2015 template string literals as a quick way for creating templates without relying on third-party code.
+
+```text
+const template = `<div>My name is: ${name}</div>`;
+```
+
+However, do be aware of a potential XSS in the above approach as the contents are not escaped for you, unlike in templating libraries.
+
+## 121.Describe event bubbling.
+
+When an event triggers on a DOM element, it will attempt to handle the event if there is a listener attached, then the event is bubbled up to its parent and the same thing happens. This bubbling occurs up the element's ancestors all the way to the `document`. Event bubbling is the mechanism behind event delegation.  
+
+
+## 122.What's the difference between an "attribute" and a "property"?
+
+
+
+Attributes are defined on the HTML markup but properties are defined on the DOM. To illustrate the difference, imagine we have this text field in our HTML: `<input type="text" value="Hello">`.
+
+```text
+const input = document.querySelector('input');
+console.log(input.getAttribute('value')); // Hello
+console.log(input.value); // Hello
+```
+
+But after you change the value of the text field by adding "World!" to it, this becomes:
+
+```text
+console.log(input.getAttribute('value')); // Hello
+console.log(input.value); // Hello World!
+```
+
+## 123.Why is extending built-in JavaScript objects not a good idea?
+
+Extending a built-in/native JavaScript object means adding properties/functions to its `prototype`. While this may seem like a good idea at first, it is dangerous in practice. Imagine your code uses a few libraries that both extend the `Array.prototype` by adding the same `contains` method, the implementations will overwrite each other and your code will break if the behavior of these two methods is not the same.
+
+The only time you may want to extend a native object is when you want to create a polyfill, essentially providing your own implementation for a method that is part of the JavaScript specification but might not exist in the user's browser due to it being an older browser.
+
+## 124.Difference between document `load` event and document `DOMContentLoaded` event?
+
+The `DOMContentLoaded` event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
+
+`window`'s `load` event is only fired after the DOM and all dependent resources and assets have loaded.
+
+## 125.Explain the same-origin policy with regards to JavaScript.
+
+The same-origin policy prevents JavaScript from making requests across domain boundaries. An origin is defined as a combination of URI scheme, hostname, and port number. This policy prevents a malicious script on one page from obtaining access to sensitive data on another web page through that page's Document Object Model.
+
+## 126.Why is it called a Ternary expression, what does the word "Ternary" indicate?
+
+"Ternary" indicates three, and a ternary expression accepts three operands, the test condition, the "then" expression and the "else" expression. Ternary expressions are not specific to JavaScript and I'm not sure why it is even in this list.
+
+## 127.What is `"use strict";`? What are the advantages and disadvantages to using it?
+
+'use strict' is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
+
+Advantages:
+
+* Makes it impossible to accidentally create global variables.
+* Makes assignments which would otherwise silently fail to throw an exception.
+* Makes attempts to delete undeletable properties throw \(where before the attempt would simply have no effect\).
+* Requires that function parameter names be unique.
+* `this` is undefined in the global context.
+* It catches some common coding bloopers, throwing exceptions.
+* It disables features that are confusing or poorly thought out.
+
+Disadvantages:
+
+* Many missing features that some developers might be used to.
+* No more access to `function.caller` and `function.arguments`.
+* Concatenation of scripts written in different strict modes might cause issues.
+
+Overall, I think the benefits outweigh the disadvantages, and I never had to rely on the features that strict mode blocks. I would recommend using strict mode.
+
+## 128.Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
+
+Every script has access to the global scope, and if everyone uses the global namespace to define their variables, collisions will likely occur. Use the module pattern \(IIFEs\) to encapsulate your variables within a local namespace.
+
+## 129.Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
+
+The `load` event fires at the end of the document loading process. At this point, all of the objects in the document are in the DOM, and all the images, scripts, links and sub-frames have finished loading.
+
+The DOM event `DOMContentLoaded` will fire after the DOM for the page has been constructed, but do not wait for other resources to finish loading. This is preferred in certain cases when you do not need the full page to be loaded before initializing.
+
+TODO.
+
+## 130.Explain what a single page app is and how to make one SEO-friendly.
+
+
+
+The below is taken from the awesome [Grab Front End Guide](https://github.com/grab/front-end-guide), which coincidentally, is written by me!
+
+Web developers these days refer to the products they build as web apps, rather than websites. While there is no strict difference between the two terms, web apps tend to be highly interactive and dynamic, allowing the user to perform actions and receive a response to their action. Traditionally, the browser receives HTML from the server and renders it. When the user navigates to another URL, a full-page refresh is required and the server sends fresh new HTML to the new page. This is called server-side rendering.
+
+However, in modern SPAs, client-side rendering is used instead. The browser loads the initial page from the server, along with the scripts \(frameworks, libraries, app code\) and stylesheets required for the whole app. When the user navigates to other pages, a page refresh is not triggered. The URL of the page is updated via the [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API). New data required for the new page, usually in JSON format, is retrieved by the browser via [AJAX](https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started) requests to the server. The SPA then dynamically updates the page with the data via JavaScript, which it has already downloaded in the initial page load. This model is similar to how native mobile apps work.
+
+The benefits:
+
+* The app feels more responsive and users do not see the flash between page navigations due to full-page refreshes.
+* Fewer HTTP requests are made to the server, as the same assets do not have to be downloaded again for each page load.
+* Clear separation of the concerns between the client and the server; you can easily build new clients for different platforms \(e.g. mobile, chatbots, smart watches\) without having to modify the server code. You can also modify the technology stack on the client and server independently, as long as the API contract is not broken.
+
+The downsides:
+
+* Heavier initial page load due to the loading of framework, app code, and assets required for multiple pages.
+* There's an additional step to be done on your server which is to configure it to route all requests to a single entry point and allow client-side routing to take over from there.
+* SPAs are reliant on JavaScript to render content, but not all search engines execute JavaScript during crawling, and they may see empty content on your page. This inadvertently hurts the Search Engine Optimization \(SEO\) of your app. However, most of the time, when you are building apps, SEO is not the most important factor, as not all the content needs to be indexable by search engines. To overcome this, you can either server-side render your app or use services such as [Prerender](https://prerender.io/) to "render your javascript in a browser, save the static HTML, and return that to the crawlers".
 
