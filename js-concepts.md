@@ -3119,7 +3119,7 @@ make async requests in the background
 
 **XmlHttpReuqest\(XHR\)Object is an important part of ajax technology. all browsers have this API.**
 
-XHR Object Methods & Working With Text**:**
+### XHR Object Methods & Working With Text**:**
 
 ```text
 document.getElementById('button').addEventListener('click', loadData);
@@ -3175,7 +3175,7 @@ function loadData() {
 }
 ```
 
-Working with Ajax & JSON**:**
+### Working with Ajax & JSON**:**
 
 ```text
 document.getElementById('button1').addEventListener('click', loadCustomer);
@@ -3244,7 +3244,7 @@ function loadCustomers(e) {
 }
 ```
 
-data from external API
+### data from external API
 
 ```text
 document.querySelector('.get-jokes').addEventListener('click', getJokes);
@@ -3280,7 +3280,7 @@ function getJokes(e) {
 }
 ```
 
-Callback实现async
+### Callback实现async
 
 ```text
 const posts = [
@@ -3331,7 +3331,7 @@ function getPosts() {
 createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
 ```
 
-Callback实现http libraries
+### Callback实现http libraries
 
 ```text
 //app.js
@@ -3457,7 +3457,7 @@ easyHTTP.prototype.delete = function(url, callback) {
 
 ```
 
-ES6 Promise实现async
+### ES6 Promise实现async
 
 ```text
 const posts = [
@@ -3498,7 +3498,7 @@ createPost({title: 'Post Three', body: 'This is post three'})
 });
 ```
 
-Fetch API 实现Async
+### Fetch API 实现Async
 
 ```text
 document.getElementById('button1').addEventListener('click', getText);
@@ -3613,7 +3613,7 @@ function getExternal() {
 }
 ```
 
-Fetch & Promises 版本的http libraries
+### Fetch & Promises 版本的http libraries
 
 ```text
 //app.js
@@ -3721,7 +3721,7 @@ http.delete('https://jsonplaceholder.typicode.com/users/2')
  
 ```
 
-Es7 Async & Await
+### Es7 Async & Await
 
 ```text
 // async function myFunc() {
@@ -3761,7 +3761,7 @@ getUsers().then(users => console.log(users));
 
 
 
-## Es7 Async & Await version of http libraries
+### Es7 Async & Await version of http libraries
 
 ```text
 //app.js
