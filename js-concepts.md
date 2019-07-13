@@ -1005,9 +1005,116 @@ bind\(\) 是用来控制调用函数的范围（全局、某个类等等） 定�
 
 ## **50. inheritance**
 
-\*\*\*\*
+one way\(es5\):
 
-\*\*\*\*
+```text
+// Person constructor
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+// Greeting
+Person.prototype.greeting = function(){
+  return `Hello there ${this.firstName} ${this.lastName}`;
+}
+
+const person1 = new Person('John', 'Doe');
+
+console.log(person1.greeting());
+
+// Customer constructor
+function Customer(firstName, lastName, phone, membership) {
+  Person.call(this, firstName, lastName);
+
+  this.phone = phone;
+  this.membership = membership;
+}
+
+// Inherit the Person prototype methods
+Customer.prototype = Object.create(Person.prototype);
+
+// Make customer.prototype return Customer()
+Customer.prototype.constructor = Customer;
+
+// Create customer
+const customer1 = new Customer('Tom', 'Smith', '555-555-5555', 'Standard');
+
+console.log(customer1);
+
+// Customer greeting
+Customer.prototype.greeting = function(){
+  return `Hello there ${this.firstName} ${this.lastName} welcome to our company`;
+}
+
+console.log(customer1.greeting());
+```
+
+second way:
+
+```text
+const personPrototypes = {
+  greeting: function() {
+    return `Hello there ${this.firstName} ${this.lastName}`;
+  },
+  getsMarried: function(newLastName) {
+    this.lastName = newLastName;
+  }
+}
+
+const mary = Object.create(personPrototypes);
+mary.firstName = 'Mary';
+mary.lastName = 'Williams';
+mary.age = 30;
+
+mary.getsMarried('Thompson');
+
+console.log(mary.greeting());
+
+const brad = Object.create(personPrototypes, {
+  firstName: {value: 'Brad'},
+  lastName: {value: 'Traversy'},
+  age: {value: 36}
+});
+
+console.log(brad);
+
+console.log(brad.greeting());
+```
+
+third way\(es6\):
+
+```text
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  greeting() {
+    return `Hello there ${this.firstName} ${this.lastName}`;
+  }
+}
+
+class Customer extends Person {
+  constructor(firstName, lastName, phone, membership) {
+    super(firstName, lastName);
+
+    this.phone = phone;
+    this.membership = membership;
+  }
+
+  static getMembershipCost() {
+    return 500;
+  }
+}
+
+const john = new Customer('John', 'Doe', '555-555-5555', 'Standard');
+
+console.log(john.greeting());
+
+console.log(Customer.getMembershipCost());
+```
 
 ## **51.typeof array**
 
@@ -1370,7 +1477,14 @@ Client-side sessions use cookies and cryptographic techniques to maintain state 
 
 ## **70.what’s functional programming tell some detail?**
 
-**Functional programming** \(often abbreviated FP\) is the process of building software by composing **pure functions**, avoiding **shared state,** **mutable data,** and **side-effects**. Functional programming is **declarative** rather than **imperative**, and application state flows through pure functions. Contrast with object oriented programming, where application state is usually shared and colocated with methods in objects.  
+**Functional programming** \(often abbreviated FP\) is the process of building software by composing **pure functions**, avoiding **shared state,** **mutable data,** and **side-effects**. Functional programming is **declarative** rather than **imperative**, and application state flows through pure functions. Contrast with object oriented programming, where application state is usually shared and colocated with methods in objects.
+
+pure function:
+
+A function is called [pure function](http://en.wikipedia.org/wiki/Pure_function) if it always returns the same result for same argument values and it has no side effects like modifying an argument \(or global variable\) or outputting something. The only result of calling a pure function is the return value. Examples of pure functions are strlen\(\), pow\(\), sqrt\(\) etc. Examples of impure functions are printf\(\), rand\(\), time\(\), etc.  
+
+
+  
 **reference:**[**https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0**](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0)\*\*\*\*
 
 ## **71.前端如何做security**
