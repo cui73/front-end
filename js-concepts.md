@@ -1847,7 +1847,53 @@ var arr2 = [...arr];
 One obvious benefit of arrow functions is to simplify the syntax needed to create functions, without a need for the `function` keyword. The `this` within arrow functions is also bound to the enclosing scope which is different compared to regular functions where the `this` is determined by the object calling it. Lexically-scoped `this` is useful when invoking callbacks especially in React components.  
 
 
-\*\*\*\*
+```text
+// const sayHello = function() {
+//   console.log('Hello');
+// }
+
+// const sayHello = () => {
+//   console.log('Hello');
+// }
+
+// One line function does not need braces
+// const sayHello = () => console.log('Hello');
+
+// One line returns
+// const sayHello = () => 'Hello';
+
+// Same as above
+// const sayHello = function() {
+//   return 'Hello';
+// }
+
+// Return object
+// const sayHello = () => ({ msg: 'Hello' });
+
+// Single param does not need parenthesis
+// const sayHello = name => console.log(`Hello ${name}`);
+
+// Multuiple params need parenthesis
+// const sayHello = (firstName, lastName) => console.log(`Hello ${firstName} ${lastName}`);
+
+// sayHello('Brad', 'Traversy');
+
+const users = ['Nathan', 'John', 'William'];
+
+// const nameLengths = users.map(function(name) {
+//   return name.length;
+// });
+
+// Shorter
+// const nameLengths = users.map((name) => {
+//   return name.length;
+// });
+
+// Shortest
+const nameLengths = users.map(name => name.length);
+
+console.log(nameLengths);
+```
 
 ## **62.how to create a Class in javascript**
 
@@ -3053,5 +3099,764 @@ Static class members \(properties/methods\) are not tied to a specific instance 
 
 ## 146.Asynchronous js, ajax, & fetch api
 
+what is Ajax? asynchronous JavaScript &XML 
 
+Set of web technologies 
+
+Send & Receive data asynchronously 
+
+Does not interfere with the current page
+
+ JSON has replaced XML for the most part 
+
+make async requests in the background
+
+ no page reload/ refresh
+
+ fetch data
+
+ very interactive 
+
+**XmlHttpReuqest\(XHR\)Object is an important part of ajax technology. all browsers have this API.**
+
+XHR Object Methods & Working With Text**:**
+
+```text
+document.getElementById('button').addEventListener('click', loadData);
+
+function loadData() {
+  // Create an XHR Object
+  const xhr = new XMLHttpRequest();
+
+  // OPEN
+  xhr.open('GET', 'data.txt', true);
+
+  // console.log('READYSTATE', xhr.readyState);
+
+  // Optional - Used for spinners/loaders
+  xhr.onprogress = function(){
+    console.log('READYSTATE', xhr.readyState);
+  }
+
+  xhr.onload = function(){
+    console.log('READYSTATE', xhr.readyState);
+    if(this.status === 200) {
+      // console.log(this.responseText);
+      document.getElementById('output').innerHTML = `<h1>${this.responseText}</h1>`;
+    }
+  }
+
+  // xhr.onreadystatechange = function() {
+  //   console.log('READYSTATE', xhr.readyState);
+  //   if(this.status === 200 && this.readyState === 4){
+  //     console.log(this.responseText);
+  //   }
+  // }
+
+  xhr.onerror = function() {
+    console.log('Request error...');
+  }
+
+  xhr.send();
+
+
+    // readyState Values
+    // 0: request not initialized 
+    // 1: server connection established
+    // 2: request received 
+    // 3: processing request 
+    // 4: request finished and response is ready
+
+
+  // HTTP Statuses
+  // 200: "OK"
+  // 403: "Forbidden"
+  // 404: "Not Found"
+}
+```
+
+Working with Ajax & JSON**:**
+
+```text
+document.getElementById('button1').addEventListener('click', loadCustomer);
+
+document.getElementById('button2').addEventListener('click', loadCustomers);
+
+// Load Single Customer
+function loadCustomer(e) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'customer.json', true);
+
+  xhr.onload = function(){
+    if(this.status === 200) {
+      // console.log(this.responseText);
+
+      const customer = JSON.parse(this.responseText);
+
+      const output = `
+        <ul>
+          <li>ID: ${customer.id}</li>
+          <li>Name: ${customer.name}</li>
+          <li>Company: ${customer.company}</li>
+          <li>Phone: ${customer.phone}</li>
+        </ul>
+      `;
+
+      document.getElementById('customer').innerHTML = output;
+    }
+  }
+
+  xhr.send();
+}
+
+
+// Load Customers
+function loadCustomers(e) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'customers.json', true);
+
+  xhr.onload = function(){
+    if(this.status === 200) {
+      // console.log(this.responseText);
+
+      const customers = JSON.parse(this.responseText);
+
+      let output = '';
+
+      customers.forEach(function(customer){
+        output += `
+        <ul>
+          <li>ID: ${customer.id}</li>
+          <li>Name: ${customer.name}</li>
+          <li>Company: ${customer.company}</li>
+          <li>Phone: ${customer.phone}</li>
+        </ul>
+      `;
+      });
+
+      document.getElementById('customers').innerHTML = output;
+    }
+  }
+
+  xhr.send();
+}
+```
+
+data from external API
+
+```text
+document.querySelector('.get-jokes').addEventListener('click', getJokes);
+
+function getJokes(e) {
+  const number = document.querySelector('input[type="number"]').value;
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true);
+
+  xhr.onload = function() {
+    if(this.status === 200) {
+      const response = JSON.parse(this.responseText);
+      
+      let output = '';
+
+      if(response.type === 'success') {
+        response.value.forEach(function(joke){
+          output += `<li>${joke.joke}</li>`;
+        });
+      } else {
+        output += '<li>Something went wrong</li>';
+      }
+
+      document.querySelector('.jokes').innerHTML = output;
+    }
+  }
+
+  xhr.send();
+
+  e.preventDefault();
+}
+```
+
+Callback实现async
+
+```text
+const posts = [
+  {title: 'Post One', body: 'This is post one'},
+  {title: 'Post Two', body: 'This is post two'}
+];
+
+// function createPost(post) {
+//   setTimeout(function() {
+//     posts.push(post);
+//   }, 2000);
+// }
+
+
+// function getPosts() {
+//   setTimeout(function() {
+//     let output = '';
+//     posts.forEach(function(post){
+//       output += `<li>${post.title}</li>`;
+//     });
+//     document.body.innerHTML = output;
+//   }, 1000);
+// }
+
+// createPost({title: 'Post Three', body: 'This is post three'});
+
+// getPosts();
+
+
+function createPost(post, callback) {
+  setTimeout(function() {
+    posts.push(post);
+    callback();
+  }, 2000);
+}
+
+
+function getPosts() {
+  setTimeout(function() {
+    let output = '';
+    posts.forEach(function(post){
+      output += `<li>${post.title}</li>`;
+    });
+    document.body.innerHTML = output;
+  }, 1000);
+}
+
+createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
+```
+
+Callback实现http libraries
+
+```text
+//app.js
+
+const http = new easyHTTP;
+
+// Get Posts
+// http.get('https://jsonplaceholder.typicode.com/posts', function(err, posts) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log(posts);
+//   }
+// });
+
+// Get Single Post
+// http.get('https://jsonplaceholder.typicode.com/posts/1', function(err, post) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log(post);
+//   }
+// });
+
+// Create Data
+const data = {
+  title: 'Custom Post',
+  body: 'This is a custom post'
+};
+
+// Create Post
+// http.post('https://jsonplaceholder.typicode.com/posts', data, function(err, post) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log(post);
+//   }
+// });
+
+// Update Post
+// http.put('https://jsonplaceholder.typicode.com/posts/5', data, function(err, post) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log(post);
+//   }
+// });
+
+// Delete Post
+http.delete('https://jsonplaceholder.typicode.com/posts/1', function(err, response) {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log(response);
+  }
+});
+
+-----------------------------------------------------------------------------
+//easyHTTP.js
+
+function easyHTTP() {
+  this.http = new XMLHttpRequest();
+}
+
+// Make an HTTP GET Request
+easyHTTP.prototype.get = function(url, callback) {
+  this.http.open('GET', url, true);
+
+  let self = this;
+  this.http.onload = function() {
+    if(self.http.status === 200) {
+      callback(null, self.http.responseText);
+    } else {
+      callback('Error: ' + self.http.status);
+    }
+  }
+
+  this.http.send();
+}
+
+// Make an HTTP POST Request
+easyHTTP.prototype.post = function(url, data, callback) {
+  this.http.open('POST', url, true);
+  this.http.setRequestHeader('Content-type', 'application/json');
+
+  let self = this;
+  this.http.onload = function() {
+    callback(null, self.http.responseText);
+  }
+
+  this.http.send(JSON.stringify(data));
+}
+
+
+// Make an HTTP PUT Request
+easyHTTP.prototype.put = function(url, data, callback) {
+  this.http.open('PUT', url, true);
+  this.http.setRequestHeader('Content-type', 'application/json');
+
+  let self = this;
+  this.http.onload = function() {
+    callback(null, self.http.responseText);
+  }
+
+  this.http.send(JSON.stringify(data));
+}
+
+// Make an HTTP DELETE Request
+easyHTTP.prototype.delete = function(url, callback) {
+  this.http.open('DELETE', url, true);
+
+  let self = this;
+  this.http.onload = function() {
+    if(self.http.status === 200) {
+      callback(null, 'Post Deleted');
+    } else {
+      callback('Error: ' + self.http.status);
+    }
+  }
+
+  this.http.send();
+}
+
+```
+
+ES6 Promise实现async
+
+```text
+const posts = [
+  {title: 'Post One', body:'This is post one'},
+  {title: 'Post Two', body: 'This is post two'}
+];
+
+function createPost(post) {
+  return new Promise(function(resolve, reject){
+    setTimeout(function() {
+      posts.push(post);
+
+      const error = false;
+
+      if(!error) {
+        resolve();
+      } else {
+        reject('Error: Something went wrong');
+      }
+    }, 2000);
+  });
+}
+
+function getPosts() {
+  setTimeout(function() {
+    let output = '';
+    posts.forEach(function(post){
+      output += `<li>${post.title}</li>`;
+    });
+    document.body.innerHTML = output;
+  }, 1000);
+}
+
+createPost({title: 'Post Three', body: 'This is post three'})
+.then(getPosts)
+.catch(function(err) {
+  console.log(err);
+});
+```
+
+Fetch API 实现Async
+
+```text
+document.getElementById('button1').addEventListener('click', getText);
+
+document.getElementById('button2').addEventListener('click', getJson);
+
+document.getElementById('button3').addEventListener('click', getExternal);
+
+// Get local text file data
+function getText() {
+  fetch('test.txt')
+    .then(function(res){
+      return res.text();
+    })
+    .then(function(data) {
+      console.log(data);
+      document.getElementById('output').innerHTML = data;
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+}
+
+
+// Get local json data
+function getJson() {
+  fetch('posts.json')
+    .then(function(res){
+      return res.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      let output = '';
+      data.forEach(function(post) {
+        output += `<li>${post.title}</li>`;
+      });
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+}
+
+
+// Get from external API
+function getExternal() {
+  fetch('https://api.github.com/users')
+    .then(function(res){
+      return res.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      let output = '';
+      data.forEach(function(user) {
+        output += `<li>${user.login}</li>`;
+      });
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+}
+
+/// arrow function version
+document.getElementById('button1').addEventListener('click', getText);
+
+document.getElementById('button2').addEventListener('click', getJson);
+
+document.getElementById('button3').addEventListener('click', getExternal);
+
+// Get local text file data
+function getText() {
+  fetch('test.txt')
+    .then(res => res.text())
+    .then(data => {
+      console.log(data);
+      document.getElementById('output').innerHTML = data;
+    })
+    .catch(err => console.log(err));
+}
+
+
+// Get local json data
+function getJson() {
+  fetch('posts.json')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      let output = '';
+      data.forEach(function(post) {
+        output += `<li>${post.title}</li>`;
+      });
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(err => console.log(err));
+}
+
+
+// Get from external API
+function getExternal() {
+  fetch('https://api.github.com/users')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      let output = '';
+      data.forEach(function(user) {
+        output += `<li>${user.login}</li>`;
+      });
+      document.getElementById('output').innerHTML = output;
+    })
+    .catch(err => console.log(err));
+}
+```
+
+Fetch & Promises 版本的http libraries
+
+```text
+//app.js
+const http = new EasyHTTP;
+
+// Get Users
+// http.get('https://jsonplaceholder.typicode.com/users')
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+// User Data
+const data = {
+  name: 'John Doe',
+  username: 'johndoe',
+  email: 'jdoe@gmail.com'
+}
+
+// Create User
+// http.post('https://jsonplaceholder.typicode.com/users', data)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+// Update Post
+// http.put('https://jsonplaceholder.typicode.com/users/2', data)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+// Delete User
+http.delete('https://jsonplaceholder.typicode.com/users/2')
+.then(data => console.log(data))
+.catch(err => console.log(err));
+
+--------------------------------------------------------------------
+/**
+ * EasyHTTP Library
+ * Library for making HTTP requests
+ *
+ * @version 2.0.0
+ * @author  Brad Traversy
+ * @license MIT
+ *
+ **/
+
+ class EasyHTTP {
+   
+  // Make an HTTP GET Request 
+  get(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url)
+      .then(res => res.json())
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+    });
+  }
+
+  // Make an HTTP POST Request
+  post(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+    });
+  }
+
+   // Make an HTTP PUT Request
+   put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+    });
+  }
+
+  // Make an HTTP DELETE Request
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(() => resolve('Resource Deleted...'))
+      .catch(err => reject(err));
+    });
+  }
+
+ }
+
+ 
+```
+
+Es7 Async & Await
+
+```text
+// async function myFunc() {
+//   const promise = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve('Hello'), 1000);
+//   });
+
+//   const error = false;
+
+//   if(!error){
+//     const res = await promise; // Wait until promise is resolved
+//     return res;
+//   } else {
+//     await Promise.reject(new Error('Something went wrong'));
+//   }
+// }
+
+// myFunc()
+//   .then(res => console.log(res))
+//   .catch(err => console.log(err));
+
+async function getUsers() {
+  // await response of the fetch call
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+
+  // Only proceed once its resolved
+  const data = await response.json();
+
+  // only proceed once second promise is resolved
+  return data;
+}
+
+getUsers().then(users => console.log(users));
+
+
+```
+
+
+
+Es7 Async & Await version of http libraries
+
+```text
+//app.js
+
+const http = new EasyHTTP;
+
+// Get Users
+// http.get('https://jsonplaceholder.typicode.com/users')
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+// User Data
+const data = {
+  name: 'John Doe',
+  username: 'johndoe',
+  email: 'jdoe@gmail.com'
+}
+
+// Create User
+// http.post('https://jsonplaceholder.typicode.com/users', data)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+// Update Post
+// http.put('https://jsonplaceholder.typicode.com/users/2', data)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+// Delete User
+http.delete('https://jsonplaceholder.typicode.com/users/2')
+.then(data => console.log(data))
+.catch(err => console.log(err));
+--------------------------------------------------------------
+/**
+ * EasyHTTP Library
+ * Library for making HTTP requests
+ *
+ * @version 3.0.0
+ * @author  Brad Traversy
+ * @license MIT
+ *
+ **/
+
+ class EasyHTTP {
+  // Make an HTTP GET Request 
+  async get(url) {
+    const response = await fetch(url);
+    const resData = await response.json();
+    return resData;
+  }
+
+  // Make an HTTP POST Request
+  async post(url, data) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const resData = await response.json();
+    return resData;
+   
+  }
+
+   // Make an HTTP PUT Request
+   async put(url, data) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    
+    const resData = await response.json();
+    return resData;
+  }
+
+  // Make an HTTP DELETE Request
+  async delete(url) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    });
+
+    const resData = await 'Resource Deleted...';
+    return resData;
+  }
+
+ }
+
+ 
+```
 
