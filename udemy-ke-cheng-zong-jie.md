@@ -125,7 +125,7 @@ console.log(items);
 
 ```
 
-### 4.Traversing DOM
+## 4.Traversing DOM
 
 ```text
 let val;
