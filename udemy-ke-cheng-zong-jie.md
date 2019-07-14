@@ -125,7 +125,7 @@ console.log(items);
 
 ```
 
-## 4.Traversing DOM
+### 4.Traversing DOM
 
 ```text
 let val;
@@ -184,7 +184,7 @@ console.log(val);
 
 ```
 
-Creating Element
+### 5.Creating Element
 
 ```text
 {/* <li class="collection-item">
@@ -226,7 +226,7 @@ document.querySelector('ul.collection').appendChild(li);
 console.log(li);
 ```
 
-Removing and Replacing Element
+### 6.Removing and Replacing Element
 
 ```text
 // REPLACE ELEMENT
@@ -283,7 +283,7 @@ console.log(val);
 
 ```
 
-Event Listener & the Event Object
+### 7.Event Listener & the Event Object
 
 ```text
 // document.querySelector('.clear-tasks').addEventListener('click', function(e){
@@ -325,7 +325,7 @@ function onClick(e){
 }
 ```
 
-Mouse Event
+### 8.Mouse Event
 
 ```text
 const clearBtn = document.querySelector('.clear-tasks');
@@ -361,7 +361,7 @@ function runEvent(e) {
 }
 ```
 
-Keyboard & Input Event
+### 9.Keyboard & Input Event
 
 ```text
 const form = document.querySelector('form');
@@ -407,7 +407,7 @@ function runEvent(e){
 }
 ```
 
-Session & local storage
+### 10.Session & local storage
 
 ```text
 // set local storage item
@@ -456,7 +456,7 @@ tasks.forEach(function(task){
 });
 ```
 
-EVENT BUBBLING EVENT DELGATION
+### 11.EVENT BUBBLING EVENT DELEGATION
 
 ```text
 // EVENT BUBBLING
