@@ -1130,17 +1130,243 @@ f.Caching page state
 
 ## **57.write a router to route different component.**
 
-\*\*\*\*
+React Router is the standard routing library for React. React Router keeps your UI in sync with the URL. It has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling. 
+
+
+
+#### Installation <a id="installation"></a>
+
+React Router has been broken into three packages: react-router, react-router-dom, and react-router-native.
+
+You should almost never have to install react-router directly. That package provides the core routing components and functions for React Router applications. The other two provide environment specific \(browser and react-native\) components.
+
+```text
+npm install react-router-dom --save
+```
 
 \*\*\*\*
 
 
 
-##  
+#### Router <a id="router"></a>
 
-59.
+There are two types of router in `react-router-dom`: the `<BrowserRouter>` and `<HashRouter>`. The `<BrowserRouter>` should be used when you have a server that will handle dynamic requests \(knows how to respond to any possible URI\), while the `<HashRouter>` should be used for static websites \(can only respond to requests for files that it knows about\). Usually it is preferable to use a `<BrowserRouter>`.
 
-**shouldComponentupdate.**
+```text
+// <BrowserRouter>
+http://example.com/about
+http://example.com/users
+
+// <HashRouter>
+http://example.com/#/about
+http://example.com/#/users
+```
+
+
+
+#### Route <a id="route"></a>
+
+The `<Route>` component is the most important component in React router. It renders some UI if the current location matches the route’s path. Ideally, a component should have a prop named path, and if the pathname is matched with the current location, it gets rendered.
+
+Suppose we already have `<Home>`, `<About>`, `<Users>` three React components defined:
+
+* You want to see the page rendering `<Home>` component if you go to the url `/`
+* You want to see the page rendering `<About>` component if you go to the url `/about`
+* You want to see the page rendering `<Users>` component if you go to the url `/users`
+
+```text
+import {BrowserRouter, Route} from 'react-router-dom';
+
+/* Home component */
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
+/* About component */
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+/* Users component */
+const Users = () => (
+  <div>
+    <h2>Users</h2>
+  </div>
+);
+
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Route path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/users" component={Users} />
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+```
+
+
+
+#### Link <a id="link"></a>
+
+The `<Link>` component is used to navigate between pages. It’s comparable to the HTML anchor element. However, using anchor links would result in a browser refresh, which we don’t want. So instead, we can use to navigate to a particular URL and have the view re-rendered without a browser refresh.
+
+```text
+<Link to="/">Home</Link>
+<Link to="/about">About</Link>
+<Link to="/users">Users</Link>
+```
+
+In the example:
+
+* We use the `<Link>` component to create a simple text UI, set "/" as the value of the `to` props, which will make the page go to `/` if you click it.
+* We use the `<Link>` component to create a simple text UI, set "/about" as the value of the `to`props, which will make the page go to `/about` if you click it.
+* We use the `<Link>` component to create a simple text UI, set "/users" as the value of the `to`props, which will make the page go to `/users` if you click it.
+
+pitfall:
+
+```text
+import React, {Component} from 'react';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+
+/* Home component */
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
+/* About component */
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+/* Users component */
+const Users = () => (
+  <div>
+    <h2>Users</h2>
+  </div>
+);
+
+/* App component */
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
+            </ul>
+          </nav>
+          <Route path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/users" component={Users} />
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+```
+
+
+
+You will notice that there is a little bug in this demo: When you click `About` or `Users`, you can still see the text Home in the UI. This is because `/about` matches both `/` and `/about` and `/users`matches both `/` and `/users`. That's why you will see the extra "Home" text. If you want to avoid that and want a route to be rendered only if the path is exactly the same, you should use the `exact` props in `<Route>`.
+
+```text
+<Route exact={true} path="/" component={Home} />
+<Route path="/about" component={About} />
+<Route path="/users" component={Users} />
+```
+
+`<Switch>` component to your routes. With `<Switch>,` only the first child `<Route>` that matches the location gets rendered.
+
+```text
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+
+/* Home component */
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
+/* About component */
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+/* Users component */
+const Users = () => (
+  <div>
+    <h2>Users</h2>
+  </div>
+);
+/* AnotherPage component */
+const AnotherPage = () => (
+  <div>
+    <h2>Another Page</h2>
+  </div>
+);
+
+/* App component */
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
+              <li>
+                <Link to="/anotherPage">Another Page</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route exact={true} path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/users" component={Users} />
+            <Route path="/:pageName" component={AnotherPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+```
+
+## 
+
+## 59.**shouldComponentupdate.**
 
 **when to use it.** 
 
@@ -1148,34 +1374,109 @@ f.Caching page state
 
 **is this function check this state or next state.**
 
-**how to check state changes.**  
+**how to check state changes.**
+
+```text
+ shouldComponentUpdate(nextProps, nextState) {
+    return this.state.value !== nextState.value;
+  }
+```
+
+  
 
 
-## 60. **how to access dom tree node, when to use Refs**
+## **61.前端怎么通过URL拿取json数据**
 
-**61.前端怎么通过URL拿取json数据**
+**using fetch and promise**
 
-**62. controlled components/ uncontrolled components.**
+## **62. controlled components/ uncontrolled components.**
+
+An input form element whose value is controlled by React is called a controlled component. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid \(by re-rendering with the updated value\). If you do not re-render then the form element will remain unchanged. 
+
+An uncontrolled component works like form elements do outside of React. When a user inputs data into a form field \(an input box, dropdown, etc\) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
+
+In most cases you should use controlled components. 
 
 \*\*\*\*
 
 \*\*\*\*
 
-**64.Prevent default**
+## **64.Prevent default**
+
+The [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) interface's **`preventDefault()`** method tells the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/user_agent) that if the event does not get explicitly handled, its default action should not be taken as it normally would be.
+
+```text
+document.querySelector("#id-checkbox").addEventListener("click", function(event) {
+         document.getElementById("output-box").innerHTML += "Sorry! <code>preventDefault()</code> won't let you check this!<br>";
+         event.preventDefault();
+}, false);
+```
+
+then you cannot click on checkbox
+
+## **69. Forward refs**
+
+```text
+// You can now get a ref directly to the DOM button
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+
+const FancyButton = React.forwardRef((props, ref) => (
+    // ref.current now point to the <button> DOM node
+    <button ref={ref} {...props}> 
+        {props.children}
+    </button>
+));
+```
+
+## **70. Error boundaries**
+
+Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+
+A class component becomes an error boundary if it defines either \(or both\) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information. 
+
+Error Boundary does not catch errors for:
+
+* Event handlers
+* Asynchronous code
+* Server side rendering
+* Errors thrown in the error boundary itself
+
+Errors that were not caught by any error boundary will result in unmounting of the whole React component tree.
+
+## **71.class component vs function component，使用环境**
 
 \*\*\*\*
 
-**69. Forward refs**
+| Class Component | Functional Component |
+| :--- | :--- |
+| allow you to use additional features like local state and lifecycle hooks | receive props and renders them to the page, can use pure function |
+| to enable your component to have direct access to your store and thus holds state | also called stateless, dumb or presentational components |
 
-**70. Error boundaries**
+## 
 
-**71.class component vs function component，使用环境**
+## **72.怎么提升react效率**
 
-**72.怎么提升react效率**
+\*\*\*\*
 
-**73.为什么要用redux，为什么不用context api**
+* Use the Production Build
+* Profiling Components with the Chrome Performance Tab
+* Profiling Components with the DevTools Profiler
+* Virtualize Long Lists
+* Avoid Reconciliation
+* shouldComponentUpdate in Action
+* The Power Of Not Mutating Data
+* Using Immutable Data Structures 
 
-**74.eject 用过吗**
+## **73.为什么要用redux，为什么不用context api**
+
+Context API is built into React and you therefore need no extra third-party dependencies. e.g. You don't need a package like redux-thunk to handle asynchronous actions. 
+
+The Context API is not built for high-frequency updates. It's only recommend for low-frequency updates \(e.g. theme changes, user authentication\) but not use it for the general state management of your application. 
+
+\*\*\*\*
+
+## **74.eject 用过吗**
 
 **npm run eject上面提到，脚手架为了"优雅",隐藏了所有的webpack相关配置文件，如果我们想要基于原来的基础再次增加一些自己的东西，首先就要找到这些隐藏文件并且进行修改。**
 
@@ -1185,31 +1486,49 @@ f.Caching page state
 
 **$yarn eject或者npm run eject 此命令执行完成不可逆转\(慎重使用\)**
 
-**执行完成后，我们可以看到原有的结构目录发生了一些变化\(新增两个文件夹,package.json中的内容也跟着发生改变\)**  
+**执行完成后，我们可以看到原有的结构目录发生了一些变化\(新增两个文件夹,package.json中的内容也跟着发生改变\)**
+
+  
 
 
-75.**用哪个版本的react，新版本的新特性有哪些**
+## 75.**用哪个版本的react，新版本的新特性有哪些**
 
-**76.Why virtual DOM is faster than real DOM?**
-
-77.**sometime, response json file has empty field. how to do?**  
+## 77.**sometime, response json file has empty field. how to do?**  
 
 **hard to handle from front end**  
 
 
-78.
+## 78.**reusable Component**
 
 **问我, 听说你之前用过reusable Component, 能具体说说都是怎么用的吗? 我说用过的reusable Component里面,  button类型的用过的最多, 看她貌似不太满意, 我就又说form我也用过reusable Component, 并解释说reusable Component就类似一个Component的基本框架, 想要用的时候就添加新的feature或者function就行了, 如果想要使用的话, 任何8一个Component都可以是reusable Component, 看她貌似满意, 我就没再继续BB了**
 
-**79.然后问我Component, reducer和actionCreator之前怎么联系在一块的**
+## **79.然后问我Component, reducer和actionCreator之前怎么联系在一块的**
 
-**80.**
+\*\*\*\*
 
-**解释React Hooks,解释React Context API,解释React Context API 和 Redux的区别，更喜欢哪个**
+## **80.解释React Hooks**
 
-**81.**
+They let you use state and other React features without writing a class.
 
-**how many ways to create a react component?**
+```text
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+## **81.how many ways to create a react component?**
 
 **follow up: what is the difference between functional component and class component.**
 
@@ -1217,84 +1536,203 @@ f.Caching page state
 
 **what is react hook? give an example （让我在白板上写react hook example代码, 因为上个问题回答答到了hook）**
 
-**82.**
+**ways to create react components?**
 
-**写个React Component去request一个list, 按她想要的做个mapping，很基本的东西。**
+**1.Using a Variable Function \(depreciated\)**
 
-**state改变了，如何阻止render, shouldComponentUpdate\(\) { return false}**  
+```text
+var MyComponent = React.createClass({
+   render() {
+      return <div>
+                <h1>Hello World!</h1>
+                <p>This is my first React Component.</p>
+             </div>
+      }
+})
+```
+
+**2.**Using a Class
+
+```text
+class MyComponent extends React.Component{
+   render() {
+      return <div>
+                <h1>Hello World!</h1>
+                <p>This is my first React Component.</p>
+             </div>
+      }
+}
+```
+
+3.Using a Stateless Functional Component
+
+```text
+const MyComponent = () => {
+      return <div>
+                <h1>Hello World!</h1>
+                <p>This is my first React Component.</p>
+             </div>
+      }
+```
+
+## **82.写个React Component去request一个list, 按她想要的做个mapping，很基本的东西。**
+
+\*\*\*\*
+
+## **83.what is synthetic event?**
+
+Synthetic Event is a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
+
+## 
+
+## **84.如何clean up event handler**
+
+## **85.什么引起了react update?**
+
+The component’s state changes
+
+shouldComponentUpdate method
 
 
-**83.what is synthetic event?**
 
-**84.如何clean up event handler**
+## **86.FLUX vs MVC**
 
-**85.什么引起了react update?**
+MVC works both in server and client side development. MVC architecture: the user updates the controller, the controller manipulates the model, the model updates the view, and finally the user can see the view.
 
-**86.flux vs react**
+Flux is used for building client-side web applications. It implements React's com-posable view components by utilizing a unidirectional data flow. 
 
-**87.if you cannot render correctly, what will you do?**
+## **87.if you cannot render correctly, what will you do?**
 
 **I talked about redux state check and the value of the states, Unit test ,and system test.**  
 
 
-88.**props  vs state can we directly change state**
+## **89.why we use root in React**
 
-**89.why we use root in React**
+## **90.do you know react fibre**
 
-**90.do you know react fibre**
+**React Fiber** is an ongoing reimplementation of React's core algorithm, it’s just a **complete internal re-write of React**.
 
-91.**react fragment**
+React Fiber is a complete, backwards compatible rewrite of the React core.
 
-**92.tree shaking of react**
+The goal of **React Fiber** is to increase its suitability for areas like animation, layout, and gestures. Its headline feature is incremental rendering: the ability to split rendering work into chunks and spread it out over multiple frames.
 
-**93.do you know something new about react like react pwa?**
+**React Fiber** is a virtual stack frame, with React Fiber being a reimplementation of a stack frame specialised for React components. Each fiber can be thought of as a virtual stack frame where information from the frame is preserved in memory on the heap, and because info is saved on the heap, you can control and play with the data structures and process the relevant information as needed.
 
-**94. authorization besides JWT**
+## 91.**react fragment**
 
-**95.what is the difference between react and mvc**
-
-**96.how to prevent re-render**
-
-**97.react native vs react**
-
-**98. what is container layer  in the redux? Container layer?**
-
-**99. flux flow vs redux**
-
-**100.What is the purpose of render function?**
-
-101.**What method will trigger in re-render page**
-
-**Component should update**  
+The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element. You can also use it with the shorthand `<></>`syntax. 
 
 
-102.**what is curry**
 
-**103.Event driven model**
+## **92.tree shaking of react**
 
-**104.Difference between reactjs and jquery**
+Tree-shaking is a concept in frontend development that involves the elimination of dead code or unused code. It depends on the static syntax of import and export modules in ES6 \(ES2015\). By taking tree-shaking concepts into consideration when writing code, we can significantly scale down the bundle size by getting rid of unused JavaScript, thereby optimizing the application and increasing its performance.
 
-**105. Pure function,**   
+## **93.do you know something new about react like react pwa?**
+
+\*\*\*\*
+
+Progressive Web Apps are user experiences that have the reach of the web
+
+* [**Reliable**](https://developers.google.com/web/progressive-web-apps/#reliable) - Load instantly and never show the downasaur, even in uncertain network conditions.
+* [**Fast**](https://developers.google.com/web/progressive-web-apps/#fast) - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
+* [**Engaging**](https://developers.google.com/web/progressive-web-apps/#engaging) - Feel like a natural app on the device, with an immersive user experience.
+
+## **94.** authentication **besides JWT**
+
+## **97.react native vs react**
+
+Reactjs is front end library developed by Facebook. It's used for handling view layer for web and mobile apps. ReactJS allows us to create reusable UI components. It is currently one of the most popular JavaScript libraries and it has strong foundation and large community behind it.
+
+React Native is a mobile framework that compiles to native app components, allowing you to build native mobile applications \(iOS, Android, and Windows\) in JavaScript that allows you to use ReactJS to build your components, and implements ReactJS under the hood.
+
+Both are open sourced by Facebook.
+
+\*\*\*\*
+
+## **98. what is container layer  in the redux? Container layer?**
+
+store?
+
+## **103.Event driven model**
+
+event-driven programming a programming paradigm in which the flow of the program is determined by events such as user actions, sensor outputs, or messages from other programs or threads. 
 
 
-106.**how to persist your data\(大概意思是说如何不让信息暴露给所有人**
 
-**107.What will happen if you do this.setState in render function**
+\*\*\*\*
 
-**108.proptypes this is used validate the props that is fetched from the parent**
+## **104.Difference between reactjs and jquery**
+
+jQuery is a library for DOM manipulation, i.e. you would use it to access and modify existing HTML elements on a webpage.
+
+React is a library for designing and rendering user interfaces. A big difference between the two is that React works through the "virtual DOM", which is basically just the data about the HTML elements rather than the elements themselves, whereas jQuery interacts with the DOM directly. The idea is that DOM elements carry around too much unnecessary data, and the virtual DOM abstracts the relevant parts, allowing for faster performance. In React, you modify the virtual DOM, which it then compares to the existing DOM elements and makes the necessary changes/updates.
+
+## **105. Pure function**
+
+a function where the return value is only determined by its input values, without observable side effects.  
+
+
+## 106.**how to persist your data**
+
+You can use sessionStorage or localStorage for it. Store whatever data you want to persist in storage. When you refresh the page get that data from storage in your constructor or componentWillMount \(UNSAFE\).
+
+
+
+\*\*\*\*
+
+## **107.What will happen if you do this.setState in render function**
+
+  ****
+
+You can not set state inside render function because it will cause side effect.
+
+What exactly happens is that each time you update state react calls render function, so if you will update state inside render function then it will stuck inside infinite loop.
+
+## **108.proptypes this is used validate the props that is fetched from the parent**
 
           **proptypes is a package**
 
-  
-109.**React router**
+##  **110. arguments of createStore\(\) ?**
 
-**110. arguments of createStore\(\) ? \(reducer, \[preloadedState\], \[enhancer\]\)**
+ **\(reducer, \[preloadedState\], \[enhancer\]\)**
 
-**111.同时有2个Async calls，你怎么handle？一个接一个，or同时？**
+## **111.同时有2个Async calls，你怎么handle？一个接一个，or同时？**
 
-**112.How a button works from user Click to updates rendering on the page?**
+**using** Promise.all
 
-**113.Write an easy helloWorld Component \(using codesandbox\)**
+using async.parallel\(\)
+
+## **112.How a button works from user Click to updates rendering on the page?**
+
+\*\*\*\*
+
+## **113.Write an easy helloWorld Component \(using codesandbox\)**
+
+```text
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
+
+## **114.**setState\(\) vs forceUpdated\(\)
+
+| setState\(\) | forceUpdated\(\) |
+| :--- | :--- |
+| used to update the component state with one or more new state properties | a way to force re-render of the component and its children |
+| a way of mutating the state and managing view updates | doesn't mutate the state at all |
+
+**115.**Props vs State
+
+`Props` are inputs to a React component. They are data passed down from a parent component to a child component. Props are read only. 
+
+`State` is an internal object for a particular react component and can change, as it determines the state of the component. It's not visible to other components.  
+
+`props.children` contains the content between the opening and closing tags of a component.
+
+only changes in `props` and/or `state` trigger React to re-render the components and potentially update the DOM in the browser. 
 
   
   
