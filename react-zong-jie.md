@@ -244,6 +244,8 @@ Through lifecycle methods, we can then control what happens when each tiny secti
 
 shouldComponentUpdate\(\) is invoked before rendering when new props or state are being received. Defaults to true. Use shouldComponentUpdate\(\) to let React know if a component’s output is not affected by the current change in state or props.
 
+Use `shouldComponentUpdate()` to let React know if a component’s output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+
 **componentDidUpdate\(prevProps, prevState\):**
 
   ****componentDidUpdate\(\) is invoked immediately after updating occurs.
@@ -982,11 +984,66 @@ c. don't do deep watch in the data if the data is too big, for example don't ngR
 
 ## 42.**what is the react works in FLUX?**
 
+\*\*\*\*
+
+| Redux | Flex |
+| :--- | :--- |
+| one store | multiple store |
+| multiple reducers | no reducer |
+| implemented dispatch function | have to implement dispatch |
+| library | pattern |
+| implemented based on flux |  |
+
+## 
+
+
+
 ## **44.what is JSX**
+
+JSX is a syntax extension to JavaScript. It is similar to a template language, but it has full power of JavaScript. JSX gets compiled to `React.createElement()` calls which return plain JavaScript objects called “React elements”.
+
+```text
+// JSX
+return (
+    <div className="App"> 
+        <h1>React</h1>
+    </div>
+);
+
+// JavaScript
+return React.createElement("div", {className: "App"}, 
+    React.createElement("h1", null, "React"));
+```
+
+_Why JSX React_ **:**
+
+embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display. Instead of artificially separating technologies by putting markup and logic in separate files, React separates concerns with loosely coupled units called "components" that contain both.
 
 ## **45.element vs component**
 
+Element vs Component
+
+| Element | Component |
+| :--- | :--- |
+| the tag of an object representation of a DOM node | a function or a class which optionally accepts input and returns a React element |
+
 ## **46.React.createElement\(\)**
+
+Create and return a new [React element](https://reactjs.org/docs/rendering-elements.html) of the given type. The type argument can be either a tag name string \(such as `'div'` or `'span'`\), a [React component](https://reactjs.org/docs/components-and-props.html) type \(a class or a function\), or a [React fragment](https://reactjs.org/docs/react-api.html#reactfragment) type.
+
+Code written with [JSX](https://reactjs.org/docs/introducing-jsx.html) will be converted to use `React.createElement()`. You will not typically invoke `React.createElement()` directly if you are using JSX. See [React Without JSX](https://reactjs.org/docs/react-without-jsx.html) to learn more.
+
+```text
+React.createElement(
+  type,
+  [props],
+  [...children]
+)
+```
+
+\*\*\*\*
+
+\*\*\*\*
 
 ## **48.state vs props**
 
@@ -999,18 +1056,87 @@ c. don't do deep watch in the data if the data is too big, for example don't ngR
 
 ## **50.second parameter in setState\(\)**
 
-**51.how to output array in react**
+```text
+setState(updater[, callback])
 
-**52.what test method you use for React**
+```
 
-**53.how to prevent a component from rendering**
+\*\*\*\*
 
-**54.how to do auth in React**
+## **51.how to output array in react**
 
-**56. react state vs redux state, when do you use redux**
+```text
+function ListItem(props) {
+  // Correct! There is no need to specify the key here:
+  return <li>{props.value}</li>;
+}
 
-**57.write a router to route different componet.**  
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    // Correct! Key should be specified inside the array.
+    <ListItem key={number.toString()}
+              value={number} />
 
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+```
+
+## **52.what test method you use for React**
+
+Jest and Enzyme
+
+
+
+## **53.how to prevent a component from rendering**
+
+* return null in the render method function
+* return false in shouldComponentUpdate\(\) lifecycle method function in class based component
+
+## **54.how to do auth in React**
+
+Auth0
+
+## **56. react state vs redux state, when do you use redux**
+
+React state is stored locally within a component. When it needs to be shared with other components, it is passed down through props. 
+
+When using Redux, state is stored globally in the Redux store. Any component that needs access to a value may subscribe to the store and gain access to that value. 
+
+when to use redux:
+
+**a.** Same piece of application state needs to be mapped to multiple container components.
+
+b. Global components that can be accessed from anywhere.
+
+c.Too many props are being passed through multiple hierarchies of components.
+
+d.State management using setState is bloating the component.
+
+f.Caching page state
+
+
+
+## **57.write a router to route different component.**
+
+\*\*\*\*
+
+\*\*\*\*
+
+
+
+##  
 
 59.
 
@@ -1025,43 +1151,19 @@ c. don't do deep watch in the data if the data is too big, for example don't ngR
 **how to check state changes.**  
 
 
-60. **how to access dom tree node, when to use Refs**
+## 60. **how to access dom tree node, when to use Refs**
 
 **61.前端怎么通过URL拿取json数据**
 
 **62. controlled components/ uncontrolled components.**
 
-**63.**
+\*\*\*\*
 
-**解释这段**
-
-**class App extends React.Component {**
-
-  **render\(\) {**
-
- **return\(**
-
-  **&lt;div&gt;**
-
-        **&lt;h1&gt;{'Welcome to ReacT!'}&lt;/h1&gt;**
-
-      **&lt;/div&gt;**
-
- **\)**
-
-  **}**
-
-**}**
+\*\*\*\*
 
 **64.Prevent default**
 
-**65. html element vs react component**
-
-**66.  解释call back function**
-
-**67.virtual dom and real dom**
-
-**68.写arrow function in event handle**
+\*\*\*\*
 
 **69. Forward refs**
 
