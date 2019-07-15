@@ -97,6 +97,10 @@ Callback Hell, also known as Pyramid of Doom, is an anti-pattern seen in code of
 
 using promise to fix it : Flattened callbacks Return values from asynchronous function Throw and Catch exceptions
 
+* keep the code shallow
+* modularize
+* handle every single error
+
 ## **8.What is the prototype?**
 
 Prototypes are the mechanism by which JavaScript objects inherit features from one another. JavaScript is often described as a prototype-based language — to provide inheritance, objects can have a prototype object, which acts as a template object that it inherits methods and properties from. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain, and explains why different objects have properties and methods defined on other objects available to them.
@@ -857,6 +861,17 @@ A null process—which takes its name from the concept of null pointers—is wha
 
 \*\*\*\*
 
+| BFS | DFS |
+| :--- | :--- |
+| BFS visit nodes level by level in Graph | DFS visit nodes of graph depth wise. It visits nodes until reach a leaf or a node which doesn't have non-visited nodes |
+| A node is fully explored before any other can begin | Exploration of a node is suspended as soon as another unexplored is found |
+| Uses Queue data structure to store un-explored nodes | Uses Stack data structure to store un-explored nodes |
+| BFS is slower and require more memory | DFS is faster and require less memory  |
+
+## 
+
+\*\*\*\*
+
 
 
 ## **40. this的用法**
@@ -928,9 +943,7 @@ z 2 [ ‘x’, ‘y’, ‘z’ ]
 
 \*\*\*\*
 
-## **43.event loop**
-
-已有
+\*\*\*\*
 
 ## **44.how to do the error handling:** 
 
@@ -4044,6 +4057,196 @@ e.stopPropagation\(\)
 Event delegation is a technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it.
 
 Event bubbling is what the event itself does.
+
+## 150.How JavaScript work
+
+
+
+![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LgnugJ0SdX2tMAwP37V%2F-Lhgwlr1sK2R7MZL4CcZ%2F-LhgxoXd2VkIm_J7aU1F%2Fimage.png?alt=media&token=00a55b12-96d1-40a8-9a99-8d283a1555ea)
+
+* **Heap** - Objects are allocated in a heap which is just a name to denote a large mostly unstructured region of memory
+* **Stack** - This represents the single thread provided for JavaScript code execution. Function calls form a stack of frames \(more on this below\)
+* **Browser or Web APIs** are built into your web browser, and are able to expose data from the browser and surrounding computer environment and do useful complex things with it.
+
+## 151.Shallow Comparison Check
+
+The shallow comparison check means that JavaScript only checks that the value's object IDs are the same, not their contents are the same. The ID here means the memory address for where JavaScript stores the information for that particular object.
+
+## 152.Window vs Document
+
+`window` is the main JavaScript object root, like the global object in the browser, also can be treated as the root of the DOM. 
+
+`document` is the main object of the rendered DOM. 
+
+## 153. 4 types of Scoping
+
+
+
+* Global Scope - declared outside for any function, use it without declaring
+* Function Scope - `var`
+* Block Scope - `let & const` 
+  * `const`: immutable variable, must be initialized
+* Module Scope
+
+## 154.Prototypal Inheritance
+
+All JavaScript objects have a prototype property, that is a reference to another object. When a property is accessed on an object and if the property is not found on that object, the JavaScript engine looks at the object's prototype, and the prototype's prototype and so on, until it finds the property defined on one of the prototypes or until it reaches the end of the prototype chain. This behavior simulates classical inheritance, but it is really more of delegation than inheritance. 
+
+## 155.Classical inheritance vs Prototypal inheritance
+
+classical inheritance: a description of the object to be created. Classes inherit from classes and create subclass relationships.
+
+prototypal inheritance: a prototype is a working object instance. Objects inherit directly from other objects. 
+
+## 156.Create an Object in 6 different ways
+
+* Object\(\) constructor 
+
+```javascript
+const obj = new Object(); 
+```
+
+* Object.create\(\) 
+  * creates a new object extending the prototype object passed as a parameter 
+
+```javascript
+const obj = Object.create(null);
+```
+
+* Bracket's syntactic sugar
+  * equals to Object.create\(null\), using a null prototype as an argument
+
+```javascript
+const obj = {};
+```
+
+* Function constructor 
+  * call a function and setting this of the function to a fresh new Object, and binding the prototype of that new Object to the function's prototype
+
+```javascript
+const obj = function(name) {
+    this.name = name
+};        
+const a = new obj("hello");
+```
+
+* Function constructor + prototype
+
+```javascript
+function myObject() {};
+myObject.prototype.name = "hello";
+const obj = new myObject();
+```
+
+* ES6 class syntax 
+
+```javascript
+class myObject {
+    constructor(name) {
+        this.name = name;
+    }
+}
+const obj = new myObject("hello");
+```
+
+* Singleton pattern 
+
+```javascript
+ const obj = new function() {this.name = "hello"};
+```
+
+## 157.setTimeout and setInterval
+
+setTimeout sets a timer which executes a function or specified piece of code once after the timer  expires.
+
+setInterval repeatedly calls a function or executes a code snippet, with a fixed time delay between each call. 
+
+## 158.setImmediate vs process.nextTick
+
+process.nextTick fires immediately on the same phase.
+
+setImmediate fires on the following iteration or "tick" of the event loop.
+
+## 159.new vs Object.create
+
+`new` is `Object.create` with additionally running the `constructor` function. And giving the `constructor` the chance to `return` the actual object that should be the result of the expression instead of `this`. 
+
+## 160.Lexical Scope
+
+Lexical scope, also known as static scope, is a convention that sets the scope of a variable so that it may only be called from within the block of code in which it is defined. The scope is determined when the code is compiled. 
+
+## 161.Map vs forEach
+
+`forEach`: parameter is a function, apply the function to each item. It modifies the original array. 
+
+`map`: apply the function to all elements,  function has two parameters, first is value, second is index. It returns a new array, the original array is not modified. 
+
+## 162.Using Promises instead of Callbacks - pros & cons
+
+props:
+
+* avoid callback hell which can be unreadable
+* makes it easy to write sequential asynchronous code that is readable with `.then()`
+* makes it easy to write parallel asynchronous code with `Promise.all()`
+
+cons:
+
+* slightly more complex code
+* in older browsers where ES6 is not supported, you need to load a polyfill in order to use it
+
+## 163.What is module and how do you use that
+
+A module is a separated part of a program. It helps developers to separate functionality and organize the codebase by using export and import. 
+
+## 164.How to make JavaScript Multi-thread
+
+HTML5 Web Workers
+
+## 165.4 ways to Deep Copy Object
+
+* Using iteration - not work for nested objects
+
+```javascript
+const iterationCopy = (obj) => {
+    let res = {};
+    for (let prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+            res[prop] = obj[prop];
+        }
+    }
+    return res;
+}
+```
+
+* Converting to JSON and back
+
+```javascript
+JSON.parse(JSON.stringify(obj));
+```
+
+* Using Object.assign - not work for nested objects
+
+```javascript
+Object.assign({}, obj);
+```
+
+* Using Spread Operator - not work for nested objects
+
+```javascript
+newObject = {...oldObject};
+```
+
+## 166.How can you share code between files
+
+On the client \(browser environment\), as long as the variables/functions are declared in the global scope, all scripts can refer to them.
+
+On the server \(Node.js\), Each file is treated as a module and it can export variables and functions by attaching them to the `module.exports` object.
+
+167.
+
+
+
+
 
 
 
