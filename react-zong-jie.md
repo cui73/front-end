@@ -1577,6 +1577,8 @@ const MyComponent = () => {
 
 ## **82.写个React Component去request一个list, 按她想要的做个mapping，很基本的东西。**
 
+
+
 \*\*\*\*
 
 ## **83.what is synthetic event?**
@@ -1724,7 +1726,7 @@ class Welcome extends React.Component {
 | used to update the component state with one or more new state properties | a way to force re-render of the component and its children |
 | a way of mutating the state and managing view updates | doesn't mutate the state at all |
 
-**115.**Props vs State
+## **115.**Props vs State
 
 `Props` are inputs to a React component. They are data passed down from a parent component to a child component. Props are read only. 
 
@@ -1733,6 +1735,132 @@ class Welcome extends React.Component {
 `props.children` contains the content between the opening and closing tags of a component.
 
 only changes in `props` and/or `state` trigger React to re-render the components and potentially update the DOM in the browser. 
+
+## 116.Two Kinds of Applications
+
+| Single Page Applications | Multi Page Applications |
+| :--- | :--- |
+| Only ONE HTML Page, Content is \(re\)rendered on Client | Multiple HTML Pages, Content is rendered on Server. |
+| Typically only ONE ReactDOM.render\(\) call | One ReactDOM.render\(\) call per "widget" |
+
+## 117.Server-Side Rendering - pros & cons 
+
+
+
+advantages:
+
+* search engines can crawl the site for better SEO
+* initial loading becomes faster
+* great for static sites
+
+disadvantages:
+
+* frequent server requests
+* full page reloads, overall slow page rendering
+* non-rich site interactions
+
+## 118.Client-Side Rendering - pros & cons
+
+
+
+advantages:
+
+* rich site interactions
+* fast website rendering after the initial load
+* great for web applications
+* robust selection of JavaScript libraries
+
+disadvantages:
+
+* low SEO if not implemented correctly
+* initial load might require more time
+* in most cases, requires an external library
+
+## 119.React.memo
+
+`React.memo` is a higher order component. It's similar to `React.PureComponent` but for function components instead of classes. 
+
+If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result. 
+
+By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument. 
+
+This method only exists as a performance optimization. 
+
+## 120.Suspense
+
+The suspense component shows the fallback content while you are waiting for the child components to load when the parent component renders. 
+
+## 121.Why need super\(props\)
+
+f you don't initialize state and you don't bind methods, you don't need to implement the constructor for your React component.
+
+The constructor for a React component is called before it is mounted. When implementing the constructor for a React.component subclass, you should call super\(props\) before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+
+## 122.Composition vs inheritance in React
+
+React has a powerful composition model, and composition is recommended instead of inheritance to reuse code between components. 
+
+## 123.Rendering Multiple Components
+
+* You can build collections of elements and include them in JSX using curly braces {}.
+* Using `<React.Fragment />`
+* Return an array of elements using Map function and assign key to them 
+
+## 124.Keys
+
+A "key" is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity. 
+
+## 125.Steps for building React Project
+
+* Break the UI into a Component Hierarchy
+* Build a static version in React
+* Identify the minimal \(but complete\) representation of UI state
+* Identify where your state should live
+* Add inverse Data Flow
+
+
+
+## 126.The Diffing Algorithm
+
+
+
+When diffing two trees, React first compares the two root elements. The behavior is different depending on the types of the root elements. 
+
+React implements a heuristic O\(n\) algorithm based on two assumptions: 
+
+* Two elements of different types will produce different trees
+* The developer can hint at which child elements may be stable across different renders with a key prop.
+
+## 127.Reconciliation
+
+When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called Reconciliation. 
+
+## 128.The Diffing Algorithm
+
+
+
+When diffing two trees, React first compares the two root elements. The behavior is different depending on the types of the root elements. 
+
+React implements a heuristic O\(n\) algorithm based on two assumptions: 
+
+* Two elements of different types will produce different trees
+* The developer can hint at which child elements may be stable across different renders with a key prop.
+
+## 129.Shadow DOM
+
+The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. 
+
+## 130.
+
+
+
+
+
+
+
+
+
+
 
   
   
