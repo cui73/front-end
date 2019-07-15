@@ -195,6 +195,20 @@ Wide **React and Redux toolset**
 
 The differences with Angular:
 
+**library vs framework:**
+
+A software framework \(be it front-end or backend\) includes standardized, pre-written code, which makes the development of certain functionalities easier and faster. You have less freedom to code, as you have to code as the framework architecture dictates.
+
+A library is a collection of functions and functionalities, which you can use to achieve a certain end. You have more freedom to design and construct the system when using a library, but that adds more responsibility on the coder to be able to use it efficiently and find the right library for the right job, because, for projects which need to grow over time and become more serious, this could become significantly riskier and more difficult to manage.
+
+The most significant difference between a framework and a library is how they interact with your code.
+
+Your code calls the library while the framework calls your code.
+
+This is also known as Inversion of Control. The litmus test for detecting a framework is checking if it has the Inversion of Control.
+
+\*\*\*\*
+
 #### **Data Binding:**
 
 Angular allows two-way data binding while React allows one-way data binding.
