@@ -2,6 +2,7 @@
 
 * [Readme](README.md)
 * [JS Concepts](js-concepts/README.md)
+  * [ES6 new features](js-concepts/es6-new-features.md)
   * [Function API](js-concepts/function-api.md)
 * [Udemy 课程总结](udemy-ke-cheng-zong-jie.md)
 * [React 总结](react-zong-jie/README.md)
