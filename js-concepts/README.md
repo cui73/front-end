@@ -91,9 +91,13 @@ localStorage.removeItem('username')
 localStorage.clear()
 ```
 
-## **7.callback hell?**
+## **7.callback?**
 
-Callback Hell, also known as Pyramid of Doom, is an anti-pattern seen in code of programmers who are not wise in the ways of asynchronous programming. It consists of multiple nested callbacks which makes code hard to read and debug. It is understandable how one might unknowingly get caught in Callback Hell while dealing with asynchronous logic.
+A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. e.g. addEventListener
+
+
+
+Callback Hell is referred to the problems caused by asynchronous AJAX calls, which means where are multiple nested callbacks. 
 
 using promise to fix it : Flattened callbacks Return values from asynchronous function Throw and Catch exceptions
 
@@ -606,9 +610,15 @@ JSON is "self-describing" and easy to understand
 
 ## **26.Can you briefly describe a closure?**
 
-A closure is the combination of a function and the lexical environment within which that function was declared. The word "lexical" refers to the fact that lexical scoping uses the location where a variable is declared within the source code to determine where that variable is available. Closures are functions that have access to the outer \(enclosing\) function's variables—scope chain even after the outer function has returned.
 
 
+A closure is an inner function that has access to the variables in the outer \(enclosing\) function's scope chain.  Closure is a function that returns a function. It gives the access to an outer function's scope from an inner function. To use the closure, simply define a function inside another function and return it or pass it to another function. 
+
+The closure has access to variables in three scopes
+
+* variables in its own scope
+* variables in the enclosing function's scope
+* global variables
 
 **Why would you use one?**
 
@@ -1138,6 +1148,8 @@ function validatePhone() {
 ```
 
 ## **47.cross browser compatibility issues**
+
+Since difference browser may require different API for the same functionality, you can easily use if - else statement to define which API should be used in which environment. If the API is not working with that browser, it will return undefined. 
 
 ## **48.how to judge input finished \(debounce\)**
 
@@ -2194,6 +2206,14 @@ Authentication is the first step in the two-step process of granting a user acce
 
 **reference:**[**https://medium.com/mobidroid/difference-between-mvc-and-mvvm-456ec67181f6**](https://medium.com/mobidroid/difference-between-mvc-and-mvvm-456ec67181f6)\*\*\*\*
 
+\*\*\*\*
+
+\*\*\*\*
+
+![](../.gitbook/assets/image.png)
+
+MVVM facilitates a separation of development of the graphical user interface – be it via a markup language or GUI code – from development of the business logic or back-end logic \(the data model\). The view model of MVVM is a value converter,\[1\] meaning the view model is responsible for exposing \(converting\) the data objects from the model in such a way that objects are easily managed and presented. I
+
 ## **80.pass by value and pass by reference**
 
 **passing by reference**
@@ -2665,9 +2685,13 @@ This is a browser-reported string that allows the network protocol peers to iden
 
 ## 117.Explain Ajax in as much detail as possible.
 
-Ajax \(asynchronous JavaScript and XML\) is a set of web development techniques using many web technologies on the client side to create asynchronous web applications. With Ajax, web applications can send data to and retrieve from a server asynchronously \(in the background\) without interfering with the display and behavior of the existing page. By decoupling the data interchange layer from the presentation layer, Ajax allows for web pages, and by extension web applications, to change content dynamically without the need to reload the entire page. In practice, modern implementations commonly substitute use JSON instead of XML, due to the advantages of JSON being native to JavaScript.
+AJAX \(Asynchronous JavaScript and XML\) is to create asynchronous web applications. With AJAX, web applications can send data and retrieve from a server asynchronously in the background without the need to reload the entire page. 
 
-The `XMLHttpRequest` API is frequently used for the asynchronous communication or these days, the `fetch` API.
+The `XMLHttpReques` API is frequently used for the asynchronous communication or these days, the `fetch` API. The `XMLHttpRequest` API is frequently used for the asynchronous communication or these days, the `fetch` API.
+
+
+
+
 
 ## 118.What are the advantages and disadvantages of using Ajax?
 
@@ -4241,8 +4265,6 @@ newObject = {...oldObject};
 On the client \(browser environment\), as long as the variables/functions are declared in the global scope, all scripts can refer to them.
 
 On the server \(Node.js\), Each file is treated as a module and it can export variables and functions by attaching them to the `module.exports` object.
-
-167.
 
 
 

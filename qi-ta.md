@@ -278,6 +278,10 @@ webpack， package.json， package.json.lock是啥**
 
 **77.设计一个 amazon shopping cart 的 东西 写出所有database 的表 和details 和所有表的关系 primary key forg key  在白板上**
 
+\*\*\*\*
+
+\*\*\*\*
+
   
   
 
