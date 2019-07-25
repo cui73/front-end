@@ -1021,11 +1021,13 @@ async / await and try catch
 })()
 ```
 
-## 45.**how to parse the json data type**
+## 45.**how to parse the json data type and in the backend**
 
 JSON.parse\(\)
 
-\*\*\*\*
+use body-parser module
+
+
 
 ## **46.javascript validation**
 
@@ -2210,7 +2212,7 @@ Authentication is the first step in the two-step process of granting a user acce
 
 \*\*\*\*
 
-![](../.gitbook/assets/image.png)
+![](../.gitbook/assets/image%20%282%29.png)
 
 MVVM facilitates a separation of development of the graphical user interface – be it via a markup language or GUI code – from development of the business logic or back-end logic \(the data model\). The view model of MVVM is a value converter,\[1\] meaning the view model is responsible for exposing \(converting\) the data objects from the model in such a way that objects are easily managed and presented. I
 
@@ -2466,12 +2468,11 @@ Cookie
 
 ## **100.Cross origin, cross domain**
 
-Cross-Origin Resource Sharing \([CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS)\) is a mechanism that uses additional [HTTP](https://developer.mozilla.org/en-US/docs/Glossary/HTTP) headers to tell a browser to let a web application running at one origin \(domain\) have permission to access selected resources from a server at a different origin. A web application executes a **cross-origin HTTP request** when it requests a resource that has a different origin \(domain, protocol, and port\) than its own origin.
+Cross-Origin Resource Sharing \(CORS\) is a mechanism that uses additional HTTP headers to tell a browser to let a web application running at one origin \(domain\) have permission to access selected resources from a server at a different origin. A web application executes a cross-origin HTTP request when it requests a resource that has a different origin \(domain, protocol, and port\) than its own origin.
 
-  
-A **cross-domain solution** \(**CDS**\) is a means of [information assurance](https://en.wikipedia.org/wiki/Information_assurance) that provides the ability to manually or automatically access or transfer information between two or more differing security domains.[\[1\]](https://en.wikipedia.org/wiki/Cross-domain_solution#cite_note-1) They are integrated systems of hardware and software that enable transfer of information among incompatible security domains or levels of classification.[\[2\]](https://en.wikipedia.org/wiki/Cross-domain_solution#cite_note-2) Modern military, intelligence, and law enforcement operations critically depend on timely sharing of information.[\[](https://en.wikipedia.org/wiki/Cross-domain_solution#cite_note-3)
+A cross-domain solution is a means of information assurance that provides the ability to manually or automatically access or transfer information between two or more differing security domains. 
 
-## **102.Difference between null and undefined?  Which one is object**  
+##  **102.Difference between null and undefined?  Which one is object**  
 
 ### What is null?
 
@@ -4266,9 +4267,30 @@ On the client \(browser environment\), as long as the variables/functions are de
 
 On the server \(Node.js\), Each file is treated as a module and it can export variables and functions by attaching them to the `module.exports` object.
 
+## 167. 5 ways to reduce the page loading speed
 
 
 
+* Optimize Images
+* Browser Caching 
+* Compression
+* Optimize Your CSS
+* Keep the Scripts below the fold
+
+## 168.Microservices
+
+Microservices - also known as microservice architecture - is an architectural style that structures an application as a collection of services that are 
+
+* Highly maintainable and testable 
+* Loosely coupled
+* Independently deployable
+* Organized around business capabilities
+
+The microservice architecture enables the continuous delivery/deployment of large, complex applications. It also enables an organization to evolve its technology stack. 
+
+## 169.Continuous Integration \(CI\)
+
+Continuous Integration is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early. 
 
 
 

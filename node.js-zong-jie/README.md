@@ -1,17 +1,69 @@
 # Node.js 总结
 
-1.**Node.js file operation**
+## Node.js
 
-**2.For Backend, did you use RestFul? what is the edit process in Node?**
+Node.JS is an open-source, cross-platform JavaScript runtime environment that executes JavaScript code server-side.
 
-**3.how to create restful api.**  
+core is async I/O
+
+Use async I/O not multi thread
+
+like search:  db.query\('SELECT \* from some\_table', function\(res\) { res.output\(\); }\);
+
+callback as second parameter. async -&gt; event loop, solve the block
+
+everything is event loop
+
+![](../.gitbook/assets/image%20%285%29.png)
+
+Usage: node \[options\] \[ -e script \| script.js \] \[arguments\] 
+
+e.g.: node debug script.js \[arguments\]
 
 
-4.**what is callback what arguments in callback in node.js**
 
-**5.node js优点**
+## **Node.js file operation**
 
-**6.what framework did you use to create REST API?** 
+To include the File System module, use the `require()` method.
+
+* Read files - `fs.readFile()`
+* Create files - `fs.appendFile(), fs.open(), fs.writeFile()`
+* Update files - `fs.appendFile(), fs.writeFile()`
+* Delete files - `fs.unlink()`
+* Rename files - `fs.rename()`
+* Upload files
+
+\*\*\*\*
+
+## **For Backend, did you use RestFul? what is the edit process in Node?**
+
+\*\*\*\*
+
+## **what is callback what arguments in callback in node.js**
+
+The `util` module is primarily designed to support the needs of Node.js' own internal APIs. However, many of the utilities are useful for application and module developers as well. It can be accessed using:
+
+```text
+const util = require('util');
+```
+
+```text
+const util = require('util');
+
+async function fn() {
+  return 'hello world';
+}
+const callbackFunction = util.callbackify(fn);
+
+callbackFunction((err, ret) => {
+  if (err) throw err;
+  console.log(ret);
+});
+```
+
+## **node js优点**
+
+## **what framework did you use to create REST API?** 
 
 **7.express router how it works if you have multiple function with different method.**
 

@@ -128,7 +128,17 @@
 
 **如果jenkins中的代码测试后没有问题， 你的代码也许会在github上merge到master branch， 这时候你就可以开始下一项工作了**
 
-**所以github, jenkins 和 jira 是一同工作的， 它们一起形成了完整的流程。github做VC\(version control\)，jenkins负责CI/CD，jira通常用来追踪整个项目的进度以及报告bug**  
+**所以github, jenkins 和 jira 是一同工作的， 它们一起形成了完整的流程。github做VC\(version control\)，jenkins负责CI/CD，jira通常用来追踪整个项目的进度以及报告bug**
+
+Github own branch
+
+Use jest to test, and then push to my branch.
+
+Other for CI/CD, use jenkins and pull my code, and build and deploy and test in Jenkins.
+
+If there is problem, report to jira. And report this bug, then release new code and fix bug.
+
+Github: version control.  Jenkins: CI/CD.  Jira: show the whole process and report bug.  
 
 
 43.**为什么你喜欢用javascript, 我回答它很便捷，说到了array 可以当 stack, queue, arraylist等等**

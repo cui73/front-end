@@ -133,3 +133,44 @@ Take a look at the error message of one of the endpoint from Facebook:
 
 **Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.**
 
+\*\*\*\*
+
+## **login token authentication for backend//-&gt;you are required backend operations also for this role**
+
+#### Step 1. Create the **HEADER** <a id="bb82"></a>
+
+#### Step 2. Create the PAYLOAD <a id="d7f1"></a>
+
+#### Step 3. Create the SIGNATURE <a id="d5ea"></a>
+
+```text
+// signature algorithm
+```
+
+```text
+data = base64urlEncode( header ) + “.” + base64urlEncode( payload )
+```
+
+```text
+hashedData = hash( data, secret )
+```
+
+```text
+signature = base64urlEncode( hashedData )
+```
+
+#### Step 4. Put All Three JWT Components Together <a id="309c"></a>
+
+​
+
+```text
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ.-xN_h82PHVTCMA9vdoHrcZxH-x5mb11y1537t3rGzcM
+```
+
+#### Step 5. Verifying the JWT <a id="9c33"></a>
+
+JWT that is signed by the HS256 algorithm  
+
+
+![](../.gitbook/assets/image%20%2811%29.png)
+
