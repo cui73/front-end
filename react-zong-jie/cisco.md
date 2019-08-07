@@ -1,6 +1,16 @@
 # Cisco
 
-## 1.Interviewer asked me about my experience and technology skills I have worked on. They use bootstrap but I told them I have extensive knowledge of foundation 4 and both are similar and I will be able to pick up bootstrap easily.  
+## 1.Interviewer asked me about my experience and technology skills I have worked on. They use bootstrap but I told them I have extensive knowledge of foundation 4 and both are similar and I will be able to pick up bootstrap easily. 
+
+ I designed and built an one-page web application called employee management system from back end to the front for HR department. what this app does is to manage employees by allowing them to read, add, delete, update employees infos such as name, image, sms, address, and so on.  and also this app provides clear hierarchy views among employees , each employees can know who’s their manager.
+
+For front end technologies, I used HTML5 , CSS3, BootStrap4 to build beautiful and responsive web page and React.js to create interactive UIs and Redux to manage states. For the back-end I used Node.js with Express framework to develop Restful API which ensures CRUD, and I also used mongoDB with mongoose functions for data storages, searching, sorting.
+
+And the way how I make front-end talks to back-end is to use axios via get, post, put, delete methods.this project was deployed on AWS. I used GIT to do version control and collaboration with my colleagues. mocha for the testing
+
+schema:
+
+name, title, sex, startDate, officePhone, cellPhone, sms, email, manager, imageUrl 
 
 
 
@@ -96,15 +106,45 @@ new Promise(function(resolve, reject) {
 
 ## 4. Node.js what it is and how it's relevant to projects nowadays\(TBC\)
 
-Node.js is an open-source server side runtime environment built on Chrome's V8 JavaScript engine. It provides an event driven, non-blocking \(asynchronous\) I/O and cross-platform runtime environment for building highly scalable server-side application using JavaScript.
+Node.js is an open-source server side runtime environment built on Chrome's V8 JavaScript engine which develop high performance web services. It also provides an event driven, non-blocking \(asynchronous\) I/O and cross-platform runtime environment for building highly scalable server-side application using JavaScript.
 
-Good for beginner developers, JavaScript is simple to learn, rich framework \(Angular, Node, Backbone, Ember\) 
+Benefits:
 
-It is fast, due to Google innovative technologies and the event loop Ability to keep data in native JSON \(object notation\) format in your database
+Good for beginner developers, JavaScript is simple to learn, rich framework \(Angular, Node, Backbone, Ember\)  one language rule all.
 
- Multiple modules \(NPM, Grunt, etc.\) and supportive community Good to create real-time apps, such as chats and games Single free codebase 
+Module System: for packaging and namespacing code and to prevent name collisions
 
-Good for data streaming, thus for audio and video files, as example Sponsored by Linux Foundation
+File System:  \(async with callbacks\)
+
+fs.writeFile\(\)
+
+fs.readFile\(\)
+
+fs.writeFileSync\(\)
+
+fs.readFileSync\(\)
+
+fs.readir\(\)
+
+use to create HTTP\(WEB\) SERVER\(easy use\)
+
+Async I/O made easy
+
+active community
+
+multi-platform
+
+Node.js is a JavaScript runtime that uses the V8 engine \(fast\)
+
+real-time :Made Easy with Websockets
+
+
+
+bad sides:
+
+block on CPU\( CPU intensive tasks\)
+
+
 
 ## 5.Coding exercise on interviewers laptop on a UI wireframe they had. This was most of the interview as I had to design the whole page to be responsive using semantic HTML, vanilla JS and SCSS. Interviewers watched me while I was coding on the monitors and asked me about my coding style as to how I am structuring my code.
 
