@@ -7,6 +7,8 @@
 * [Udemy 课程总结](udemy-ke-cheng-zong-jie/README.md)
   * [课程Project总结](udemy-ke-cheng-zong-jie/ke-cheng-project-zong-jie.md)
 * [React 总结](react-zong-jie/README.md)
+  * [Cisco](react-zong-jie/cisco.md)
+  * [LG](react-zong-jie/lg.md)
   * [Used Hook](react-zong-jie/used-hook.md)
   * [Sample Code](react-zong-jie/sample-code.md)
 * [Redux 总结](redux-zong-jie.md)
@@ -30,4 +32,5 @@
 * [React实现](coding/react-shi-xian.md)
 * [JS实现](coding/js-shi-xian.md)
 * [亚麻OA](coding/ya-ma-oa.md)
+* [Pattern 总结](coding/pattern-zong-jie.md)
 

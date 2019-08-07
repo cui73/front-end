@@ -1,0 +1,250 @@
+# Cisco
+
+## 1.Interviewer asked me about my experience and technology skills I have worked on. They use bootstrap but I told them I have extensive knowledge of foundation 4 and both are similar and I will be able to pick up bootstrap easily.  
+
+
+
+## 2. Different JS frameworks and how they are different from one another.
+
+| React | Angular |
+| :--- | :--- |
+| library | framework |
+| JSX | typescript |
+| one direction data-flow | bi-direction data-flow |
+| one way data binding | two way data binding |
+| component based | MVC, component based |
+
+**Two-way** data binding means that any changes you make to the model affect the view, and vice versa.
+
+**One-way** data binding means any changes you make to the model affect the view, but not the other way around. This way, the data only flows in one direction.
+
+**MVC** works both in server and client side development. MVC architecture: the user updates the controller, the controller manipulates the model, the model updates the view, and finally the user can see the view.
+
+**One-way direction** data flow is a pattern that works nicely with React. It is around the idea that the components do not modify the data that they receive. They only listen for changes of this data and maybe provide the new value but they do not update the actual data.
+
+**bi-direction data-flow** 
+
+\*\*\*\*
+
+\*\*\*\*
+
+\*\*\*\*
+
+## **3.** Small discussion about JS promises.
+
+* Promise represents the eventual completion of an async operation
+* It must be in one of these states
+  * pending
+    * initial state, not fulfilled or rejected
+  * fulfilled
+    * meaning that the operation completed successfully
+  * rejected
+    * meaning that the operation failed
+* It is guaranteed that a promise object will either succeed or fail
+* promise.all 
+  * returns a single promise that resolves when all of the promises in the argument have resolved or when the utterable argument contains no promises
+* create Promise example
+
+[`Promise.all(iterable)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)Wait for **all promises** to be resolved, or for any to be rejected. If the returned promise resolves, it is resolved with an aggregating array of the values from the resolved promises in the same order as defined in the iterable of multiple promises. I
+
+[`Promise.race(iterable)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) ``Wait until **any o**f the promises is resolved or rejected. If the returned promise resolves, it is resolved with the value of the first promise in the iterable that resolved. If it rejects, it is rejected with the reason from the **first promise** that was rejected.
+
+[`Promise.reject(reason)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject)
+
+[`Promise.resolve(value)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)Returns a new `Promise` object that is resolved with the given value. 
+
+```javascript
+function asyncDoubble(n) {
+    return new Promise((resolve, reject) => {
+        if (typeof n === "number") {
+            resolve(n * 2);
+        } else {
+            reject(new Error (n + "is not a number!"));
+        }
+    });
+}
+asyncDouble(3).then(
+    data => console.log(data);
+    error => console.log(error);
+);
+```
+
+promise chain
+
+```text
+new Promise(function(resolve, reject) {
+
+  setTimeout(() => resolve(1), 1000); // (*)
+
+}).then(function(result) { // (**)
+
+  alert(result); // 1
+  return result * 2;
+
+}).then(function(result) { // (***)
+
+  alert(result); // 2
+  return result * 2;
+
+}).then(function(result) {
+
+  alert(result); // 4
+  return result * 2;
+
+});
+```
+
+## 4. Node.js what it is and how it's relevant to projects nowadays\(TBC\)
+
+Node.js is an open-source server side runtime environment built on Chrome's V8 JavaScript engine. It provides an event driven, non-blocking \(asynchronous\) I/O and cross-platform runtime environment for building highly scalable server-side application using JavaScript.
+
+Good for beginner developers, JavaScript is simple to learn, rich framework \(Angular, Node, Backbone, Ember\) 
+
+It is fast, due to Google innovative technologies and the event loop Ability to keep data in native JSON \(object notation\) format in your database
+
+ Multiple modules \(NPM, Grunt, etc.\) and supportive community Good to create real-time apps, such as chats and games Single free codebase 
+
+Good for data streaming, thus for audio and video files, as example Sponsored by Linux Foundation
+
+## 5.Coding exercise on interviewers laptop on a UI wireframe they had. This was most of the interview as I had to design the whole page to be responsive using semantic HTML, vanilla JS and SCSS. Interviewers watched me while I was coding on the monitors and asked me about my coding style as to how I am structuring my code.
+
+## 6.Detailed discussion about SCSS and it's advantages and disadvantages.
+
+The biggest difference SASS\(SCSS\) : the use of parentheses and semicolons.
+
+SASS\(SCSS\) \(Syntactically Awesome Stylesheets\) is a CSS pre-processor that lets you use variables, mathematical operations, mixins, loops, functions, imports,Inheritances, and other interesting functionalities that make writing CSS much more powerful.
+
+It's CSS syntax friendly\(what's available on css also available on Scss \)
+
+It offers variables for whatever you want\(reuse later\)
+
+It uses nested syntax \(More natural syntax and easy to read in most cases Prevents the need to rewrite selectors multiple times Better code organization and structure thanks to its visual hierarchy, which bring us to... More maintainable code\)
+
+It includes mixins\(a mixin \(or mix-in\) is a class that contains methods for use by other classes without having to be the parent class of those other classes.\)
+
+import rule. @import allows you to modularize your code making it easier to maintain by importing smaller SASS files. The difference between this and the CSS @import rule is that all imported SCSS files will be merged together into a single CSS file. you only do one http request.
+
+
+
+## 7. Pseudo selectors in CSS and also asked me how I can improve my code and reuse the code.
+
+A CSS pseudo-class is a keyword added to the end of a selector, preceded by a colon \(:\), which is used to specify that you want to style the selected element but only when it is in a certain state. For example, you might want to style a link element only when it is being hovered over by the mouse pointer, or a checkbox when it is disabled or checked, or an element that is the first child of its parent in the DOM tree.
+
+:active :checked :default :dir :disabled :empty :enabled :first :first-child :first-of-type :fullscreen :focus :focus-within :hover :indeterminate :in-range :invalid :lang :last-child :last-of-type :left :link :matches\(\) :not :nth-child :nth-last-child :nth-last-of-type :nth-of-type :only-child :only-of-type :optional :out-of-range :read-only :read-write :required :right :root :scope :target :valid :visited
+
+
+
+### how I can improve my code and reuse the code:
+
+Keep the code DRY. Dry means "Don't Repeat Yourself". 
+
+Make a class/method do just one thing. 
+
+Write unit tests for your classes AND make it easy to test classes. 
+
+Remove the business logic or main code away from any framework code Try to think more abstractly and use Interfaces and Abstract classes. 
+
+Code for extension. Write code that can easily be extended in the future. Don't write code that isn't needed. Try to reduce coupling. Be more Modular
+
+
+
+## 8. Performance related questions about best practices and how you can improve the pages performance.
+
+### a . Clean up the HTML Document
+
+put CSS at the top of your HTML document’s header in order to ensure progressive rendering.
+
+Proper JavaScript Placement  placing JavaScript attributes at the bottom of your HTML
+
+### b. Optimize CSS Performance
+
+minimize bloated CSS files by using @import
+
+### c. Reduce External HTTP Requests
+
+eliminate any features that do not improve the experience of your visitors. These features may be: Unnecessary images Unnecessary JavaScript Excessive CSS Unnecessary plugins
+
+### d. Minify CSS, JS and HTML
+
+
+
+### e. Enable Prefetching
+
+Prefetching can improve your visitors’ browsing experience by fetching necessary resources and related data before they are needed. There are 3 main types of prefetching:
+
+Link Prefetching DNS Prefetching Prerendering With prefetching, the URL, CSS, images, and JavaScript are gathered for each link before you even leave your current webpage. This ensures that visitors can use links to navigate between pages with minimal loading times.
+
+Fortunately, prefetching is easy to enable. Depending upon the type of prefetching you want to enable, you can simply add the rel="prefetch", rel="dns-prefetch", or rel="prerender" tag to your link attributes within your website’s HTML.
+
+### f.Increase Speed With a CDN and Caching
+
+You can significantly improve the speed and performance of your website by using a content delivery network. When you use a CDN, you link your website’s static content to an extended network of servers across the globe.
+
+Properly setting up browser caching allows your browser to store certain files within its own cache to be delivered faster. Configuring this method can be done directly within your origin server’s configuration file.
+
+### g. Compress Your Files
+
+using Gzip
+
+### h. Optimize Your Images
+
+## 9 . Different CSS properties like position relative, absolute, z-index etc. And when to use one property over other.
+
+
+
+* Static
+  * This is the default value, all the elements are in order as they appear in the document
+* Fixed \(always stay in the same place\)
+  * The element is positioned relative to its normal position
+  * This can be used to create a "floating" element that stays in the same position regardless of scrolling.
+* Absolute
+  * The element is positioned absolutely to its first positioned parent
+  *  The absolutely positioned element is positioned relative to its _nearest positioned ancestor_ \(i.e., the nearest ancestor that is not `static`\).
+* Relative \(line up form elements\)
+  * The element is positioned related to the browser window
+  * their normal position within the document
+* Sticky
+  * The element is positioned based on the user's scroll position
+* The z-index\(Because the image has a z-index of -1, it will be placed behind the heading.\)
+
+property specifies the stack order of an element. An element with greater stack order is always in front of an element with a lower stack order. z-index only works on positioned elements.
+
+
+
+## 10.Box-sizing and the CSS box model
+
+The box-sizing property defines how the width and height of an element are calculated: should they include padding and borders, or not.
+
+
+
+box-sizing: border-box: Width and height apply to all parts of the element: content, padding and borders:All HTML elements can be considered as boxes. 
+
+box-sizing: content-box \(default\): Width and height only apply to the content of the element
+
+
+
+In CSS, the term box model is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of margin, border, padding and context.
+
+
+
+![](../.gitbook/assets/image%20%2814%29.png)
+
+## 11. General web accessibility questions and user experience questions as to why in bootstrap a box is shown when it loads social share images as they seem broken when page loads.
+
+* Use more semantic HTML
+* Use correct headings
+* Alternative text
+* Declare the language and use clear language
+* Write good links and link titles
+
+## 12.CSS Grid vs Flex-box
+
+* CSS Grid Layout is a two-dimensional system, meaning it can handle both columns and rows, unlike flex-box which is largely a one-dimensional system either in a column or a row
+* CSS Grid's approach is layout-first while flex-box's approach is content-first
+* Flex-box layout is most appropriate to the components of an application and small-scale layouts, while the Grid layout is intended for larger scale layouts which aren't linear in their design
+* Flex-box is for defining a layout as a row or a column, whereas Grid is for defining a grid and fit content into it in two-dimensions
+
+Shorthand for using Flex-box: performance issues and browser compatibility. 
+
+
+

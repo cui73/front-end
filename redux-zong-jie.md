@@ -6,7 +6,7 @@ Redux is an open-source JavaScript library for managing application state. The b
 
 ## redux architecture
 
-![](.gitbook/assets/image%20%2814%29.png)
+![](.gitbook/assets/image%20%2815%29.png)
 
 
 
@@ -250,7 +250,7 @@ export const thunk_action_creator = username => {
 
 ![](.gitbook/assets/image%20%2812%29.png)
 
-![](.gitbook/assets/image%20%2817%29.png)
+![](.gitbook/assets/image%20%2818%29.png)
 
 
 
