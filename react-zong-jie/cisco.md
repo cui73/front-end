@@ -148,6 +148,8 @@ block on CPU\( CPU intensive tasks\)
 
 ## 5.Coding exercise on interviewers laptop on a UI wireframe they had. This was most of the interview as I had to design the whole page to be responsive using semantic HTML, vanilla JS and SCSS. Interviewers watched me while I was coding on the monitors and asked me about my coding style as to how I am structuring my code.
 
+
+
 ## 6.Detailed discussion about SCSS and it's advantages and disadvantages.
 
 The biggest difference SASS\(SCSS\) : the use of parentheses and semicolons.
