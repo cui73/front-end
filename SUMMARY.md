@@ -24,6 +24,7 @@
   * [HTML](css-zong-jie/html.md)
 * [BQ](bq.md)
 * [其他](qi-ta.md)
+* [Sass Note](sass-note.md)
 
 ## Coding
 

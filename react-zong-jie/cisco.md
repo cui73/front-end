@@ -14,6 +14,22 @@ name, title, sex, startDate, officePhone, cellPhone, sms, email, manager, imageU
 
 
 
+work flows:
+
+Github own branch
+
+Use jest to test, and then push to my branch.
+
+Other for CI/CD, use jenkins and pull my code, and build and deploy and test in Jenkins.
+
+If there is problem, report to jira. And report this bug, then release new code and fix bug.
+
+Github: version control.  Jenkins: CI/CD.  Jira: show the whole process and report bug.
+
+
+
+
+
 ## 2. Different JS frameworks and how they are different from one another.
 
 | React | Angular |
@@ -147,6 +163,130 @@ block on CPU\( CPU intensive tasks\)
 
 
 ## 5.Coding exercise on interviewers laptop on a UI wireframe they had. This was most of the interview as I had to design the whole page to be responsive using semantic HTML, vanilla JS and SCSS. Interviewers watched me while I was coding on the monitors and asked me about my coding style as to how I am structuring my code.
+
+### write a nav bar 
+
+```css
+  /* Navbar Styling */
+    .navbar {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background: #4c6ca0;
+      border-radius: 5px;
+      overflow: auto;
+    }
+
+    .navbar li {
+      float: left;
+    }
+
+    .navbar li a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 20px;
+    }
+
+    .navbar li a:hover {
+      background-color: #446190;
+      color: #f4f4f4;
+    }
+```
+
+```markup
+  <ul class="navbar">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <br><br>
+```
+
+### Html
+
+```markup
+            // create a form
+              <form id="task-form">
+                <div class="input-field col s12">
+                  <input type="text" name="task" id="task">
+                  <label for="task">New Task</label>
+                </div>
+                <input type="submit" value="Add Task" class="btn">
+              </form>
+             
+              // place where value show 
+             <ul class="collection"></ul>
+```
+
+### 
+
+### 
+
+### hook up html and javascript
+
+put &lt;script src="app.js"&gt; &lt;/script&gt;
+
+```javascript
+// Define UI Vars (hook class and id with javascript variables)
+const form = document.querySelector('#task-form');
+const taskList = document.querySelector('.collection');
+const clearBtn = document.querySelector('.clear-tasks');
+const filter = document.querySelector('#filter');
+const taskInput = document.querySelector('#task');
+
+// Load all event listeners
+loadEventListeners();
+
+// Load all event listeners
+function loadEventListeners() {
+  // DOM Load event
+  document.addEventListener('DOMContentLoaded', getTasks);
+  // Add task event
+  form.addEventListener('submit', addTask);
+  // Remove task event
+  taskList.addEventListener('click', removeTask);
+  // Clear task event
+  clearBtn.addEventListener('click', clearTasks);
+  // Filter tasks event
+  filter.addEventListener('keyup', filterTasks);
+}
+
+
+// Add Task
+function addTask(e) {
+  if(taskInput.value === '') {
+    alert('Add a task');
+  }
+
+  // Create li element
+  const li = document.createElement('li');
+  // Add class
+  li.className = 'collection-item';
+  // Create text node and append to li
+  li.appendChild(document.createTextNode(taskInput.value));
+  // Create new link element
+  const link = document.createElement('a');
+  // Add class
+  link.className = 'delete-item secondary-content';
+  // Add icon html
+  link.innerHTML = '<i class="fa fa-remove"></i>';
+  // Append the link to li
+  li.appendChild(link);
+
+  // Append li to ul
+  taskList.appendChild(li);
+
+  // Store in LS
+  storeTaskInLocalStorage(taskInput.value);
+
+  // Clear input
+  taskInput.value = '';
+
+  e.preventDefault();
+}
+```
 
 
 
@@ -287,6 +427,100 @@ In CSS, the term box model is used when talking about design and layout. The CSS
 * Flex-box is for defining a layout as a row or a column, whereas Grid is for defining a grid and fit content into it in two-dimensions
 
 Shorthand for using Flex-box: performance issues and browser compatibility. 
+
+## 13. Responsive Webpage Design
+
+put this line of code &lt;link rel="stylesheet" href="css/main.css" /&gt;  into head
+
+Below is important responsive code.
+
+```css
+@import 'variables';
+
+
+body {
+  font-family:$font-stack;
+  background:$primary-color;
+  color:white;
+  text-align:center;
+  padding-top: 100px;
+}
+
+h1 {
+  display: none;
+}
+
+// smartphones
+@media only screen and (max-width: 500px) {
+  body {
+    background:$smartphone-color;
+  }
+
+  #smartphone {
+    h1 {
+      display: block;
+    }
+  }
+}
+
+  // Tablet
+  @media(min-width: 501px) and (max-width: 768px) {
+    body {
+      background: $tablet-color;
+    }
+
+    #tablet {
+      h1 {
+        display: block;
+      }
+    }
+  }
+
+  // Normal
+  @media(min-width: 769px) and (max-width: 1200px) {
+    body {
+      background:$normal-color;
+    }
+    #normal {
+      h1 {
+        display:block;
+      }
+    }
+  }
+
+  // Widescreen
+  @media(min-width: 1201px) {
+    body {
+      background:$widscreen-color;
+    }
+
+    #widescreen{
+      h1 {
+        display:block;
+      }
+    }
+
+  }
+
+  // Landscape
+  @media(max-height: 500px) {
+    body {
+      background: landscape-color;
+    }
+
+    #landscape {
+      h1 {
+        display: block;
+      }
+    }
+  }
+
+
+```
+
+
+
+
 
 
 
