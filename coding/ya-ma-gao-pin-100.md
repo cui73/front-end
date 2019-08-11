@@ -113,6 +113,71 @@ class Solution {
 
 ## 146. LRU Cache
 
+思路：用double linked list去实现. get\(key\) method中，先用map.get\(key\) 去找有没有相关的node，没有则返回 -1. 有的话则要判断这个node是不是等于结尾的node，如果是的话就直接返回node.value 如果不是的话 要考虑 node是不是head 如果是head的话 就直接 head = head.next 如果不是的话则把node左边和右边相连接，最后再把node变成tail. \(使用过的就要放到double linkedlist 的结尾\)
+
+```java
+   public int get(int key) {
+        Node node = map.get(key);
+        if (node == null) {
+            return -1;
+        }
+        if (node != tail) {
+            if (node == head) {
+                head = head.next;
+            } else {
+                node.pre.next = node.next;
+                node.next.pre = node.pre;
+            }
+            tail.next = node;
+            node.pre = tail;
+            node.next = null;
+            tail = node;
+        }
+        return node.value;
+    }
+```
+
+思路：如果put的key已经存在了 我们要找到那个node然后更新它的value，最后像是正常的get一样把它变成tail。 如果这个node不存在的话，我们要新建立一个node，接着判断capacity是不是等于0。 如果是的话那么我们则需要先把head保存一下，head移动到下一个，接着使用map.remove\(temp.key\)去移除doubled linkedlist里面的那个node，capacity++. 如果当前的head 和tail都是空的话，我们直接把head = newNode. 如果不是则需要把这个newNode变成tail紧接着map再map.put\(key, newNode\); capacity--;
+
+```java
+ public void put(int key, int value) {
+        Node node = map.get(key);
+        if (node != null) {
+            node.value = value;
+            if (node != tail) {
+                if (node == head) {
+                    head = head.next;
+                } else {
+                    node.pre.next = node.next;
+                    node.next.pre = node.pre;
+                }
+                tail.next = node;
+                node.pre = tail;
+                node.next = null;
+                tail = node;
+            }
+        } else {
+            Node newNode = new Node(key, value);
+            if (capacity == 0) {
+                Node temp = head;
+                head = head.next;
+                map.remove(temp.key);
+                capacity++;
+            }
+            if (head == null && tail == null) {
+                head = newNode;
+            } else {
+                tail.next = newNode;
+                newNode.pre = tail;
+                newNode.next = null;
+            }
+            tail = newNode;
+            map.put(key, newNode);
+            capacity--;
+        }
+    }
+```
+
 ## 200. Number of islands
 
 BFS: 查看上下左右四个方向的查找
