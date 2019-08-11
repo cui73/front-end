@@ -34,4 +34,6 @@
 * [JS实现](coding/js-shi-xian.md)
 * [亚麻OA](coding/ya-ma-oa.md)
 * [Pattern 总结](coding/pattern-zong-jie.md)
+* [亚麻高频100](coding/ya-ma-gao-pin-100.md)
+* [JAVA 必备API](coding/java-bi-bei-api.md)
 

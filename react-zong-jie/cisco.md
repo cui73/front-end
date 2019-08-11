@@ -421,12 +421,14 @@ In CSS, the term box model is used when talking about design and layout. The CSS
 
 ## 12.CSS Grid vs Flex-box
 
-* CSS Grid Layout is a two-dimensional system, meaning it can handle both columns and rows, unlike flex-box which is largely a one-dimensional system either in a column or a row
-* CSS Grid's approach is layout-first while flex-box's approach is content-first
-* Flex-box layout is most appropriate to the components of an application and small-scale layouts, while the Grid layout is intended for larger scale layouts which aren't linear in their design
-* Flex-box is for defining a layout as a row or a column, whereas Grid is for defining a grid and fit content into it in two-dimensions
+a. CSS Grid Layout is a **two-dimensional** system, meaning it can handle both columns and rows, unlike flexbox which is largely a **one-dimensional system** \(either in a column or a row\).
 
-Shorthand for using Flex-box: performance issues and browser compatibility. 
+b. A core difference between CSS Grid and Flexbox is that — CSS Grid’s approach is **layout-first** while Flexbox’ approach is **content-first**.   
+_If you are well aware of your content before making layout, then blindly opt for Flexbox and if not, opt for CSS Grid._
+
+c. Flexbox layout is most appropriate to the components of an application \(as most of them are fundamentally linear\), and **small-scale** layouts, while the Grid layout is intended for **larger scale** layouts which aren’t linear in their design.
+
+d. If you only need to define a layout as a row or a column, then you probably need flexbox. If you want to define a grid and fit content into it in two dimensions — you need the grid.
 
 ## 13. Responsive Webpage Design
 
