@@ -74,6 +74,8 @@ if (map.containsKey(target - nums[i])) {
           res[1] = i;
           break;
 } 
+map.remove(temp.key); //根据key去删除map上面的东西
+
 ```
 
 
@@ -86,5 +88,32 @@ if (map.containsKey(target - nums[i])) {
         Queue<int[]> queue = new LinkedList<>();
         queue.offer(new int[]{i, j});
 
+```
+
+## Double Linked List Node 的建立
+
+```java
+    class Node {
+        int key;
+        int value;
+        Node next;
+        Node pre;
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    private HashMap<Integer, Node> map;
+    private int capacity;
+    private Node head;
+    private Node tail;
+
+    public LRUCache(int capacity) {
+        map = new HashMap<>();
+        this.capacity = capacity;
+        head = null;
+        tail = null;
+    }
 ```
 

@@ -12,7 +12,141 @@ schema:
 
 name, title, sex, startDate, officePhone, cellPhone, sms, email, manager, imageUrl 
 
+methods:
 
+// get
+
+```javascript
+router.get("/all", (req, res) => {
+  const errors = {};
+  const sort = {};
+  // enable search function
+  // console.log(req.query);
+  if (req.query.name) {
+    User.find({ $or: [{ name: { $regex: req.query.name } }] })
+      .populate("user", [
+        "name",
+        "title",
+        "sex",
+        "startDate",
+        "officePhone",
+        "cellPhone",
+        "sms",
+        "email",
+        "manager",
+        "imageUrl"
+      ])
+      .then(users => {
+        if (!users) {
+          errors.nouser = "There are no users";
+          return res.status(404).json(errors);
+        }
+        res.json(users);
+      })
+      .catch(err => res.status(404).json(err));
+  }   }
+});
+```
+
+//post
+
+```javascript
+router.post("/edit-user", (req, res) => {
+  // const { errors, isValid } = validateAddNewUserInput(req.body);
+  // Check Validation
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
+  // console.log(req.body);
+  // if (isEmpty(req.body.manager)) {
+  //   let updateManager = null;
+  // } else {
+  // let updateManager = req.body.manager;
+  // }
+  let updateManager = req.body.manager;
+  let userId = req.body.id;
+  let updateName = req.body.name;
+  let updateTitle = req.body.title;
+  let updateSex = req.body.sex;
+  let updateStartDate = req.body.startDate;
+  let updateOfficePhone = req.body.officePhone;
+  let updateCellPhone = req.body.cellPhone;
+  let updateSms = req.body.sms;
+  let updateEmail = req.body.email;
+  let updateImageUrl = req.body.imageUrl;
+
+  User.findById(userId)
+    .then(user => {
+      (user.name = updateName),
+        (user.title = updateTitle),
+        (user.sex = updateSex),
+        (user.startDate = updateStartDate),
+        (user.officePhone = updateOfficePhone),
+        (user.cellPhone = updateCellPhone),
+        (user.sms = updateSms),
+        (user.email = updateEmail),
+        (user.manager = updateManager),
+        (user.imageUrl = updateImageUrl);
+      return user.save();
+    })
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => console.log(err));
+});
+
+```
+
+
+
+//delete
+
+```javascript
+router.delete("/info/:userId", (req, res) => {
+  const id = req.params.userId;
+  User.deleteOne({ _id: id })
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+```
+
+// upload using  formdata
+
+```javascript
+ handleChange(e) {
+    // e.preventDefault();
+    // this.setState({
+    //   file: e.target.files[0]
+    // });
+    const data = new FormData();
+    data.append("myImage", e.target.files[0]);
+    // console.log(e.target.files[0]);
+    axios.post("/api/users/upload", data).then(res => {
+      // console.log(res.data.path);
+      this.setState({ imageUrl: res.data.path.toString() });
+      // console.log(this.state.imageUrl.toString());
+    });
+  }
+  
+  
+  router.post("/upload", (req, res, next) => {
+  // let uploadFile = req.files.file;
+  // const fileName = req.files.file.name;
+  // uploadFile.mv(`/image`, function(err) {
+  //   if (err) {
+  //     return res.status(500).send(err);
+  //   }
+  //   res.json({
+  //     file: `${req.files.file.name}`
+  //   });
+  // });
+  res.json(req.file);
+});
+```
 
 work flows:
 
@@ -124,6 +258,8 @@ new Promise(function(resolve, reject) {
 
 Node.js is an open-source server side runtime environment built on Chrome's V8 JavaScript engine which develop high performance web services. It also provides an event driven, non-blocking \(asynchronous\) I/O and cross-platform runtime environment for building highly scalable server-side application using JavaScript.
 
+A non-blocking input/output model means that Node.js answers the client call to start a request and processes the task during the time it shoots callback, as the task is ready. Processing tasks asynchronously, Node executes JS code on its single thread on an event basis. That is what called an event-loop.
+
 Benefits:
 
 Good for beginner developers, JavaScript is simple to learn, rich framework \(Angular, Node, Backbone, Ember\)  one language rule all.
@@ -156,9 +292,19 @@ real-time :Made Easy with Websockets
 
 
 
+
+
+
+
 bad sides:
 
+The biggest drawback of Node.js even now is its inability to process CPU bound tasks.
+
 block on CPU\( CPU intensive tasks\)
+
+The problem occurs when Node.js receives a CPU bound task: Whenever a heavy request comes to the event loop, Node.js would set all the CPU available to process it first, and then answer other requests queued. That results in slow processing and overall delay in the event loop, which is why Node.js is not recommended for heavy computation.
+
+However, in 2018, multithreading was introduced in Node.js as an experimental feature with the 10.5.0 update. A new feature called workers thread module can be used to leverage additional threads from a thread pool, to carry CPU bound tasks. But that can be done only on machines with multiple cores, as Node.js still allows you to use one core for one thread. That means that heavy parallel processes can be executed on a different thread.
 
 
 
