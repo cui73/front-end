@@ -306,7 +306,15 @@ The problem occurs when Node.js receives a CPU bound task: Whenever a heavy requ
 
 However, in 2018, multithreading was introduced in Node.js as an experimental feature with the 10.5.0 update. A new feature called workers thread module can be used to leverage additional threads from a thread pool, to carry CPU bound tasks. But that can be done only on machines with multiple cores, as Node.js still allows you to use one core for one thread. That means that heavy parallel processes can be executed on a different thread.
 
+What is Streams in Node.js?
 
+  Streams are pipes that let you easily read data from a source and pipe it to a destination.For example, if we want to read data from a file, the best way to do it from a stream is to listen to data event and attach a callback. When a chunk of data is available, the readable stream emits a data event and your callback executes. 
+
+
+
+What is EventEmitter in Node.js?
+
+All objects that emit events are instances of the EventEmitter class. These objects expose an eventEmitter.on\(\) function that allows one or more functions to be attached to named events emitted by the object.
 
 ## 5.Coding exercise on interviewers laptop on a UI wireframe they had. This was most of the interview as I had to design the whole page to be responsive using semantic HTML, vanilla JS and SCSS. Interviewers watched me while I was coding on the monitors and asked me about my coding style as to how I am structuring my code.
 
