@@ -16,6 +16,8 @@ methods:
 
 // get
 
+first should be 
+
 ```javascript
 router.get("/all", (req, res) => {
   const errors = {};
@@ -169,7 +171,7 @@ Github: version control.  Jenkins: CI/CD.  Jira: show the whole process and repo
 | React | Angular |
 | :--- | :--- |
 | library | framework |
-| JSX | typescript |
+| JSX\(JSX allows us to put HTML into JavaScript.\) | typescript |
 | one direction data-flow | bi-direction data-flow |
 | one way data binding | two way data binding |
 | component based | MVC, component based |
@@ -314,7 +316,9 @@ What is Streams in Node.js?
 
 What is EventEmitter in Node.js?
 
-All objects that emit events are instances of the EventEmitter class. These objects expose an eventEmitter.on\(\) function that allows one or more functions to be attached to named events emitted by the object.
+All objects that emit events are instances of the EventEmitter class. These objects expose an eventEmitter.on\(\) function that allows one or more functions to be attached to named events emitted by the object.When the EventEmitter object emits an event, all of the functions attached to that specific event are called synchronously.
+
+
 
 ## 5.Coding exercise on interviewers laptop on a UI wireframe they had. This was most of the interview as I had to design the whole page to be responsive using semantic HTML, vanilla JS and SCSS. Interviewers watched me while I was coding on the monitors and asked me about my coding style as to how I am structuring my code.
 
