@@ -76,6 +76,14 @@ if (map.containsKey(target - nums[i])) {
 } 
 map.remove(temp.key); //根据key去删除map上面的东西
 
+
+for(String str : map.keySet()){
+  if(map.get(str) > max){
+    max = map.get(str);
+    res = str;
+   }
+}
+// 遍历keyset
 ```
 
 
@@ -115,5 +123,39 @@ map.remove(temp.key); //根据key去删除map上面的东西
         head = null;
         tail = null;
     }
+```
+
+## Print Array in Java
+
+```java
+System.out.println(Arrays.toString(array));
+
+String[] words = paragraph.toLowerCase().split("\\W+");
+input : "Bob hit a ball, the hit BALL flew far after it was hit."
+["hit"]
+
+output: [bob, hit, a, ball, the, hit, ball, flew, far, after, it, was, hit]
+
+
+
+```
+
+## Set的运用
+
+```java
+  Set<String> set = new HashSet<>();
+    for(String word : banned){
+      set.add(word);
+    }
+    set.contains(word)
+```
+
+## List的运用
+
+```java
+List<List<Integer>> res = new ArrayList<>();
+List<Integer> list = new ArrayList<>();
+
+
 ```
 

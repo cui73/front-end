@@ -263,3 +263,246 @@ class Solution {
 }
 ```
 
+## 819. Most Common Word
+
+思路: 先split string里面的每一个word 然后把banned word 加入set 接着创建一个map去存 word 如果当前的word不等于banned的word。最后用map.keySet\(\)去遍历keyset里面全部的key并找到出现次数最多的那个，然后返回
+
+Time Complexity: O\(P + B\)O\(P+B\), where PP is the size of paragraph and BB is the size of banned.
+
+Space Complexity: O\(P + B\)O\(P+B\), to store the count and the banned set.
+
+```java
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        // split paragraph 
+        String[] words = paragraph.toLowerCase().split("\\W+");
+
+        
+        // add banned words to set
+        Set<String> set = new HashSet<>();
+        for(String word : banned){
+            set.add(word);
+        }
+        
+        // add paragraph words to hash map
+        Map<String, Integer> map = new HashMap<>();
+        for(String word : words){
+            if(!set.contains(word)){
+                map.put(word, map.getOrDefault(word, 0) + 1);
+            }
+        }
+            
+        // get the most frequent word
+        int max = 0; // max frequency
+        String res = "";
+        for(String str : map.keySet()){
+            if(map.get(str) > max){
+                max = map.get(str);
+                res = str;
+            }
+        }
+        
+        return res;
+    }
+}
+```
+
+## 957. Prison Cells After N Days
+
+思路： 状态根据i的左右而改变，都被occupy 或者 都是空 是1， 否则是0。 重点：最开始的input不算第0天的状态。当遇到环时，遇到的那个不算。我们要用到遇到环之前的状态作为新的input。 同时用一个set的去存每一个状态。遇到相同的状态表示遇到环了。
+
+技巧：遇到环的时候，可以用 % 去得到。
+
+Time Complexity: O\(2^N\)O\(2 N \), where NN is the number of cells in the prison.
+
+Space Complexity: O\(2^N \* N\)O\(2 N ∗N\).
+
+```java
+class Solution {
+    public int[] prisonAfterNDays(int[] cells, int N) {
+      
+      Set<String> set = new HashSet<>();
+      boolean hasCycle = false;
+      int count = 0;
+      for (int i = 0; i < N; i++) {
+        int[] res = next(cells);
+        if (!set.contains(Arrays.toString(res))) {
+           set.add(Arrays.toString(res));
+           count++;
+        } else {
+          hasCycle = true;
+          break;
+        }
+        cells = res;
+      }
+      
+    if (hasCycle) {
+     N = N % count;
+     for (int i = 0; i < N; i++) {
+      cells = next(cells);
+     }
+    }
+     
+     return cells;
+    }
+    
+    public int[] next(int[] cells) {
+      int[] res = new int[cells.length];
+      for (int i = 1; i < cells.length - 1; i++) {
+        if (cells[i - 1] == cells[i + 1]) {
+          res[i] =  1;
+        } else {
+          res[i] = 0;
+        }
+       }
+      return res;
+    }
+}
+```
+
+## 103. Binary Tree Zigzag Level Order Traversal
+
+思路：用queue去存每一层的element，按照存的size去进行for loop 存储到list中（按照先添加左再添加右边的方式）。用一个boolean为true的时候代表正常加入list，当为false的时候从后面往前面添加。 TreeNode curr = queue.poll\(\) 要放到for loop里面，这样可以避免重复。
+
+time complexity: O\(n\) space: O\(n\)
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+      public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        boolean x = true;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = queue.poll();
+                if (x) {
+                    list.add(cur.val);
+                } else {
+                    list.add(0, cur.val);
+                }
+              
+                if (cur.left != null) {
+                    queue.offer(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.offer(cur.right);
+                }
+            }
+            res.add(list);
+            x = x ? false : true;
+        }
+        return res;
+    }
+}
+```
+
+## 42. Trapping Rain Water
+
+思路:使用左右挡板策略，当左边的高度比右边小时，可以找到左边最高的板然后减去当前值，当右边的高度大于或者等于左边的高度时，可以找到右边最高的板然后减去当前值。当左右相等时，loop结束。 time compalexity: O\(N\) Space:O\(1\)
+
+```java
+class Solution {
+    public int trap(int[] height) {
+      int leftMost = 0;
+      int rightMost = 0;
+      int left = 0;
+      int right = height.length - 1;
+      int res = 0;
+      while (left < right) {
+        if (height[left] < height[right]) {
+          leftMost = Math.max(height[left],leftMost);
+          res += leftMost - height[left];
+          left++;
+        } else {
+          rightMost = Math.max(height[right],rightMost);
+          res += rightMost - height[right];
+          right--;
+        }
+      }
+      return res;
+    }
+}
+```
+
+
+
+## 2.Add Two Numbers
+
+思路:  while loop 判断  l1 和 l2 都不等于空。用一个sum去加。每次加完后 需要用%取出来那个数存到新的node里面。 每次sum都要用 sum /= 10去加一或者变成0. 当for loop结束的时候，需要再判断一次sum / 10 == 1 是的话 再建立一个值为一的节点。 注意一开始的时候建立一个值为0的节点 然后再用另外一个指向那个节点。返回的时候返回节点值为0的next
+
+```java
+public class Solution {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            ListNode result = new ListNode(0);
+            ListNode tmp = result;
+            int sum = 0;
+            while (l1 != null || l2 != null) {
+                sum /= 10; // 如果是10则加1
+                if (l1 != null) {
+                    sum += l1.val;
+                    l1 = l1.next;
+                }
+                if (l2 != null) {
+                    sum += l2.val;
+                    l2 = l2.next;
+                }
+                tmp.next = new ListNode(sum % 10);
+                tmp = tmp.next;
+            }
+            if (sum / 10 == 1) {
+                tmp.next = new ListNode(1);//this means最后两个数相加等于10 there's a carry, so we add additional 1, e.g. [5] + [5] = [0, 1]
+            }
+            return result.next;
+        }
+}
+```
+
+## 909.
+
+## 23. Merge k Sorted Lists
+
+思路： ListNode 从小到达排序和创建一个dummy list去构建一个新的list。
+
+Time complexity : O\(N\log k\)O\(Nlogk\) space：O\(N）
+
+```java
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+       if (lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val);
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+
+        for (ListNode list : lists) {
+            if (list != null) {
+                queue.add(list);
+            }
+        }
+        while (!queue.isEmpty()) {
+            cur.next = queue.poll();
+            cur = cur.next;
+            if (cur.next != null) {
+                queue.add(cur.next);
+            }
+        }
+        return dummy.next;
+      
+    }
+}
+```
+
+
+
