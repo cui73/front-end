@@ -504,5 +504,48 @@ class Solution {
 }
 ```
 
+## 127.Word Ladder
 
+
+
+思路：使用BFS。建立一个包含全部字典元素的set。然后判断是否有binginWord 有的话就删除。再建立一个hashmap去存每个string还有出现的次数和建立一个queue去存开始的单词。接着queue poll出来word用两个for loop去改变每一个字母。如果改变的字母在set中有，就要判断是不是等于end word， 如果是直接return 次数+1. 如果不是那么则需要继续放到map里面，queue再给它添加上，最后set删除已经找到的。
+
+Time Complexity: O\(M \times N\)O\(M×N\), where M is the length of words and N is the total number of words in the input word list.
+
+Space Complexity: O\(M \times N\)O\(M×N\), to store all MM transformations for each of the NN words, in the all\_combo\_dict dictionary
+
+```java
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        HashSet<String> set = new HashSet<>(wordList);
+        if (set.contains(beginWord)) {
+            set.remove(beginWord);
+        }
+        Queue<String> queue = new LinkedList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put(beginWord, 1);
+        queue.offer(beginWord);
+        while (!queue.isEmpty()) {
+            String word = queue.poll();
+            int curLevel = map.get(word);
+            for (int i = 0; i < word.length(); i++) {
+                char[] wordUnit = word.toCharArray();
+                for (char j = 'a'; j <= 'z'; j++) {
+                    wordUnit[i] = j;
+                    String temp = new String(wordUnit);
+                    if (set.contains(temp)) {
+                        if (temp.equals(endWord)) {
+                            return curLevel + 1;
+                        }
+                        map.put(temp, curLevel + 1);
+                        queue.offer(temp);
+                        set.remove(temp);
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+}
+```
 
