@@ -549,3 +549,52 @@ class Solution {
 }
 ```
 
+## 207. Course Schedule
+
+思路: 使用topological sort. Indegree 表示每个课程有几个先修课程 表示为 课程0如果有一个先修课程：inDgree\[0\] = 1; 接着用HashMap去构图 去存 先修课程号：课程号。接着需要用一个queue把入度为0的课程加入queue. 接着再把先修课程一个一个的poll出来，最后再找到课程减去它们的数值。当Indegree等于0 再放入queue中看它是否是别的课程的先修课程。最后再check是不是全部的入度都为0，是的话返回true不是则返回false；
+
+
+
+```java
+class Solution {
+     public boolean canFinish(int numCourses, int[][] prerequisites) {
+      int[] inDegree = new int[numCourses];
+      if (prerequisites == null ||prerequisites.length == 0) return true;
+      HashMap<Integer, List<Integer>> graph = new HashMap<>();
+      for (int[] prer : prerequisites) {
+        inDegree[prer[0]] ++;
+        if (graph.containsKey(prer[1])) {
+          graph.get(prer[1]).add(prer[0]);
+        } else {
+          List<Integer> list = new ArrayList<>();
+          list.add(prer[0]);
+          graph.put(prer[1], list);
+        }
+      }
+      Queue<Integer> queue = new LinkedList<>();
+      
+      for (int i = 0; i < inDegree.length; i++) {
+        if (inDegree[i] == 0) queue.offer(i);
+      }
+      
+      while (!queue.isEmpty()) {
+        int curr = queue.poll();
+        List<Integer> subCourse = graph.get(curr); 
+        for (int i = 0; subCourse != null && i < subCourse.size() ; i++ ) {
+          if (--inDegree[subCourse.get(i)] == 0) {
+            if (graph.get(subCourse.get(i)) != null) {
+              queue.offer(subCourse.get(i));
+            }
+          }
+        }
+      }
+       
+      for (int i = 0; i < inDegree.length; i++) {
+        if (inDegree[i] != 0) return false;
+      }
+      
+      return true;
+     }
+}
+```
+
