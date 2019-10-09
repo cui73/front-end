@@ -91,13 +91,13 @@ app.delete('/user', function(req, res) {
 });
 ```
 
-![](../.gitbook/assets/image%20%289%29.png)
+![](../.gitbook/assets/image%20%2812%29.png)
 
-![](../.gitbook/assets/image%20%2816%29.png)
-
-![](../.gitbook/assets/image%20%2813%29.png)
+![](../.gitbook/assets/image%20%2820%29.png)
 
 ![](../.gitbook/assets/image%20%2817%29.png)
+
+![](../.gitbook/assets/image%20%2821%29.png)
 
 Respond to all METHOD to the /user route:
 

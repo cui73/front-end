@@ -6,7 +6,7 @@ Redux is an open-source JavaScript library for managing application state. The b
 
 ## redux architecture
 
-![](.gitbook/assets/image%20%2815%29.png)
+![](.gitbook/assets/image%20%2819%29.png)
 
 
 
@@ -189,7 +189,7 @@ Redux thunk is a middleware that allows you to **write action creators that retu
   
 
 
-![](.gitbook/assets/image%20%2810%29.png)
+![](.gitbook/assets/image%20%2813%29.png)
 
 ## **write redux thunk**
 
@@ -248,9 +248,9 @@ export const thunk_action_creator = username => {
 
 ## **difference between the Redux and Flux**
 
-![](.gitbook/assets/image%20%2812%29.png)
+![](.gitbook/assets/image%20%2816%29.png)
 
-![](.gitbook/assets/image%20%2818%29.png)
+![](.gitbook/assets/image%20%2822%29.png)
 
 
 

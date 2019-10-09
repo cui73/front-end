@@ -14,7 +14,7 @@ callback as second parameter. async -&gt; event loop, solve the block
 
 everything is event loop
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](../.gitbook/assets/image%20%287%29.png)
 
 Usage: node \[options\] \[ -e script \| script.js \] \[arguments\] 
 

@@ -742,7 +742,7 @@ framework is good for:
 
 ##  24.**react play as view, what is mvc structure?**
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](../.gitbook/assets/image%20%285%29.png)
 
 \*\*\*\*
 
@@ -913,7 +913,7 @@ PATCH The PATCH method is used to apply partial modifications to a resource.
 
 ## 35.**React, Redux 的关系图是什么样子的，白板给我画一下**
 
-![](../.gitbook/assets/image%20%287%29.png)
+![](../.gitbook/assets/image%20%2810%29.png)
 
 ## **36.react+redux怎么传data，props怎么往上传，怎么跨页面传东西 如果不用redux怎么传    如果还不能用react怎么传     react router用法**
 
@@ -1907,7 +1907,7 @@ Error Handling
 * **componentDidMount** This is the hook method which is invoked immediately after the component **did** mount on the browser DOM.  **Usage:** All the interaction directly with the browser DOM and integrate with third-party libraries like Highcharts or D3 should be done here. E.g This method is best to draw sound wave graphs of songs.
 * _The API calls should be made in componentDidMount method always._
 
-![](../.gitbook/assets/image%20%288%29.png)
+![](../.gitbook/assets/image%20%2811%29.png)
 
 **Mounting**
 

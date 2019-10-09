@@ -16,11 +16,11 @@ Cascading Style Sheets \(CSS\) is a style sheet language used for describing the
 
 All HTML elements can be considered as boxes. In CSS, the term box model is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of **margin, border, padding and context**.
 
-![](../../.gitbook/assets/image.png)
+![](../../.gitbook/assets/image%20%281%29.png)
 
 div { width: 300px; border: 15px solid green; padding: 50px; margin: 20px; }
 
-![](../../.gitbook/assets/image%20%286%29.png)
+![](../../.gitbook/assets/image%20%288%29.png)
 
 ## Position <a id="position"></a>
 

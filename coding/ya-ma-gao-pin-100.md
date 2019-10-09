@@ -598,3 +598,118 @@ class Solution {
 }
 ```
 
+## 210. Course Schedule II
+
+```java
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+      int[] inDegree = new int[numCourses];
+      int[] res = new int[numCourses]; 
+      int j = 0;
+      HashMap<Integer, List<Integer>> graph = new HashMap<>();
+      for (int[] prer : prerequisites) {
+        System.out.println(prer[0]);
+        inDegree[prer[0]] ++;
+        if (graph.containsKey(prer[1])) {
+          graph.get(prer[1]).add(prer[0]);
+        } else {
+          List<Integer> list = new ArrayList<>();
+          list.add(prer[0]);
+          graph.put(prer[1], list);
+        }
+      }
+      Queue<Integer> queue = new LinkedList<>();
+      
+      for (int i = 0; i < inDegree.length; i++) {
+        if (inDegree[i] == 0) {
+          queue.offer(i);
+          res[j++] =i;
+        }   
+      }
+      
+    
+      while (!queue.isEmpty()) {
+        int curr = queue.poll();
+        List<Integer> subCourse = graph.get(curr); 
+        for (int i = 0; subCourse != null && i < subCourse.size() ; i++ ) {
+          if (--inDegree[subCourse.get(i)] == 0) {
+              res[j++] = subCourse.get(i);
+              queue.offer(subCourse.get(i));
+            
+          }
+        }
+      }
+       
+      for (int i = 0; i < inDegree.length; i++) {
+        if (inDegree[i] != 0) return new int[]{};
+      }
+      
+      return (j == numCourses) ? res : new int[0];
+        
+    }
+}
+```
+
+## 269. Alien Dictionary
+
+规律：数组中i 和 i+1位置的string进行比较，比较的长度选择最小的长度作为条件，如果cur 和next不一样，那么则需要创建一个set把next存进去形成 cur -&gt;next的关系.加入 cur已经存在在map中，那么我们要找到对应的set，看next在不在里面，不在的话才能加入进去。每加进去一个next，它对应的degree中，它的入度数也要+1.
+
+当入度数为0 的时候，加入queue中。如果进行BFS，pop出set，然后遍历set里面没还有个数，然后更新它们的degree -1，当degree是0的话，加入queue中，一直循环，直到queue为空。当result.length\(\)!=degree.size\(\) return“” 否则直接return result
+
+通过规律得到的关系：t -&gt; f , w -&gt; e, r -&gt; t, e-&gt; r
+
+
+
+
+
+```java
+class Solution {
+    public static String alienOrder(String[] words) {
+    Map<Character, Set<Character>> map=new HashMap<Character, Set<Character>>();
+    Map<Character, Integer> degree=new HashMap<Character, Integer>();
+    String result="";
+    if(words==null || words.length==0) return result;
+    for(String s: words){
+        for(char c: s.toCharArray()){
+            degree.put(c,0);
+        }
+    }
+    for(int i=0; i<words.length-1; i++){
+        String cur=words[i];
+        String next=words[i+1];
+        int length=Math.min(cur.length(), next.length());
+        for(int j=0; j<length; j++){
+            char c1=cur.charAt(j);
+            char c2=next.charAt(j);
+            if(c1!=c2){
+                Set<Character> set=new HashSet<Character>();
+                if(map.containsKey(c1)) set=map.get(c1);
+                if(!set.contains(c2)){
+                    set.add(c2);
+                    map.put(c1, set);
+                    degree.put(c2, degree.get(c2)+1);
+                }
+                break;
+            }
+        }
+    }
+    Queue<Character> q=new LinkedList<Character>();
+    for(char c: degree.keySet()){
+        if(degree.get(c)==0) q.add(c);
+    }
+    while(!q.isEmpty()){
+        char c=q.remove();
+        result+=c;
+        if(map.containsKey(c)){
+            for(char c2: map.get(c)){
+                degree.put(c2,degree.get(c2)-1);
+                if(degree.get(c2)==0) q.add(c2);
+            }
+        }
+    }
+    if(result.length()!=degree.size()) return "";
+    return result;
+    }
+}
+```
+

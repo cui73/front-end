@@ -2212,7 +2212,7 @@ Authentication is the first step in the two-step process of granting a user acce
 
 \*\*\*\*
 
-![](../.gitbook/assets/image%20%282%29.png)
+![](../.gitbook/assets/image%20%284%29.png)
 
 MVVM facilitates a separation of development of the graphical user interface – be it via a markup language or GUI code – from development of the business logic or back-end logic \(the data model\). The view model of MVVM is a value converter,\[1\] meaning the view model is responsible for exposing \(converting\) the data objects from the model in such a way that objects are easily managed and presented. I
 

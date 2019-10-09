@@ -594,7 +594,7 @@ In CSS, the term box model is used when talking about design and layout. The CSS
 
 
 
-![](../.gitbook/assets/image%20%2814%29.png)
+![](../.gitbook/assets/image%20%2818%29.png)
 
 ## 11. General web accessibility questions and user experience questions as to why in bootstrap a box is shown when it loads social share images as they seem broken when page loads.
 
