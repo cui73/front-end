@@ -508,7 +508,75 @@ console.log( flat );
 
 ## leetcode637
 
+```javascript
+class Solution {
+      public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> list = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int count = queue.size();
+            double sum = 0;
+            for (int i = 0; i < count; i++) {
+                TreeNode cur = queue.poll();
+                sum += cur.val;
+                if (cur.left != null) queue.offer(cur.left);
+                if (cur.right != null) queue.offer(cur.right);
+            }
+            list.add(sum / count);
+        }
+        return list;
+    }
+}
+```
+
 ## 机器人最短路径
+
+```java
+public static int removeObstacle(int numRows, int numColumns, List<List<Integer>> lot) {
+
+  // record already visted coordinates
+  boolean[][] visit = new boolean[numRows][numColumns];
+
+  int result = 0;
+
+  // control directions from left,right,up,down
+
+  int[][] Directions = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
+
+  Queue<int[]> que = new LinkedList<>();
+
+  que.offer(new int[]{0,0});
+
+  // main algorithm bfs
+  while(!que.isEmpty()){
+    int size = que.size();
+    for(int i = 0; i < size; i++) {
+      int[] current = que.poll();
+      int x = current[0];
+      int y = current[1];
+      // conditions checking
+      if (x < 0 || y<0 || x >= numRows || y >= numColumns || lot.get(x).get(y) == 0 || visit[x][y]){
+        continue;
+      }
+      visit[x][y] = true;
+      if (lot.get(x).get(y)  == 9) {
+        return result;
+      }
+      // get current position's neighbors  and put them into queue
+      for (int[] dir: Directions) {
+        int nextX = dir[0] + x;
+        int nextY = dir[1] + y;
+        que.offer(new int[]{nextX,nextY});
+      }
+    }
+    result++;
+  }
+  return - 1;
+}
+```
+
+
 
 ## Design a contact book \(add/edit/delete\)
 
@@ -603,6 +671,31 @@ console.log(add(1)(2)(3)());
 23
 456
 7"
+ public void levelIterator(BiTree root)
+  {
+	  if(root == null)
+	  {
+		  return ;
+	  }
+	  LinkedList<BiTree> queue = new LinkedList<BiTree>();
+	  BiTree current = null;
+	  queue.offer(root);//将根节点入队
+	  while(!queue.isEmpty())
+	  {
+		  current = queue.poll();//出队队头元素并访问
+		  System.out.print(current.val +"-->");
+		  if(current.left != null)//如果当前节点的左节点不为空入队
+		  {
+			  queue.offer(current.left);
+		  }
+		  if(current.right != null)//如果当前节点的右节点不为空，把右节点入队
+		  {
+			  queue.offer(current.right);
+		  }
+	  }
+	  
+
+
 
 ```
 
@@ -611,6 +704,19 @@ console.log(add(1)(2)(3)());
 ?
 
 ## given an int array, find integers that appears odd number of times in array
+
+```java
+ int getOddOccurrence(int ar[], int ar_size)  
+    { 
+        int i; 
+        int res = 0; 
+        for (i = 0; i < ar_size; i++)  
+        { 
+            res = res ^ ar[i]; 
+        } 
+        return res; 
+    } 
+```
 
   
 
@@ -639,9 +745,75 @@ console.log(add(1)(2)(3)());
 
 ## merge 2 lists
 
+```java
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null) return l2;
+        else if(l2 == null) return l1;
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        while(l1 != null && l2!= null){
+            if(l1.val <= l2.val){
+                curr.next = l1;
+                l1 = l1.next;
+            }else {
+                curr.next = l2;
+                l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+        curr.next = l1 == null? l2:l1;
+        return dummy.next;
+    }
+```
+
 ## arraylist和linklist区别。。。hashmap怎么存储。。。如果冲突了怎么办
 
+
+
 ## sorted array， 构建Balanced BST
+
+```java
+class Node { 
+      
+    int data; 
+    Node left, right; 
+      
+    Node(int d) { 
+        data = d; 
+        left = right = null; 
+    } 
+} 
+  
+class BinaryTree { 
+      
+    static Node root; 
+  
+    /* A function that constructs Balanced Binary Search Tree  
+     from a sorted array */
+    Node sortedArrayToBST(int arr[], int start, int end) { 
+  
+        /* Base Case */
+        if (start > end) { 
+            return null; 
+        } 
+  
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2; 
+        Node node = new Node(arr[mid]); 
+  
+        /* Recursively construct the left subtree and make it 
+         left child of root */
+        node.left = sortedArrayToBST(arr, start, mid - 1); 
+  
+        /* Recursively construct the right subtree and make it 
+         right child of root */
+        node.right = sortedArrayToBST(arr, mid + 1, end); 
+          
+        return node; 
+    } 
+```
+
+
 
 ## josephus problem
 
@@ -651,7 +823,89 @@ console.log\(sumArrayAnything\(\[\[1,2,3\],4,5\]\)\); console.log\(sumArrayAnyth
 
 ## two sum
 
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+      if (nums == null || nums.length < 2) {
+        return new int[2];
+      }
+      HashMap<Integer, Integer> map = new HashMap<>();
+      int [] res = new int[2];
+      for (int i = 0; i < nums.length; i++) {
+        if (map.containsKey(target - nums[i])) {
+          res[0] = map.get(target - nums[i]);
+          res[1] = i;
+          break;
+        }
+        map.put(nums[i], i);
+      }
+      return res;
+   }
+}
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+      if (nums == null || nums.length < 2) {
+        return new int[2];
+      }
+      HashMap<Integer, Integer> map = new HashMap<>();
+      int [] res = new int[2];
+      List<List<Integer>> res = new ArrayList<>();
+      for (int i = 0; i < nums.length; i++) {
+        if (map.containsKey(target - nums[i])) {
+            List<Integer> tmp = new ArrayList<>();
+            tmp.add(map.get(target - numbers[i]));
+            tmp.add(map.get(i));
+            res.add(tmp);
+        }
+        map.put(nums[i], i);
+      }
+      return res;
+   }
+}
+```
+
 ## leetcode200
+
+```java
+class Solution {
+    public int numIslands(char[][] grid) {
+      if (grid.length == 0) return 0;
+      int m = grid.length;
+      int n = grid[0].length;
+      Queue<int[]> queue = new LinkedList<>();
+      boolean[][] visited = new boolean[m][n];
+      int res = 0;
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j <n; j++) {
+          if (grid[i][j] == '1' && !visited[i][j]) {
+            queue.offer(new int[] {i, j});
+            visited[i][j] = true;
+            bfs(grid, visited, queue);
+            res++;
+          }
+        }
+      }
+      return res;
+    }
+    public void bfs(char[][] grid, boolean[][] visited, Queue<int[]> queue) {
+      int[][] dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+      int m = grid.length;
+      int n = grid[0].length;
+      while (!queue.isEmpty()) {
+        int[] curr = queue.poll();
+        for (int[] dir : dirs) {
+          int x = curr[0] + dir[0];
+          int y = curr[1] + dir[1];
+          
+          if (x < 0 || y < 0 || x >=m || y >= n || visited[x][y] || grid[x][y] == '0') continue;
+          visited[x][y] = true;
+          queue.offer(new int[] {x, y});
+        }
+      }
+    }
+}
+```
 
 ## Design Pattern
 
@@ -682,11 +936,98 @@ console.log\(sumArrayAnything\(\[\[1,2,3\],4,5\]\)\); console.log\(sumArrayAnyth
 
 ##  LRU Cache
 
+```java
+class LRUCache {
+   class Node {
+     int key;
+     int value;
+     Node next;
+     Node pre;
+     
+     public Node(int key, int value) {
+       this.key = key;
+       this.value = value;
+     }
+   }
+   private HashMap<Integer, Node> map;
+   private Node head;
+   private Node tail;
+   private int capacity;
+  
+   public LRUCache(int capacity) {
+     map = new HashMap<>();
+     head = null;
+     tail = null;
+     this.capacity = capacity;
+    }
+    
+    public int get(int key) {
+      Node node = map.get(key);
+      if (node == null) return -1;
+      if (node != tail) {
+        if (node == head) {
+          head = head.next;
+        } else {
+          node.pre.next = node.next;
+          node.next.pre = node.pre;
+        }
+        tail.next = node;
+        node.pre = tail;
+        node.next = null;
+        tail = node;
+      }
+      return node.value;
+    }
+    
+    public void put(int key, int value) {
+      Node node = map.get(key);
+      if (node != null ) {
+        node.value = value;
+        if (node != tail) {
+          if (node == head) {
+            head = head.next;
+          } else {
+            node.pre.next = node.next;
+            node.next.pre = node.pre;
+          }
+           tail.next = node;
+           node.pre = tail;
+           node.next = null;
+           tail = node;
+        }       
+      } else {
+        Node newNode = new Node(key, value);
+        if (capacity == 0) {
+          Node temp = head;
+          head = head.next;
+          map.remove(temp.key);
+          capacity++;
+        }
+        if (head == null && tail == null) {
+          head = newNode;
+          
+        } else {
+          tail.next = newNode;
+          newNode.pre = tail;
+          newNode.next = null;   
+        }
+          tail = newNode;
+          map.put(key, newNode);
+          capacity--;       
+      }      
+    }
+}
+```
+
 ## Find circular dependency
 
 ## Given a list of folder names, findout their top most common parent folder \[abc/def/opq, abc/def, xyz \] return \[abc/def, xyz\]
 
+
+
 ## 给一个全是word的array，和一个letter list，letter list有重复。返回所有能用letter list组成的word。 比如 wordArray = \['word', 'leetcode'\], letterList = \['a', 'b', 'c', 'd', 'e', 'e', 'l', 'l', 't', 'o'\] 返回 \['leetcodel\]
+
+
 
 ## 问了如何做Event Emitter。主要就是写Emit Class，然后能subscribe event， unsubscribe event, subscribe的时候会pass一个cb当作event handler， 一个event可以有多个handler。还要能release handler
 
@@ -700,6 +1041,10 @@ Eg： const f = new Emit\(\); const sub = f.subscribe\('a', cb1\) -----&gt; subs
 
 
 
+
+
+
+
 ##  用vanilla js写一个search box的component。不用考虑server side api的问题，你可以assume api endpoint已经给你提供好了，而且会一直return正确的答案。需要做的是你在search box上面type东西的时候，call api，通过return的结果 populate一些possible search result。具体ux方面的内容你可以自己设计。
 
 可以加debounce，以免有些人type特别快，导致发送的request太多了。因为是用vanilla js搞，让我有点不知所措。上一次用vanilla js写东西 都是大三的时候。。有点紧张。
@@ -707,6 +1052,54 @@ Eg： const f = new Emit\(\); const sub = f.subscribe\('a', cb1\) -----&gt; subs
 
 
 ## dfs traverse tree
+
+```java
+1. inorder
+    void printInorder(Node node) 
+    { 
+        if (node == null) 
+            return; 
+  
+        /* first recur on left child */
+        printInorder(node.left); 
+  
+        /* then print the data of node */
+        System.out.print(node.key + " "); 
+  
+        /* now recur on right child */
+        printInorder(node.right); 
+    } 
+ 2. preorder
+      void printPreorder(Node node) 
+    { 
+        if (node == null) 
+            return; 
+  
+        /* first print data of node */
+        System.out.print(node.key + " "); 
+  
+        /* then recur on left sutree */
+        printPreorder(node.left); 
+  
+        /* now recur on right subtree */
+        printPreorder(node.right); 
+    } 
+  3. postorder 
+     void printPostorder(Node node) 
+    { 
+        if (node == null) 
+            return; 
+  
+        // first recur on left subtree 
+        printPostorder(node.left); 
+  
+        // then recur on right subtree 
+        printPostorder(node.right); 
+  
+        // now deal with the node 
+        System.out.print(node.key + " "); 
+    } 
+```
 
 
 
