@@ -494,6 +494,24 @@ console.log( flat );
   
  round 4, 先是2个BQ，然后Coding，给一个form，form里有不同的input，input里有个name property，要求按照name property里的path把form信息收集到一个json object里。比如&lt;form&gt;&lt;input type="text" name="foo.bar" value="a"&gt;&lt;/form&gt;, {foo: {bar: a}}. Followup问如果两个input的path重复怎么办，override吗？
 
+```javascript
+const f = (a) => {
+  let b = a.split('.');
+  let result = {};
+  let temp;
+  temp = result;
+  for (let i = 0; i < b.length - 1; i++) {
+    if (i >= b.length) {
+      break;
+    }
+    temp[b[i]] = {};
+    temp = temp[b[i]];
+    temp[b[i]] = b[i + 1];
+  }
+  return result;
+}
+```
+
 ## 做一个tooltip widget。就是鼠标一hover上去可以弹出内容的
 
 [https://codepen.io/cui73/pen/MWWYGBK](https://codepen.io/cui73/pen/MWWYGBK)
@@ -662,7 +680,7 @@ console.log(add(1)(2)(3)());
 
 ## 如果打开页面发现是空白，你会如何debug
 
-
+我说我会创建一个新账号测试看能不能重现，能的话看console，没有问题看network有没有都载入；有的话看是server还是client render，可以判断html载入的对不对，如果不对就是render问题，如果对就是css问题
 
 ## 最基础的树BFS，让按照每一层的结构最后log出来一个string
 
@@ -701,7 +719,7 @@ console.log(add(1)(2)(3)());
 
 ## 第三个是问如果前端要做一个组件，保证放入大段文字可以卡在中间不挡住文字，组件传入图片和说明文字，随便用js、react还是什么写出来
 
-?
+文字过长的话可以用 overflow:hidden; text-overflow:ellipsis; 解决
 
 ## given an int array, find integers that appears odd number of times in array
 
@@ -733,7 +751,38 @@ console.log(add(1)(2)(3)());
 
 里面有加速和减速的方法，每执行一次，速度+1 或者 -1。
 
-[https://blog.bitsrc.io/understanding-design-patterns-in-javascript-13345223f2dd](https://blog.bitsrc.io/understanding-design-patterns-in-javascript-13345223f2dd)
+[https://medium.com/tech-tajawal/javascript-classes-under-the-hood-6b26d2667677](https://medium.com/tech-tajawal/javascript-classes-under-the-hood-6b26d2667677)
+
+```javascript
+class Vehicle {
+  constructor(make) {
+      this.make = make;
+      this.speed = 0;
+  }
+
+  getName() {
+      return this.make + " " + this.speed;
+  }
+
+  increaseSpeed() {
+    this.speed++;
+  }
+  decreaseSpeed() {
+    this.speed--;
+  }
+}
+
+let car = new Vehicle("Honda");
+
+// inheritance + method override
+class Car extends Vehicle{
+  getName(){
+    return super.getName() + "xxpp"
+  }
+}
+
+
+```
 
 
 
@@ -767,6 +816,27 @@ public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 ```
 
 ## arraylist和linklist区别。。。hashmap怎么存储。。。如果冲突了怎么办
+
+
+
+[https://beginnersbook.com/2013/12/difference-between-arraylist-and-linkedlist-in-java/](https://beginnersbook.com/2013/12/difference-between-arraylist-and-linkedlist-in-java/)
+
+
+
+**Hash Table \(Map\)**
+
+1. Definition: an implementation class of Map interface in Java
+2. Implementation:
+   1. Linked list with separate chaining: [706. Design HashMap](https://leetcode.com/problems/design-hashmap/description/)
+   2. Open addressing with linear probing: [https://www.geeksforgeeks.org/hashing-set-3-open-addressing/](https://www.geeksforgeeks.org/hashing-set-3-open-addressing/)
+3. Disadvantage:
+4. 1. No order, compare with a list
+   2. If you only have a small hash space or if your hash algorithm is not good, hash collision will happen frequently
+   3. If the hash map is implemented by using linked list with separate chaining, the memory cost will be huge, since we will have tons of next pointer 
+   4. The insertion time is consistent. If we do not have enough empty buckets left, we need to extend our internal structure and re-hash every nodes
+5. How to solve collision: 
+6. 1. Use a linked list to connect all nodes with same hash value
+   2. If the hash table buckets are full, then the hash table will increase total size of buckets and re-hash all elements in the hash table
 
 
 
@@ -1029,6 +1099,8 @@ class LRUCache {
 
 
 
+
+
 ## 问了如何做Event Emitter。主要就是写Emit Class，然后能subscribe event， unsubscribe event, subscribe的时候会pass一个cb当作event handler， 一个event可以有多个handler。还要能release handler
 
 Eg： const f = new Emit\(\); const sub = f.subscribe\('a', cb1\) -----&gt; subscribe一个event with handler f.unsubscribe\('a'\) ---&gt; delete这个event和所有handler sub.release\(\) -----&gt; reslease相对应的handler
@@ -1037,7 +1109,80 @@ Eg： const f = new Emit\(\); const sub = f.subscribe\('a', cb1\) -----&gt; subs
 
 ## 一道类似罗马字母转数字的题（比这个还简单的），用map搞定。还有一道string reverse
 
+
+
 ## 第一題：實現tree的bfs 第二題： a\) implement一個前端的function去call後端的api來load data 這個function 要接收兩的parms; url and page\# b\) reuse上面的function去load ALL data page by page
+
+  
+
+```javascript
+ class EasyHTTP {
+  // Make an HTTP GET Request 
+  async get(url) {
+    const response = await fetch(url);
+    const resData = await response.json();
+    return resData;
+  }
+
+  // Make an HTTP POST Request
+  async post(url, data) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const resData = await response.json();
+    return resData;
+   
+  }
+
+   // Make an HTTP PUT Request
+   async put(url, data) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    
+    const resData = await response.json();
+    return resData;
+  }
+
+  // Make an HTTP DELETE Request
+  async delete(url) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    });
+
+    const resData = await 'Resource Deleted...';
+    return resData;
+  }
+
+ }
+ 
+ 
+ const http = new EasyHTTP;
+ // User Data
+ const data = {
+  name: 'John Doe',
+  username: 'johndoe',
+  email: 'jdoe@gmail.com'
+}
+
+// Create User
+// http.post('https://jsonplaceholder.typicode.com/users', data)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
+
+```
 
 
 
@@ -1101,5 +1246,33 @@ Eg： const f = new Emit\(\); const sub = f.subscribe\('a', cb1\) -----&gt; subs
     } 
 ```
 
+## common react question
 
+[https://www.edureka.co/blog/interview-questions/react-interview-questions/](https://www.edureka.co/blog/interview-questions/react-interview-questions/)
+
+## Sort必备
+
+
+
+1. Merge Sort 
+   1. Definition: Merge Sort is a [Divide and Conquer](https://www.geeksforgeeks.org/divide-and-conquer-introduction/) algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves. The merge\(\) function is used for merging two halves. The merge\(arr, l, m, r\) is key process that assumes that arr\[l..m\] and arr\[m+1..r\] are sorted and merges the two sorted sub-arrays into one. See following C implementation for details.
+   2. Implementation: [https://www.geeksforgeeks.org/merge-sort/](https://www.geeksforgeeks.org/merge-sort/)
+
+
+
+2.Quick Sort
+
+Definition: QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot. There are many different versions of quickSort that pick pivot in different ways.
+
+1. Always pick first element as pivot.
+2. Always pick last element as pivot \(implemented below\)
+3. Pick a random element as pivot.
+4. Pick median as pivot.
+5. The key process in quickSort is partition\(\). Target of partitions is, given an array and an element x of array as pivot, put x at its correct position in sorted array and put all smaller elements \(smaller than x\) before x, and put all greater elements \(greater than x\) after x. All this should be done in linear time
+
+ Implementation:[https://www.geeksforgeeks.org/quick-sort/](https://www.geeksforgeeks.org/quick-sort/)
+
+3. buble：
+
+   [https://www.geeksforgeeks.org/bubble-sort/](https://www.geeksforgeeks.org/bubble-sort/)
 
