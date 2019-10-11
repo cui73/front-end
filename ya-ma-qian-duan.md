@@ -2,21 +2,67 @@
 
 ## angular和react各自的优缺点?
 
-react advantages:
+the pros of React: 
 
-* It's easy to know how a component is rendered, you just need to look at the render function.
-* JSX makes it easy to read the code of your components. It's also really easy to see the layout, or how components are plugged/combined with each other.
-* You can render React on the server-side. This enables improves SEO and performance. 
-* It's easy to test.
-* You can use React with any framework \(Backbone.js, Angular.js\) as it's only a view layer. 
+**reusability**: component can be repeated across several web pages
 
-react disadvantages:
+**virtual dom**: Through React’s memory reconciliation algorithm, the library constructs a representation of the page in a virtual memory, where it performs the necessary updates before rendering the final web-page into the browser. 
 
-* Learning curve. Being not full-featured framework it is requered in-depth knowledge for integration user interface free library into MVC framework.
-* View-orientedness is one of the cons of ReactJS. It should be found 'Model' and 'Controller' to resolve 'View' problem.
-* Not using isomorphic approach to exploit application leads to search engines indexing problems.
-* Lots of developers dislike JSX React’s documentation, manuals are difficult for newcomers’ understanding.
-* React’s large size library.
+**One-direction**: data flow in ReactJS provides a stable code
+
+**An open-source Facebook library**: constantly developing and open to the community
+
+Wide **React and Redux toolset**
+
+It's easy to know how a component is rendered, you just need to look at the render function. JSX makes it easy to read the code of your components. 
+
+It's also really easy to see the layout, or how components are plugged/combined with each other. You can render React on the server-side. This enables improves SEO and performance. It's easy to test. 
+
+You can use React with any framework \(Backbone.js, Angular.js\) as it's only a view layer.
+
+**------------------------------------------------------------------------------------------------------**
+
+The differences with Angular:
+
+**library vs framework:**
+
+A software framework \(be it front-end or backend\) includes standardized, pre-written code, which makes the development of certain functionalities easier and faster. You have less freedom to code, as you have to code as the framework architecture dictates.
+
+A library is a collection of functions and functionalities, which you can use to achieve a certain end. You have more freedom to design and construct the system when using a library, but that adds more responsibility on the coder to be able to use it efficiently and find the right library for the right job, because, for projects which need to grow over time and become more serious, this could become significantly riskier and more difficult to manage.
+
+The most significant difference between a framework and a library is how they interact with your code.
+
+Your code calls the library while the framework calls your code.
+
+This is also known as Inversion of Control. The litmus test for detecting a framework is checking if it has the Inversion of Control.
+
+\*\*\*\*
+
+#### **Data Binding:**
+
+Angular allows two-way data binding while React allows one-way data binding.
+
+Two-way data binding means that any changes you make to the model affect the view, and vice versa.
+
+One-way data binding means any changes you make to the model affect the view, but not the other way around. This way, the data only flows in one direction.
+
+#### **DOM Usage:**
+
+Angular uses the browser's DOM, while React uses a virtual DOM.
+
+A virtual DOM is a simplified version of the DOM. By using a virtual DOM, you can change any element very quickly and without needing to render the whole DOM. It drastically changes the performance from good to excellent.Using the virtual DOM is quite the buzz nowadays because it is faster, and speed is key!
+
+#### **Language:**
+
+Angularis a JS framework by nature, but is built to use TypeScript. React, on the other hand, is a JavaScript library as well, but recommends using JSX.
+
+#### **Learning Curve:**
+
+On average, TypeScript is considered harder to learn than JSX, in turn increasing the learning curve with Angular as compared to React.
+
+#### **App Structure:**
+
+Angular is a fully-featured MVC framework. React is just more of a 'V' in the MVC.
 
 
 
@@ -524,7 +570,7 @@ const f = (a) => {
 
 
 
-## leetcode637
+## leetcode637 average of Levels in Binary Tree
 
 ```javascript
 class Solution {
