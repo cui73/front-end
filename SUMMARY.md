@@ -26,6 +26,7 @@
 * [其他](qi-ta.md)
 * [Sass Note](sass-note.md)
 * [亚麻前端](ya-ma-qian-duan.md)
+* [General Front-end](general-front-end.md)
 
 ## Coding
 
