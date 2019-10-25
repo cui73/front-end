@@ -1728,7 +1728,7 @@ class Welcome extends React.Component {
 
 ## **115.**Props vs State
 
-`Props` are inputs to a React component. They are data passed down from a parent component to a child component. Props are read only. 
+`Props` are inputs to a React component. They are data passed down from a parent component to a child component. Props are read only\(immutable\). 
 
 `State` is an internal object for a particular react component and can change, as it determines the state of the component. It's not visible to other components.  
 
