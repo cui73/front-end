@@ -568,8 +568,6 @@ const f = (a) => {
 
 [https://www.w3schools.com/howto/tryit.asp?filename=tryhow\_js\_slideshow\_gallery](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_gallery) 图片怎么并排？
 
-
-
 ## leetcode637 average of Levels in Binary Tree
 
 ```javascript
@@ -1544,4 +1542,8 @@ Definition: QuickSort is a Divide and Conquer algorithm. It picks an element as 
 3. buble：
 
    [https://www.geeksforgeeks.org/bubble-sort/](https://www.geeksforgeeks.org/bubble-sort/)
+
+## what is dom?
+
+The Document Object Model \(DOM\) is a programming interface for HTML and XML documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects. That way, programming languages can connect to the page.
 
