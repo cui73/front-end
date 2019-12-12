@@ -143,3 +143,25 @@ function bookList(obj2) {
 console.log(JSON.stringify(bookList(obj2)));
 ```
 
+## 4. passing chilren
+
+```java
+import React, { Component } from 'react';
+class App extends Component {
+  render() {
+    const greeting = 'Welcome to React';
+    return (
+      <div>
+        <Greeting greeting={greeting} />
+      </div>
+    );
+  }
+}
+class Greeting extends Component {
+  render() {
+    return <h1>{this.props.greeting}</h1>;
+  }
+}
+export default App;
+```
+
