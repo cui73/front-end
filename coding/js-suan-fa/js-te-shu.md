@@ -517,6 +517,7 @@ function clone(arr) {
  return copy;
 }
 
+
 // method 2 very effective
 var arr = JSON.parse(JSON.stringify(arr));
 
