@@ -3229,5 +3229,21 @@ var passed = [12, 5, 8, 130, 44].mySome(function(element) {
 console.log('some: ' + passed); //some: true
 ```
 
+77.将url参数解析为JS对象
+
+```javascript
+ function queryToObj() {
+    const res = {};
+    const search = location.search.substr(1);
+    search.split('&').forEach(paramStr => {
+      const arr = paramStr.split('=');
+      const key = arr[0];
+      const val = arr[1];
+      res[key] = val;
+    })
+    return res;
+  }
+```
+
 
 
