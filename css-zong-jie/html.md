@@ -57,6 +57,8 @@ Server error responses[Section](https://developer.mozilla.org/en-US/docs/Web/HTT
 
 ## Cookie vs SessionStorage vs LocalStorage
 
+access to cookie: document.cookie
+
 All the above-mentioned technologies are key-value storage mechanisms on the client side. They are only able to store values are strings.
 
 |  | Cookie | LocalStorage | SessionStorage |

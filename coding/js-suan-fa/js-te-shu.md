@@ -3229,7 +3229,7 @@ var passed = [12, 5, 8, 130, 44].mySome(function(element) {
 console.log('some: ' + passed); //some: true
 ```
 
-77.将url参数解析为JS对象
+## 77.将url参数解析为JS对象
 
 ```javascript
  function queryToObj() {
