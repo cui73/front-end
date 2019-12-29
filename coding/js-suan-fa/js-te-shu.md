@@ -541,6 +541,8 @@ var x = 20;
 
 **21. deep clone of an object???**
 
+**Object.assign\(..\) //浅层拷贝 只有第一层算deep clone**
+
 ```javascript
 // method 1 
 
