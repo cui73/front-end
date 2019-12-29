@@ -544,16 +544,27 @@ var x = 20;
 ```javascript
 // method 1 
 
-let arr = {test:[{name:"123", id:"456"}]};
-first I write a deep clone
-function clone(arr) {
- if(arr === null) return arr;
-    const copy = arr.constructor();
-    for(let a in arr) {
-     if(arr.hasOwnProperty(a)) copy[at] = arr[at];
+//deep clone
+  function deepClone(obj = {}) {
+    //obj是null 或者不是对象和数组直接返回
+    if (typeof obj !== 'object' || obj == null) {
+      return obj;
     }
- return copy;
-}
+    //初始化返回结果
+    let result;
+    if (obj instanceof Array) {
+      result = [];
+    } else {
+      result = {};
+    }
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        result[key] = deepClone(obj[key]);
+      }
+    }
+    return result;
+  }
+
 
 
 // method 2 very effective
