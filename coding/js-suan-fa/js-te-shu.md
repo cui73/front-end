@@ -662,6 +662,29 @@ input.addEventListener('keyup', debounce(function (e) { // <-- allows handler el
 }, 1000));
 ```
 
+// second version
+
+```javascript
+const input = document.getElementById("inpu1");
+function debounce(fn, delay = 500) {
+  let timer = null;
+  return function (){
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      console.log(this) //input here
+      fn.apply(this, arguments);
+      timer = null;
+    }, delay)
+  }
+}
+
+input.addEventListener('keyup', debounce(function () {
+  console.log(input.value);
+}));
+```
+
 
 
 ## 27.throttle
@@ -684,6 +707,31 @@ function throttle(cb, time) {
     }
 }
 ```
+
+version 2
+
+```javascript
+const input = document.getElementById("inpu1");
+function throttle(fn, delay = 500) {
+  let timer = null;
+  return function (){
+    if (timer) {
+      return;
+    }
+    timer = setTimeout(() => {
+      console.log(this) //input here
+      fn.apply(this, arguments);
+      timer = null;
+    }, delay)
+  }
+}
+
+input.addEventListener('keyup', throttle(function () {
+  console.log(input.value);
+}));
+```
+
+
 
 ## 28.retry **??**
 
